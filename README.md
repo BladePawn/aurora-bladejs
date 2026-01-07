@@ -1,28 +1,53 @@
-### AURORA RP 8.0 (#BLADEJS)
+# AURORA RP 8.0 (#BLADEJS)
 
-     #bladejs fix
-	 1. Èñïðàâëåíî ïðîïàäàíèå àäìèí-àâòî ïðè íàõîæäåíèè â âîäå
-	 2. Óáðàíà êîìàíäà /key Òåïåðü ìîæíî çàïóñêàòü Ò.Ñ áåç êëþ÷à, áûëî óáðàíî èç-çà òîãî, ÷òî ïðîñòî ìåøàëî.
-	 3. Ôèêñ ðàáîòû (îðóæåéíûé çàâîä), äîáàâëåí íîâûé òä èíôîðìàöèè.
-	 4. Äîñòóï ê óïðàâëåíèþ øòàòà äëÿ Ïðåçèäåíòà äàåòñÿ ñ ïîìîøüþ âïèñàíèÿ åãî Íèêà â èãðîâîé ìîä.
-	 5. Èçìåíåí ÒÄ èíôîðìàöèè íà ðàáîòå (Íåôòåçàâîä)
-	 6. Èçìåíåíû öâåòà íåêîòîðûõ ïèêàïîâ, ÷òîáû áûëî ãëàçó ïðèÿòíî èõ óâèäåòü.
-	 7. Äîáàâëåû ìàï-èêîíêè íà êàðòå
-	 8. Èçìåíåí ïîëåò êàìåðû ïðè àâòîðèçàöèè.....
+Ð”Ð¾Ñ€Ð°Ð±Ð¾Ñ‚Ð¾Ñ‡ÐºÐ° Ð°Ð²Ñ€Ð¾Ñ€ÐºÐ¸...
+
+### main() 
+## {
+   ### print("_______________________________________________________");
+   ### print(" dev by: #bladejs. | @bladejs (tg)					 ");
+   ### print(" aurora project Â© 2026, inc. all rights reserved. 	 ");
+   ### print("_______________________________________________________");
+## }
+## Ð§Ñ‚Ð¾ Ð±Ñ‹Ð»Ð¾ Ð¿Ñ€Ð¾Ð´ÐµÐ»Ð°Ð½Ð¾
+ #### #bladejs fix
+- Ð˜ÑÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¾ Ð¿Ñ€Ð¾Ð¿Ð°Ð´Ð°Ð½Ð¸Ðµ Ð°Ð´Ð¼Ð¸Ð½-Ð°Ð²Ñ‚Ð¾ Ð¿Ñ€Ð¸ Ð½Ð°Ñ…Ð¾Ð¶Ð´ÐµÐ½Ð¸Ð¸ Ð² Ð²Ð¾Ð´Ðµ
+- Ð£Ð±Ñ€Ð°Ð½Ð° ÐºÐ¾Ð¼Ð°Ð½Ð´Ð° /key Ð¢ÐµÐ¿ÐµÑ€ÑŒ Ð¼Ð¾Ð¶Ð½Ð¾ Ð·Ð°Ð¿ÑƒÑÐºÐ°Ñ‚ÑŒ Ð¢.Ð¡ Ð±ÐµÐ· ÐºÐ»ÑŽÑ‡Ð°, Ð±Ñ‹Ð»Ð¾ ÑƒÐ±Ñ€Ð°Ð½Ð¾ Ð¸Ð·-Ð·Ð° Ñ‚Ð¾Ð³Ð¾, Ñ‡Ñ‚Ð¾ Ð¿Ñ€Ð¾ÑÑ‚Ð¾ Ð¼ÐµÑˆÐ°Ð»Ð¾.
+-  Ð¤Ð¸ÐºÑ Ñ€Ð°Ð±Ð¾Ñ‚Ñ‹ (Ð¾Ñ€ÑƒÐ¶ÐµÐ¹Ð½Ñ‹Ð¹ Ð·Ð°Ð²Ð¾Ð´), Ð´Ð¾Ð±Ð°Ð²Ð»ÐµÐ½ Ð½Ð¾Ð²Ñ‹Ð¹ Ñ‚Ð´ Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸.
+-  Ð”Ð¾ÑÑ‚ÑƒÐ¿ Ðº ÑƒÐ¿Ñ€Ð°Ð²Ð»ÐµÐ½Ð¸ÑŽ ÑˆÑ‚Ð°Ñ‚Ð° Ð´Ð»Ñ ÐŸÑ€ÐµÐ·Ð¸Ð´ÐµÐ½Ñ‚Ð° Ð´Ð°ÐµÑ‚ÑÑ Ñ Ð¿Ð¾Ð¼Ð¾ÑˆÑŒÑŽ Ð²Ð¿Ð¸ÑÐ°Ð½Ð¸Ñ ÐµÐ³Ð¾ ÐÐ¸ÐºÐ° Ð² Ð¸Ð³Ñ€Ð¾Ð²Ð¾Ð¹ Ð¼Ð¾Ð´.
+-  Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½ Ð¢Ð” Ð¸Ð½Ñ„Ð¾Ñ€Ð¼Ð°Ñ†Ð¸Ð¸ Ð½Ð° Ñ€Ð°Ð±Ð¾Ñ‚Ðµ (ÐÐµÑ„Ñ‚ÐµÐ·Ð°Ð²Ð¾Ð´)
+-  Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½Ñ‹ Ñ†Ð²ÐµÑ‚Ð° Ð½ÐµÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð¿Ð¸ÐºÐ°Ð¿Ð¾Ð², Ñ‡Ñ‚Ð¾Ð±Ñ‹ Ð±Ñ‹Ð»Ð¾ Ð³Ð»Ð°Ð·Ñƒ Ð¿Ñ€Ð¸ÑÑ‚Ð½Ð¾ Ð¸Ñ… ÑƒÐ²Ð¸Ð´ÐµÑ‚ÑŒ.
+-  Ð”Ð¾Ð±Ð°Ð²Ð»ÐµÑ‹ Ð¼Ð°Ð¿-Ð¸ÐºÐ¾Ð½ÐºÐ¸ Ð½Ð° ÐºÐ°Ñ€Ñ‚Ðµ
+-  Ð˜Ð·Ð¼ÐµÐ½ÐµÐ½ Ð¿Ð¾Ð»ÐµÑ‚ ÐºÐ°Ð¼ÐµÑ€Ñ‹ Ð¿Ñ€Ð¸ Ð°Ð²Ñ‚Ð¾Ñ€Ð¸Ð·Ð°Ñ†Ð¸Ð¸.
 
 
-
-# » Øàðèò çà:
+# Â» Ð¨Ð°Ñ€Ð¸Ñ‚ Ð·Ð°:
  ![MySQL](https://img.shields.io/badge/mysql-4479A1.svg?style=for-the-badge&logo=mysql&logoColor=white) ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white) ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
 
-# >>>– Discord:
+# >>>â€“ Discord:
 [![Discord Presence](https://lanyard.cnrad.dev/api/413003057929125908?bg=ffffff&theme=dark&showDisplayName=true&hideDecoration=true&borderRadius=20&idleMessage=%D0%9C%D0%BE%D0%B9%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D1%80%D0%B4!)](https://discord.com/users/413003057929125908)
 **
-##
-		main() {
-			print("_______________________________________________________");
-			print("                                                       ");
-			print(" dev by: #bladejs. | @bladejs (tg)					  ");
-			print(" aurora project © 2026, inc. all rights reserved. 	  ");
-			print("_______________________________________________________");
-		}
+
+
+
+## Badges
+
+I've earned these recognitions:
+[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](https://choosealicense.com/licenses/mit/)
+[![Version](https://img.shields.io/npm/v/my-package.svg)](https://www.npmjs.com/package/my-package)
+[![Tests](https://img.shields.io/github/actions/workflow/status/MYUSER/REPO/tests.yml)](https://github.com/MYUSER/REPO/actions)
+
+
+
+## License
+
+I've released this project under the [MIT License](LICENSE.md).  
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
+
+## Authors
+
+I developed this project with support from:
+- [@bladejs](https://github.com/BladePawn) - Lead developer
