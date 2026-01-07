@@ -10,10 +10,11 @@
 #define GREEN						"{33AA33}"
 #define YELLOW						"{FFFF00}"
 #define ORANGE 						"{FFD700}"
-#define P 							"{d8284c}"
+#define P 							"{009CFD}"
 #define P2							"{FFE4E1}"
 
-#define PP 							0xd8284cFF
+#define PP 							0x009CFDFF
+//#define PP 							0x009CFD70
 
 #define CBADINFO 					0xFF182DFF
 #define CDEPARTMENT 				0x007FFFFF

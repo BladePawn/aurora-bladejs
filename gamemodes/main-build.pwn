@@ -2050,26 +2050,6 @@ new Float:spawn_ls[][] = {
 	{1755.9591,-1901.9570,13.5633,269.9765}, // spawn 3
 	{1755.8163,-1904.0504,13.5643,269.9530} // spawn 4
 };
-new Float:spawn_sf[][] = {
-	{-1977.4750,123.1160,27.7047,270.2929}, // ЖД СФ 1
-	{-1977.4535,137.6149,27.7047,270.2929}, // ЖД СФ 2
-	{-1977.4214,152.9397,27.7047,270.2928}, // ЖД СФ 3
-	{-1977.4877,164.1166,27.7047,269.0396}, // ЖД СФ 4
-	{-1963.0514,164.0291,27.7087,89.4980}, // ЖД СФ 5
-	{-1963.0869,145.2251,27.7087,88.5580}, // ЖД СФ 6
-	{-1963.0641,134.3678,27.7087,90.4380}, // ЖД СФ 7
-	{-1963.0579,123.5178,27.7087,91.0647} // ЖД СФ 8
-};
-new Float:spawn_lv[][] = {
-	{2856.6641,1302.9756,11.3937,359.4539}, // spawn LV 1
-	{2856.6882,1300.3547,11.3937,179.2388}, // spawn LV 2
-	{2856.5376,1284.9554,11.3937,359.6737}, // spawn LV 3
-	{2856.6653,1282.2377,11.3937,179.1685}, // spawn LV 4
-	{2856.5779,1268.9857,11.3937,359.9402}, // spawn LV 5
-	{2856.6326,1266.2780,11.3937,179.7486}, // spawn LV 6
-	{2856.5842,1251.0560,11.3937,0.2069}, // spawn LV 7
-	{2856.6763,1248.3767,11.3937,179.1219} // spawn LV 8
-};
 
 new actorereg[MAX_PLAYERS][2];
 new Talk[][] = {
@@ -13115,7 +13095,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					}
 					case 28: {
 						if(PlayerInfo[playerid][pAdmin] < 6 || dostup[playerid] == 0) return 1;
-						D( playerid , DIALOG_DOSTUD_PLAYER_CONTROL , DSL , "Предоставить доступ", "1. Доступ (1)", "Далее", "Отмена" ) ;
+						D( playerid , DIALOG_DOSTUD_PLAYER_CONTROL , DSL , "{0096D2}Предоставить доступ", "{0096D2}1. "W"Управление штатом", "Далее", "Отмена" ) ;
 					}
 				}
 			}
@@ -13133,138 +13113,103 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 						DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel]);
 					D ( playerid , DIALOG_DOSTUDL_INFO, DIALOG_STYLE_LIST, 
 						string, 
-						"{E286F7}1. "W"Информация о доступе\n{E286F7}2. "W"Дать доступ\n{E286F7}3. "W"Убрать доступ", 
+						"{0096D2}1. "W"Информация о доступе\n{0096D2}2. "W"Дать доступ\n{0096D2}3. "W"Убрать доступ", 
 						"Выбрать", "Отмена");
 				}
 			}
 		}
-		case DIALOG_DOSTUDL_INFO: {
+		case DIALOG_DOSTUDL_INFO: { //  Основное меню доступа инфо, добавить, снять нахуй (работай!)
 			if(!response) return 1;
 			switch(listitem) {
 				case 0: {
-					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel],"None",true)) return ErrorMessage(playerid, "У данной панели не назначен игрок!");
-					new ID = GetPVarInt ( playerid, "use_dostup_control");
-					new query [ 200 ] ;
-					format(query, sizeof(query), "SELECT `dostupName`, `dostupPanel` FROM `dostupcontrol` WHERE `dostupMember` = '%i'", ID);
-					mysql_pquery(connects, query, "info_dostup", "ii", playerid, ID);
+					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "У данной панели не назначен игрок!");
+					new query [ 256 ] ;
+					new safeNick[64];
+					format(query, sizeof(query), "SELECT `dostupID`, `dostupPanel` FROM `dostupcontrol` WHERE `dostupPanel` = '%s'", safeNick);
+					mysql_pquery(connects, query, "info_dostup", "s", safeNick);
+
+				}
+				case 1: { // Даем доступ
+					if(strcmp(DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true) == 0)
+					{
+						//////
+					}else{
+						return ErrorMessage(playerid, "Игрок уже назначен!!!");
+					}
+					static const dostup_string[] = ""W"Укажите {E286F7}ID игрока"W", которому хотите дать доступ к {86F7A1}%s";
+					new string[sizeof(dostup_string) +1 + (-2 + MAX_PLAYER_NAME) + 24];
+					format(string,sizeof(string), dostup_string, DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
+					D(playerid, DIALOG_DOSTUP_ADD, DSI, "{0096D2}Выдать доступ",string,"Выбрать","Отмена");
+				}
+				case 2: { // Убираем доступ у игрока
+					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "Ну как ты бля его снять собрался?, если его нет в досутпе! Ты, бл, тупоголовый!");
+
+					static const f_str[] = ""W"Вы действительно хотите убрать "NO"%s "W"с доступа: {0096D2}%s";
+				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
+				    
+				    format(string,sizeof(string), f_str, DOSTP[GetPVarInt(playerid, "use_dostup")][dostupPanel], DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
+					D(playerid, DIALOG_MAKEDOSTUP_CLEAR, DSM, "{0096D2}Снять с доступа",string,"Да","Нет");
 				}
 			}
 		}
-		/*
-		case D_MAKELEADER_INFO: {
+		case DIALOG_DOSTUP_ADD: { // Выдаем досутп
 			if(!response) return 1;
-			//if(listitem == fINSTRUCTORS-1) return ErrorMessage(playerid,"Недоступно");
-			//if(listitem == fMAYOR-1) return ErrorMessage(playerid,"Недоступно");
-			static const f_str[] = ""P"%s "W"| "ORANGE"%s";
-			new string[sizeof(f_str) +1 + (-2 + 24) + (-2 + MAX_PLAYER_NAME)];
-			
-			SetPVarInt(playerid, "use_frac", listitem+1);
-			format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fName],FI[GetPVarInt(playerid, "use_frac")][fLeader]);
-			D(playerid,D_MAKELEADER_LIST,DSL,string,""P"1."W" Информация о фракции\n"P"2."W" Назначить лидера\n"P"3."W" Снять лидера\n"P"4."W" Вступить в организацию","Выбрать","Отмена");
-		}
-		case D_MAKELEADER_LIST: {
-		    if(!response) return 1;
-		    switch(listitem) {
-		        case 0: {
-					if(!strcmp(FI[GetPVarInt(playerid, "use_frac")][fLeader],"None",true)) return ErrorMessage(playerid, "У данной организации нет лидера");
-					new ID = GetPVarInt(playerid, "use_frac");
-					new query[200];
-					format(query,sizeof(query),"SELECT `Name`,`pRank` FROM `accounts` WHERE `pMember` = '%i'", ID);
-					mysql_pquery(connects, query, "info_fraction", "ii", playerid,ID);
-				}
-		        case 1: {
-				    if(strcmp(FI[GetPVarInt(playerid, "use_frac")][fLeader],"None",true)) return ErrorMessage(playerid, "У данной организации уже есть лидер");
-				    
-				    static const f_str[] = ""W"Укажите ID игрока,которого хотите назначить на должность лидера "P"%s";
-				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
-				    
-				    format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fName]);
-					D(playerid,D_MAKELEADER_ADD,DSI, ""P"Назначение",string,"Выбрать","Отмена");
-				}
-		        case 2: {
-					if(!strcmp(FI[GetPVarInt(playerid, "use_frac")][fLeader],"None",true)) return ErrorMessage(playerid, "У данной организации нет лидера");
-				    static const f_str[] = ""W"Вы действительно хотите снять "NO"%s "W"с поста лидера организации "P"%s";
-				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
-				    
-				    format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fLeader],FI[GetPVarInt(playerid, "use_frac")][fName]);
-					D(playerid,D_MAKELEADER_CLEAR,DSM, ""P"Снятие",string,"Выбрать","Отмена");
-				}
-		        case 3: {
-					new frac = GetPVarInt(playerid, "use_frac");
-					PlayerInfo[playerid][pLeader] = frac;
-					PlayerInfo[playerid][pMember] = frac;
-					PlayerInfo[playerid][pRank] = FI[frac][fMaxRang];
-					start_work[playerid] = 1;
-					SaveAccount(playerid);
-					static const f_str[] = ""W"Вы успешно вступили в организацию "P"%s(ID: %d)";
-				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 3)];
-					
-					format(string, sizeof(string), f_str, FI[frac][fName], frac);
-					SendOk(playerid, string);
-					SendOk(playerid, "Для увольнения введите: "W"/uval");
-					PlayerInfo[playerid][pFracSkin] = FI[frac][fSkin];
-					A_SetPlayerSkin(playerid,PlayerInfo[playerid][pFracSkin]);
-					SetPlayerColor(playerid,gFractionSpawn[PlayerInfo[playerid][pMember]][fracColor]);
-		        }
-		    }
-		}
-		case D_MAKELEADER_ADD: {
-		    if(!response) return 1;
 			if(!strlen(inputtext)) {
-				static const f_str[] = ""W"Укажите ID игрока,которого хотите назначить на должность лидера "P"%s";
-				new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME)];
-				
-				format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fName]);
-				D(playerid,D_MAKELEADER_ADD,DSI, ""P"Назначение",string,"Выбрать","Отмена");
-				return 1;
+				static const dostup_string[] = ""W"Укажите {E286F7}ID игрока"W", которому хотите дать доступ к {86F7A1}%s";
+				new string[sizeof(dostup_string) +1 + (-2 + MAX_PLAYER_NAME)];
+				format(string,sizeof(string), dostup_string, DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
+				D(playerid, DIALOG_DOSTUP_ADD, DSI, ""P"Выдать доступ",string,"Выбрать","Отмена");
 			}
-		    if(!IsPlayerConnected(strval(inputtext))) return ErrorMessage(playerid, "Игрок оффлайн");
+			if(!IsPlayerConnected(strval(inputtext))) return ErrorMessage(playerid, "Игрок оффлайн");
 		    if(!TI[strval(inputtext)][tLogin]) return ErrorMessage(playerid, "Игрок не авторизован на сервере");
-		    if(PlayerInfo[strval(inputtext)][pLeader] != 0) return ErrorMessage(playerid, "Игрок уже лидер организации");
-			if(PlayerInfo[strval(inputtext)][pMember] != 0) return ErrorMessage(playerid, "Игрок состоит в организации");
-			//if(!PlayerInfo[strval(inputtext)][pGoogleSec]) return ErrorMessage(playerid, "У игрока отсутствует защита Google Authenticator");
-		    SetPVarInt(playerid, "use_leader", strval(inputtext));
-		    
-		    static const f_str[] = ""W"Вы действительно хотите назначить "ORANGE"%s"W" на поста лидера организации "P"%s";
-		    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 24)];
-		    
-		    format(string,sizeof(string),f_str,player_name[GetPVarInt(playerid, "use_leader")],FI[GetPVarInt(playerid, "use_frac")][fName]);
-			D(playerid,D_MAKELEADER,DSM, ""P"Назначение",string,"Назначить","Отмена");
+		    if(DOSTP[strval(inputtext)][dostupMember] != 0) return ErrorMessage(playerid, "Игрок уже добавлен в доступ!");
+
+			static const dostup_string[] = ""W"Вы действительно хотите назначить {E286F7}%s"W" к доступу: {86F7A1}%s";
+		    new string[sizeof(dostup_string) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 24)];
+			format(string,sizeof(string), dostup_string, player_name[GetPVarInt(playerid, "use_player_dostup")], DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
+			D(playerid, DDIALOG_MAKEDOSTUP, DSM, "{0096D2}Назначение", string, "Назначить","Отмена");
+
 		}
-		case D_MAKELEADER: {
-		    if(!response) return 1;
-			new ID = GetPVarInt(playerid, "use_leader");
-			new frac = GetPVarInt(playerid, "use_frac");
-	        format(FI[frac][fLeader], 24, "%s", player_name[ID]);
-			format(FI[frac][fAdmin],  24, "%s", player_name[playerid]);
+		case DDIALOG_MAKEDOSTUP: {
+			if(!response) return 1;
+			new ID = GetPVarInt(playerid, "use_player_dostup");
+			new dostupP = GetPVarInt(playerid, "use_dostup_control");
+			format(DOSTP[dostupP][dostupPanel], 24, "%s", player_name[ID]);
+			format(FI[dostupP][fAdmin],  24, "%s", player_name[playerid]);
 
-			new year, month, day;
-			getdate(year, month, day);
-			format(FI[frac][fTime],  53, "%02i/%02i/%02i", day, month, year);
-
-            PlayerInfo[ID][pLeader] = FI[frac][fID];
-            PlayerInfo[ID][pMember] = FI[frac][fID];
-            PlayerInfo[ID][pRank] 	= FI[frac][fMaxRang];
+			static const dostp_str[] = ""W"%s"G" выдал Вам доступ "P"%s";
+			new string[sizeof(dostp_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 24)];
             
-            static const f_str[] = ""W"%s"G" назначил Вас лидером организации "P"%s";
-			new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 24)];
-            
-            format(string,sizeof(string),f_str,player_name[playerid],FI[frac][fName]);
+            format(string,sizeof(string), dostp_str, player_name[playerid], DOSTP[dostupP][dostupName]);
             SendOk(ID,string);
 
-			format(string, sizeof(string), "[A] %s[%d] назначил %s[%d] на пост лидера %s",player_name[playerid],playerid,player_name[ID],ID,FI[frac][fName]);
-			AdmMSG(0xAFAFAFAA, string,1);
-			
-			PlayerInfo[ID][pFracSkin] = FI[frac][fSkin];
-			PlayerInfo[ID][pJob] 		= 0;
-			A_SetPlayerSkin(ID,PlayerInfo[ID][pFracSkin]);
-			SetPlayerColor(ID,gFractionSpawn[PlayerInfo[ID][pMember]][fracColor]);
-			start_work[ID] = 1;
-			PlayerInfo[ID][pSpawn] = 2;
-			SaveAccount(ID);
-			SaveFraction(frac);
-			add_datefrac(ID);
-	    }
+			format(string, sizeof(string), "[Система доступа] %s[%d] выдал %s[%d] доступ %s", player_name[playerid], playerid, player_name[ID], ID, DOSTP[dostupP][dostupName]);
+			AdmMSG(0xAFAFAFAA, string, 1);
+
+			SaveDostupControl(dostupP);
+		}
+		case DIALOG_MAKEDOSTUP_CLEAR: {
+			if(!response) return 1;
+			new ID = GetCheckID(DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel]);
+			if(ID != INVALID_PLAYER_ID) {
+				DOSTP[ID][dostupPanel] = 0;
+				static const dclear_str[] = ""W"%s "G"забрал у Вас полномочия!";
+    			new string[sizeof(dclear_str) +1 + (-2 + MAX_PLAYER_NAME)];
+    			
+		    	format(string, sizeof(string), dclear_str, player_name[playerid]);
+		    	SendOk(ID, string);
+
+				format(string, sizeof(string), "[Система доступа] %s[%d] снял %s[%d] с доступа %s", player_name[playerid], playerid, player_name[ID], ID, DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupName]);
+				AdmMSG(0xAFAFAFAA, string, 1);
+			}
+			else {
+				////
+			}
+			format(DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupPanel], 5, "None");
+	        SaveDostupControl(GetPVarInt(playerid, "use_d_clear"));
+		}
+		/*
+		
      	case D_MAKELEADER_CLEAR: {
          	if(!response) return 1;
 	        new ID = GetCheckID(FI[GetPVarInt(playerid, "use_frac")][fLeader]);
@@ -13306,13 +13251,6 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 		case DIALOG_STARTBONUS: {
 			if(!response) return pc_cmd_apanel(playerid, "");
-			//new query[80];
-			/*mysql_format(connects, query, sizeof(query), "ALTER TABLE "TABLE_ACCOUNTS" CHANGE `pLevel` int(11) NOT NULL DEFAULT '%d'",strlen(inputtext));
-			mysql_tquery(connects, query, "", "");
-			SendEsp(playerid, "Вы успешно изменили стартовый уровень при регистрации.");*/
-			/*mysql_format(connects, query, sizeof(query), "ALTER TABLE "TABLE_ACCOUNTS" CHANGE `pCash` int(11) NOT NULL DEFAULT '%d'",strlen(inputtext));
-			mysql_tquery(connects, query, "", "");
-			SendEsp(playerid, "Вы успешно изменили стартовое кол-во денег при регистрации.");*/
 			new string[200], level, money;
 			switch(listitem) {
 				case 0:	{
@@ -31691,17 +31629,9 @@ SettingSpawn(playerid) {
 		return 1;
 	}
 	else {
-		if(PlayerInfo[playerid][pLevel] < 3) {
+		if(PlayerInfo[playerid][pLevel] >= 1) {
 			new rand = random(sizeof(spawn_ls));
 			SetSpawnInfoEx(playerid, skin, spawn_ls[rand][0], spawn_ls[rand][1], spawn_ls[rand][2], spawn_ls[rand][3]);
-		}
-		else if(PlayerInfo[playerid][pLevel] >= 3 && PlayerInfo[playerid][pLevel] <= 6) {
-			new rand = random(sizeof(spawn_sf));
-			SetSpawnInfoEx(playerid, skin, spawn_sf[rand][0], spawn_sf[rand][1], spawn_sf[rand][2], spawn_sf[rand][3]);
-		}
-		else if(PlayerInfo[playerid][pLevel] >= 7) {
-			new rand = random(sizeof(spawn_lv));
-			SetSpawnInfoEx(playerid, skin, spawn_lv[rand][0], spawn_lv[rand][1], spawn_lv[rand][2], spawn_lv[rand][3]);
 		}
 		TI[playerid][tVirtualWorld] = 0;
 		TI[playerid][tInterior] = 0;
@@ -36419,7 +36349,7 @@ stock CreateTexdraw() {
 	/* ----------------- LOGO----------------- */
 	LogoProject [ 0 ] = TextDrawCreate(578.7316, -11.8259, "");
 	TextDrawSetShadow(LogoProject [ 0 ], 0);
-	TextDrawColor(LogoProject [ 0 ], 0xFB2685FF);
+	TextDrawColor(LogoProject [ 0 ], 0x009CFDFF);
 	TextDrawBackgroundColor(LogoProject [ 0 ], 0x00000000);
 	TextDrawAlignment(LogoProject [ 0 ], 1);
 	TextDrawFont(LogoProject [ 0 ], 5);
@@ -36431,7 +36361,7 @@ stock CreateTexdraw() {
 
 	LogoProject [ 1 ] = TextDrawCreate(576.3649, -6.5740, "");
 	TextDrawSetShadow(LogoProject [ 1 ], 0);
-	TextDrawColor(LogoProject [ 1 ], 0xFB2685FF);
+	TextDrawColor(LogoProject [ 1 ], 0x009CFDFF);
 	TextDrawBackgroundColor(LogoProject [ 1 ], 0x00000000);
 	TextDrawAlignment(LogoProject [ 1 ], 1);
 	TextDrawFont(LogoProject [ 1 ], 5);
@@ -36443,7 +36373,7 @@ stock CreateTexdraw() {
 
 	LogoProject [ 2 ] = TextDrawCreate(563.9649, 5.2370, "");
 	TextDrawSetShadow(LogoProject [ 2 ], 0);
-	TextDrawColor(LogoProject [ 2 ], 0xFB2685FF);
+	TextDrawColor(LogoProject [ 2 ], 0x009CFDFF);
 	TextDrawBackgroundColor(LogoProject [ 2 ], 0x00000000);
 	TextDrawAlignment(LogoProject [ 2 ], 1);
 	TextDrawFont(LogoProject [ 2 ], 5);
@@ -36455,7 +36385,7 @@ stock CreateTexdraw() {
 
 	LogoProject [ 3 ] = TextDrawCreate(581.3319, -11.7850, "");
 	TextDrawSetShadow(LogoProject [ 3 ], 0);
-	TextDrawColor(LogoProject [ 3 ], 0xFB2685FF);
+	TextDrawColor(LogoProject [ 3 ], 0x009CFDFF);
 	TextDrawBackgroundColor(LogoProject [ 3 ], 0x00000000);
 	TextDrawAlignment(LogoProject [ 3 ], 1);
 	TextDrawFont(LogoProject [ 3 ], 5);
@@ -36467,7 +36397,7 @@ stock CreateTexdraw() {
 
 	LogoProject [ 4 ] = TextDrawCreate(583.6319, -5.9698, "");
 	TextDrawSetShadow(LogoProject [ 4 ], 0);
-	TextDrawColor(LogoProject [ 4 ], 0xFB2685FF);
+	TextDrawColor(LogoProject [ 4 ], 0x009CFDFF);
 	TextDrawBackgroundColor(LogoProject [ 4 ], 0x00000000);
 	TextDrawAlignment(LogoProject [ 4 ], 1);
 	TextDrawFont(LogoProject [ 4 ], 5);
@@ -36479,7 +36409,7 @@ stock CreateTexdraw() {
 
 	LogoProject [ 5 ] = TextDrawCreate(585.0648, 5.5704, "particle:lamp_shad_64");
 	TextDrawSetShadow(LogoProject [ 5 ], 0);
-	TextDrawColor(LogoProject [ 5 ], 0xFB268564);
+	TextDrawColor(LogoProject [ 5 ], 0x009CFD70);
 	TextDrawBackgroundColor(LogoProject [ 5 ], 0x000000FF);
 	TextDrawAlignment(LogoProject [ 5 ], 1);
 	TextDrawFont(LogoProject [ 5 ], 4);
@@ -36488,7 +36418,7 @@ stock CreateTexdraw() {
 
 	LogoProject [ 6 ] = TextDrawCreate(602.9995, 6.4369, "AURORA");
 	TextDrawSetShadow(LogoProject [ 6 ], 0);
-	TextDrawColor(LogoProject [ 6 ], 0xFB2685FF);
+	TextDrawColor(LogoProject [ 6 ], 0x009CFDFF);
 	TextDrawBackgroundColor(LogoProject [ 6 ], 0x000000FF);
 	TextDrawAlignment(LogoProject [ 6 ], 1);
 	TextDrawFont(LogoProject [ 6 ], 2);
@@ -48070,9 +48000,7 @@ stock ShowStats(playerid,targetid,idx) {
 	    format(str,128,"\n"P"Дата регистрации:\t\t\t"W"%s",PlayerInfo[targetid][pDataReg]), strcat(string,str);
 	    format(str,128,"\n"P"Google Authenticator:\t\t\t"W"%s",(PlayerInfo[targetid][pGoogleSec] == 1) ? ("Включен") : ("Отключен")), strcat(string,str);
 	}
-	strcat(string,"\n\n"ORANGE"Информацию о проекте Вы можете узнать по адресу:");
-	strcat(string,"\n\t\t\t"ORANGE"AURORA-RP.COM");
-	return D(playerid,DIALOG_NONE,DSM, ""P"Статистика",string, "Закрыть", "");
+	return D(playerid, DIALOG_NONE, DSL, ""P"Статистика персонажа", string, "Закрыть", "");
 }
 
 stock UpdateSkladFrakGang() {
@@ -48668,6 +48596,11 @@ stock UpdateOtherData(const field[],data){
 SaveFraction(fractionID) {
     new query[256];
 	format(query, sizeof(query), "UPDATE `fractions` SET `Leader` = '%s', `Admin` = '%s', `Time` = '%s' WHERE `ID` = '%i'",FI[fractionID][fLeader],FI[fractionID][fAdmin],FI[fractionID][fTime],fractionID);
+	return mysql_tquery(connects, query, "", "");
+}
+SaveDostupControl(dostupsID) {
+	new query[256];
+	format(query, sizeof(query), "UPDATE `dostupcontrol` SET `dostupPanel` = '%s'", DOSTP[dostupsID][dostupPanel]);
 	return mysql_tquery(connects, query, "", "");
 }
 SaveRank(rank,farction) {
@@ -52226,31 +52159,57 @@ CB: showall_callback(playerid) {
 	return 1 ;
 }
 
-CB: info_dostup(playerid, ID) {
-	SendClientMessage(playerid, 0xFFFFFFFF, "info_dostup вызван!");
+CB: info_dostup(playerid, safeNick[]) {
+	/*SendClientMessage(playerid, 0xFFFFFFFF, "info_dostup вызван!");
 	//
 	new rows ;
 	cache_get_row_count(rows);
 	if(!rows) return 1;
-	new idd = 0, ids = 0;
 	static const dostup_string[] = ""W"\nID-Доступа: "YELLOW"%d\n\
 		"W"Название доступа: {27BBF5}%s\n\
 		"W"Доступно для: "GREEN"%s";
 	new string[sizeof(dostup_string) +1 + (-2 + 25) + (-2 + 25) + (-2 + 53) + (-2 + 7)];	
 	foreach(new i:Player) {
 		if(!TI[i][tLogin] ||  AntiCheatIsKickedWithDesync(i)) continue;
-		if(DOSTP[i][dostupMember] != ID)continue;
+		if(DOSTP[i][dostupPanel] != playerid)continue;
 		if(DOSTP[i][dostupID] < 1 || DOSTP[i][dostupMember] < 1) continue;
-		ids++;
 	}
 	format(string, sizeof(string),
 		dostup_string, 
-		DOSTP[ID][dostupID], 
-		DOSTP[ID][dostupName], 
-		DOSTP[ID][dostupPanel], 
-		DOSTP[ID][dostupMember], 
-		ids, rows, idd);
+		DOSTP[playerid][dostupID], 
+		DOSTP[playerid][dostupName], 
+		DOSTP[playerid][dostupPanel]);
 	D(playerid, DIALOG_DOSTUP_NONE, DSM, "{0096D2}Информация о доступе", string, "Закрыть","");
+
+	*/
+
+	new rows;
+    cache_get_row_count(rows);
+	
+	
+    if(rows)
+    {
+		/*static const dinfo_str[] = ""W"\nID-Доступа: "YELLOW"%d\n\
+		"W"Название доступа: {27BBF5}%s\n\
+		"W"Доступно для: "GREEN"%s";
+		new string[sizeof(dinfo_str) +1 + (-2 + 25) + (-2 + 25) + (-2 + 53) + (-2 + 7)];	
+		foreach(new i:Player) {
+			if(!TI[i][tLogin] ||  AntiCheatIsKickedWithDesync(i)) continue;
+			if(DOSTP[i][dostupPanel] != playerid)continue;
+			if(DOSTP[i][dostupID] < 1 || DOSTP[i][dostupMember] < 1) continue;
+		}
+		format(string, sizeof(string),
+			dinfo_str, 
+			DOSTP[playerid][dostupID], 
+			DOSTP[playerid][dostupName], 
+			DOSTP[playerid][dostupPanel]);
+		D(playerid, DIALOG_DOSTUP_NONE, DSM, "{0096D2}Информация о доступе", string, "Закрыть","");*/
+        
+    }
+    else
+    {
+        printf("Нет данных для ника");
+    }
 	return true;
 }
 
