@@ -18,11 +18,11 @@
 # >>>– Discord:
 [![Discord Presence](https://lanyard.cnrad.dev/api/413003057929125908?bg=ffffff&theme=dark&showDisplayName=true&hideDecoration=true&borderRadius=20&idleMessage=%D0%9C%D0%BE%D0%B9%20%D0%B4%D0%B8%D1%81%D0%BA%D0%BE%D1%80%D0%B4!)](https://discord.com/users/413003057929125908)
 **
-
-main() {
-    print("_______________________________________________________");
-    print("                                                       ");
-	print(" dev by: #bladejs. | @bladejs (tg)					  ");
-	print(" aurora project © 2026, inc. all rights reserved. 	  ");
-	print("_______________________________________________________");
-}
+##
+		main() {
+			print("_______________________________________________________");
+			print("                                                       ");
+			print(" dev by: #bladejs. | @bladejs (tg)					  ");
+			print(" aurora project © 2026, inc. all rights reserved. 	  ");
+			print("_______________________________________________________");
+		}
