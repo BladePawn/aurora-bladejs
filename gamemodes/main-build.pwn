@@ -47965,7 +47965,7 @@ stock ShowStats(playerid,targetid,idx) {
 	    format(str,128,"\n"P"Дата регистрации:\t\t\t"W"%s",PlayerInfo[targetid][pDataReg]), strcat(string,str);
 	    format(str,128,"\n"P"Google Authenticator:\t\t\t"W"%s",(PlayerInfo[targetid][pGoogleSec] == 1) ? ("Включен") : ("Отключен")), strcat(string,str);
 	}
-	return D(playerid, DIALOG_NONE, DSL, ""P"Статистика персонажа", string, "Закрыть", "");
+	return D(playerid, DIALOG_NONE, DSM, ""P"Статистика персонажа", string, "Закрыть", "");
 }
 
 stock UpdateSkladFrakGang() {

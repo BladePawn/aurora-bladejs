@@ -1,20 +1,21 @@
 -- phpMyAdmin SQL Dump
--- version 3.5.1
--- http://www.phpmyadmin.net
+-- version 5.2.0
+-- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Окт 31 2024 г., 11:01
--- Версия сервера: 5.5.25
--- Версия PHP: 5.3.13
+-- Хост: 127.0.0.1:3306
+-- Время создания: Янв 08 2026 г., 00:18
+-- Версия сервера: 10.4.26-MariaDB
+-- Версия PHP: 7.4.30
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- База данных: `auroradev`
@@ -26,146 +27,147 @@ SET time_zone = "+00:00";
 -- Структура таблицы `accounts`
 --
 
-CREATE TABLE IF NOT EXISTS `accounts` (
-  `pID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `accounts` (
+  `pID` int(11) NOT NULL,
   `Name` varchar(24) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL,
   `pKey` varchar(64) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT 'NULL',
-  `pLevel` int(11) NOT NULL DEFAULT '1',
-  `pJail` int(11) NOT NULL DEFAULT '0',
+  `pLevel` int(11) NOT NULL DEFAULT 1,
+  `pJail` int(11) NOT NULL DEFAULT 0,
   `pvIp` varchar(17) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT 'no',
   `pIpReg` varchar(17) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL,
   `pDataReg` varchar(128) CHARACTER SET cp1250 COLLATE cp1250_bin NOT NULL,
   `pKeyip` varchar(5) NOT NULL DEFAULT '-',
-  `pHP` float NOT NULL DEFAULT '100',
-  `house` int(11) NOT NULL DEFAULT '0',
-  `tempkey` int(11) NOT NULL DEFAULT '0',
-  `bussiness` int(11) NOT NULL DEFAULT '0',
-  `hotelid` int(11) NOT NULL DEFAULT '0',
-  `airport` int(11) NOT NULL DEFAULT '0',
-  `hotelroom` int(11) NOT NULL DEFAULT '0',
-  `plane` int(11) NOT NULL DEFAULT '-1',
-  `pMats` int(11) NOT NULL DEFAULT '0',
+  `pHP` float NOT NULL DEFAULT 100,
+  `house` int(11) NOT NULL DEFAULT 0,
+  `tempkey` int(11) NOT NULL DEFAULT 0,
+  `bussiness` int(11) NOT NULL DEFAULT 0,
+  `hotelid` int(11) NOT NULL DEFAULT 0,
+  `airport` int(11) NOT NULL DEFAULT 0,
+  `hotelroom` int(11) NOT NULL DEFAULT 0,
+  `plane` int(11) NOT NULL DEFAULT -1,
+  `pMats` int(11) NOT NULL DEFAULT 0,
   `pSex` int(11) NOT NULL,
-  `pArrested` int(11) NOT NULL DEFAULT '0',
-  `mute` int(11) NOT NULL DEFAULT '0',
-  `pCrimes` int(11) NOT NULL DEFAULT '0',
-  `pExp` int(11) NOT NULL DEFAULT '0',
-  `pCash` int(11) NOT NULL DEFAULT '200',
-  `pJailTime` int(11) NOT NULL DEFAULT '0',
-  `pDrugs` int(11) NOT NULL DEFAULT '0',
-  `pLeader` int(11) NOT NULL DEFAULT '0',
-  `pMember` int(11) NOT NULL DEFAULT '0',
-  `pRank` int(11) NOT NULL DEFAULT '0',
-  `pJob` int(11) NOT NULL DEFAULT '0',
-  `pModel` int(11) NOT NULL DEFAULT '0',
-  `pPhone` int(11) NOT NULL DEFAULT '0',
+  `pArrested` int(11) NOT NULL DEFAULT 0,
+  `mute` int(11) NOT NULL DEFAULT 0,
+  `pCrimes` int(11) NOT NULL DEFAULT 0,
+  `pExp` int(11) NOT NULL DEFAULT 0,
+  `pCash` int(11) NOT NULL DEFAULT 5000,
+  `pJailTime` int(11) NOT NULL DEFAULT 0,
+  `pDrugs` int(11) NOT NULL DEFAULT 0,
+  `pLeader` int(11) NOT NULL DEFAULT 0,
+  `pMember` int(11) NOT NULL DEFAULT 0,
+  `pRank` int(11) NOT NULL DEFAULT 0,
+  `pJob` int(11) NOT NULL DEFAULT 0,
+  `pModel` int(11) NOT NULL DEFAULT 0,
+  `pPhone` int(11) NOT NULL DEFAULT 0,
   `licenses` varchar(64) NOT NULL DEFAULT '0,0,0,0',
-  `pZakonp` int(11) NOT NULL DEFAULT '0',
-  `pAddiction` int(11) NOT NULL DEFAULT '0',
-  `pWarns` int(11) NOT NULL DEFAULT '0',
-  `warntime` int(11) NOT NULL DEFAULT '0',
-  `pFuel` int(11) NOT NULL DEFAULT '0',
+  `pZakonp` int(11) NOT NULL DEFAULT 0,
+  `pAddiction` int(11) NOT NULL DEFAULT 0,
+  `pWarns` int(11) NOT NULL DEFAULT 0,
+  `warntime` int(11) NOT NULL DEFAULT 0,
+  `pFuel` int(11) NOT NULL DEFAULT 0,
   `pMarried` varchar(25) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT '-',
   `pDrug` varchar(128) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT '-',
-  `pBank` int(11) NOT NULL DEFAULT '0',
-  `pMobile` int(11) NOT NULL DEFAULT '0',
-  `pSearch` int(11) NOT NULL DEFAULT '0',
+  `pBank` int(11) NOT NULL DEFAULT 0,
+  `pMobile` int(11) NOT NULL DEFAULT 0,
+  `pSearch` int(11) NOT NULL DEFAULT 0,
   `pWeapons` varchar(64) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0',
   `pAmmos` varchar(64) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0',
   `pGunSkills` varchar(32) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT '0, 0, 0, 0, 0, 0',
   `pOnline` varchar(128) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT '0',
   `pEmail` varchar(64) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT 'no',
-  `Skin` int(5) NOT NULL DEFAULT '1',
-  `pPlayTime_one` int(11) NOT NULL DEFAULT '0',
-  `pPlayTime_two` int(11) NOT NULL DEFAULT '0',
+  `Skin` int(5) NOT NULL DEFAULT 1,
+  `pPlayTime_one` int(11) NOT NULL DEFAULT 0,
+  `pPlayTime_two` int(11) NOT NULL DEFAULT 0,
   `pAccusedof` varchar(50) NOT NULL DEFAULT 'Нет',
   `pVictim` varchar(24) NOT NULL DEFAULT 'Нет',
-  `kill_capture` int(11) NOT NULL DEFAULT '0',
-  `pHospital` int(3) NOT NULL DEFAULT '0',
-  `pRod` int(11) NOT NULL DEFAULT '0',
-  `pRopes` int(11) NOT NULL DEFAULT '0',
-  `pWorms` int(11) NOT NULL DEFAULT '0',
-  `pFish` float NOT NULL DEFAULT '0',
-  `family` int(11) NOT NULL DEFAULT '0',
-  `progress` int(11) NOT NULL DEFAULT '0',
-  `spawn` int(3) NOT NULL DEFAULT '0',
-  `salary` int(11) NOT NULL DEFAULT '0',
-  `book` int(3) NOT NULL DEFAULT '0',
-  `watch` int(3) NOT NULL DEFAULT '0',
+  `kill_capture` int(11) NOT NULL DEFAULT 0,
+  `pHospital` int(3) NOT NULL DEFAULT 0,
+  `pRod` int(11) NOT NULL DEFAULT 0,
+  `pRopes` int(11) NOT NULL DEFAULT 0,
+  `pWorms` int(11) NOT NULL DEFAULT 0,
+  `pFish` float NOT NULL DEFAULT 0,
+  `family` int(11) NOT NULL DEFAULT 0,
+  `progress` int(11) NOT NULL DEFAULT 0,
+  `spawn` int(3) NOT NULL DEFAULT 0,
+  `salary` int(11) NOT NULL DEFAULT 0,
+  `book` int(3) NOT NULL DEFAULT 0,
+  `watch` int(3) NOT NULL DEFAULT 0,
   `phonenumber` varchar(256) NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `phonename` varchar(1024) NOT NULL DEFAULT ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет',
-  `MedCard` int(4) NOT NULL DEFAULT '0',
-  `MedHeal` int(11) NOT NULL DEFAULT '0',
-  `Advert` int(11) NOT NULL DEFAULT '0',
-  `ArmSkin` int(3) NOT NULL DEFAULT '0',
-  `FracDuty` int(4) NOT NULL DEFAULT '0',
+  `MedCard` int(4) NOT NULL DEFAULT 0,
+  `MedHeal` int(11) NOT NULL DEFAULT 0,
+  `Advert` int(11) NOT NULL DEFAULT 0,
+  `ArmSkin` int(3) NOT NULL DEFAULT 0,
+  `FracDuty` int(4) NOT NULL DEFAULT 0,
   `Settings` varchar(48) CHARACTER SET utf8 NOT NULL DEFAULT '1|1|0|0|0|0|0|0|0|1',
-  `online_status` int(11) NOT NULL DEFAULT '0',
+  `online_status` int(11) NOT NULL DEFAULT 0,
   `GoogleCode` varchar(50) DEFAULT NULL,
   `SecretCode` varchar(50) DEFAULT NULL,
-  `bizz_work` int(11) NOT NULL DEFAULT '0',
-  `bizz_cash` int(11) NOT NULL DEFAULT '0',
-  `bizz_lcash` int(11) NOT NULL DEFAULT '0',
-  `bizz_status` int(11) NOT NULL DEFAULT '0',
-  `pGolos` int(11) NOT NULL DEFAULT '0',
-  `pBlago` int(11) NOT NULL DEFAULT '0',
-  `pVips` int(11) NOT NULL DEFAULT '0',
-  `donatemoney` int(30) NOT NULL DEFAULT '0',
-  `fwarn` int(11) NOT NULL DEFAULT '0',
-  `pDisease_0` int(11) NOT NULL DEFAULT '0',
-  `pDisease_1` int(11) NOT NULL DEFAULT '0',
-  `pSatiety` int(11) NOT NULL DEFAULT '100',
-  `pKills` int(11) NOT NULL DEFAULT '0',
-  `pWinArea` int(11) NOT NULL DEFAULT '0',
-  `pFamRank` int(11) NOT NULL DEFAULT '0',
-  `pDSatiety` int(11) NOT NULL DEFAULT '0',
-  `pDDisease` int(11) NOT NULL DEFAULT '0',
-  `pBox` int(11) NOT NULL DEFAULT '0',
-  `pSnow` float NOT NULL DEFAULT '0',
-  `pMedKit` int(11) NOT NULL DEFAULT '0',
-  `pMPromo` int(11) NOT NULL DEFAULT '0',
-  `pAdmMSG` int(11) NOT NULL DEFAULT '0',
-  `pAdmKL` int(11) NOT NULL DEFAULT '0',
-  `pMask` int(11) NOT NULL DEFAULT '0',
-  `pGoogle` int(11) NOT NULL DEFAULT '0',
-  `homesell` int(11) NOT NULL DEFAULT '0',
-  `bizzsell` int(11) NOT NULL DEFAULT '0',
-  `hotelsell` int(11) NOT NULL DEFAULT '0',
-  `airsell` int(11) NOT NULL DEFAULT '0',
-  `roomsell` int(11) NOT NULL DEFAULT '0',
-  `pVipadd` int(11) NOT NULL DEFAULT '0',
-  `lotteryfree` int(11) NOT NULL DEFAULT '0',
-  `GunLic` int(11) NOT NULL DEFAULT '0',
-  `drunginv` int(11) NOT NULL DEFAULT '0',
-  `pHelper` int(11) NOT NULL DEFAULT '0',
-  `pAsk` int(11) NOT NULL DEFAULT '0',
+  `bizz_work` int(11) NOT NULL DEFAULT 0,
+  `bizz_cash` int(11) NOT NULL DEFAULT 0,
+  `bizz_lcash` int(11) NOT NULL DEFAULT 0,
+  `bizz_status` int(11) NOT NULL DEFAULT 0,
+  `pGolos` int(11) NOT NULL DEFAULT 0,
+  `pBlago` int(11) NOT NULL DEFAULT 0,
+  `pVips` int(11) NOT NULL DEFAULT 0,
+  `donatemoney` int(30) NOT NULL DEFAULT 0,
+  `fwarn` int(11) NOT NULL DEFAULT 0,
+  `pDisease_0` int(11) NOT NULL DEFAULT 0,
+  `pDisease_1` int(11) NOT NULL DEFAULT 0,
+  `pSatiety` int(11) NOT NULL DEFAULT 100,
+  `pKills` int(11) NOT NULL DEFAULT 0,
+  `pWinArea` int(11) NOT NULL DEFAULT 0,
+  `pFamRank` int(11) NOT NULL DEFAULT 0,
+  `pDSatiety` int(11) NOT NULL DEFAULT 0,
+  `pDDisease` int(11) NOT NULL DEFAULT 0,
+  `pBox` int(11) NOT NULL DEFAULT 0,
+  `pSnow` float NOT NULL DEFAULT 0,
+  `pMedKit` int(11) NOT NULL DEFAULT 0,
+  `pMPromo` int(11) NOT NULL DEFAULT 0,
+  `pAdmMSG` int(11) NOT NULL DEFAULT 0,
+  `pAdmKL` int(11) NOT NULL DEFAULT 0,
+  `pMask` int(11) NOT NULL DEFAULT 0,
+  `pGoogle` int(11) NOT NULL DEFAULT 0,
+  `homesell` int(11) NOT NULL DEFAULT 0,
+  `bizzsell` int(11) NOT NULL DEFAULT 0,
+  `hotelsell` int(11) NOT NULL DEFAULT 0,
+  `airsell` int(11) NOT NULL DEFAULT 0,
+  `roomsell` int(11) NOT NULL DEFAULT 0,
+  `pVipadd` int(11) NOT NULL DEFAULT 0,
+  `lotteryfree` int(11) NOT NULL DEFAULT 0,
+  `GunLic` int(11) NOT NULL DEFAULT 0,
+  `drunginv` int(11) NOT NULL DEFAULT 0,
+  `pHelper` int(11) NOT NULL DEFAULT 0,
+  `pAsk` int(11) NOT NULL DEFAULT 0,
   `pSlotItem` varchar(64) NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
   `pSlotItem_Use` varchar(64) NOT NULL DEFAULT '1|1|1|1|1|1|1|1',
-  `pInstr` int(5) NOT NULL DEFAULT '0',
+  `pInstr` int(5) NOT NULL DEFAULT 0,
   `fraction_date` varchar(64) NOT NULL DEFAULT '0/0/0',
-  `pAskmute` int(11) NOT NULL DEFAULT '0',
-  `pJemmy` int(11) NOT NULL DEFAULT '0',
-  `EmailStatus` int(1) NOT NULL DEFAULT '2',
-  `pFMute` int(4) NOT NULL DEFAULT '0',
-  `theftSkill` int(3) NOT NULL DEFAULT '0',
-  `theftExp` int(5) NOT NULL DEFAULT '0',
-  `theftTime` int(11) NOT NULL DEFAULT '0',
-  `theftHome` int(11) NOT NULL DEFAULT '0',
-  `pDonateBank` int(1) NOT NULL DEFAULT '0',
-  `pDonateBh` int(1) NOT NULL DEFAULT '0',
-  `pVipTime` int(11) NOT NULL DEFAULT '0',
-  `pVipName` int(11) NOT NULL DEFAULT '0',
-  `pBoomBox` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`pID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=3 ;
+  `pAskmute` int(11) NOT NULL DEFAULT 0,
+  `pJemmy` int(11) NOT NULL DEFAULT 0,
+  `EmailStatus` int(1) NOT NULL DEFAULT 2,
+  `pFMute` int(4) NOT NULL DEFAULT 0,
+  `theftSkill` int(3) NOT NULL DEFAULT 0,
+  `theftExp` int(5) NOT NULL DEFAULT 0,
+  `theftTime` int(11) NOT NULL DEFAULT 0,
+  `theftHome` int(11) NOT NULL DEFAULT 0,
+  `pDonateBank` int(1) NOT NULL DEFAULT 0,
+  `pDonateBh` int(1) NOT NULL DEFAULT 0,
+  `pVipTime` int(11) NOT NULL DEFAULT 0,
+  `pVipName` int(11) NOT NULL DEFAULT 0,
+  `pBoomBox` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `accounts`
 --
 
 INSERT INTO `accounts` (`pID`, `Name`, `pKey`, `pLevel`, `pJail`, `pvIp`, `pIpReg`, `pDataReg`, `pKeyip`, `pHP`, `house`, `tempkey`, `bussiness`, `hotelid`, `airport`, `hotelroom`, `plane`, `pMats`, `pSex`, `pArrested`, `mute`, `pCrimes`, `pExp`, `pCash`, `pJailTime`, `pDrugs`, `pLeader`, `pMember`, `pRank`, `pJob`, `pModel`, `pPhone`, `licenses`, `pZakonp`, `pAddiction`, `pWarns`, `warntime`, `pFuel`, `pMarried`, `pDrug`, `pBank`, `pMobile`, `pSearch`, `pWeapons`, `pAmmos`, `pGunSkills`, `pOnline`, `pEmail`, `Skin`, `pPlayTime_one`, `pPlayTime_two`, `pAccusedof`, `pVictim`, `kill_capture`, `pHospital`, `pRod`, `pRopes`, `pWorms`, `pFish`, `family`, `progress`, `spawn`, `salary`, `book`, `watch`, `phonenumber`, `phonename`, `MedCard`, `MedHeal`, `Advert`, `ArmSkin`, `FracDuty`, `Settings`, `online_status`, `GoogleCode`, `SecretCode`, `bizz_work`, `bizz_cash`, `bizz_lcash`, `bizz_status`, `pGolos`, `pBlago`, `pVips`, `donatemoney`, `fwarn`, `pDisease_0`, `pDisease_1`, `pSatiety`, `pKills`, `pWinArea`, `pFamRank`, `pDSatiety`, `pDDisease`, `pBox`, `pSnow`, `pMedKit`, `pMPromo`, `pAdmMSG`, `pAdmKL`, `pMask`, `pGoogle`, `homesell`, `bizzsell`, `hotelsell`, `airsell`, `roomsell`, `pVipadd`, `lotteryfree`, `GunLic`, `drunginv`, `pHelper`, `pAsk`, `pSlotItem`, `pSlotItem_Use`, `pInstr`, `fraction_date`, `pAskmute`, `pJemmy`, `EmailStatus`, `pFMute`, `theftSkill`, `theftExp`, `theftTime`, `theftHome`, `pDonateBank`, `pDonateBh`, `pVipTime`, `pVipName`, `pBoomBox`) VALUES
-(1, 'Blade_Pawn', '4297f44b13955235245b2497399d7a93', 1, 0, '127.0.0.1', '127.0.0.1', '30/10/2024', '-', 66.1, 0, 0, 0, 0, 0, 61, -1, 0, 1, 0, 0, 0, 5, 19882970, 0, 0, 0, 0, 0, 0, 0, 0, '1,1,1,1', 46, 0, 0, 0, 0, '-', '-', 15000, 0, 0, '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '62, 54, 16, 20, 20, 20, ', '31-10-2024', 'no', 302, 13, 38, 'Нет', 'Нет', 0, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет', 1, 0, 0, 0, 0, '1|1|0|1|0|0|1|0|0|1|48', 1001, NULL, NULL, 0, 0, 0, 0, 0, 100000, 6, 450078, 0, 0, 0, 91, 0, 0, 8, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0', '1|1|1|1|1|1|1|1', 0, '0/0/0', 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1738055940, 0, 0),
-(2, 'Andrei_Falcone', 'e10adc3949ba59abbe56e057f20f883e', 1, 0, '85.238.102.83', '85.238.102.83', '31/10/2024', '-', 100, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, '0,0,0,0', 0, 0, 0, 0, 0, '-', '-', 0, 0, 0, '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, ', '31-10-2024', 'no', 137, 30, 14, 'Нет', 'Нет', 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет', 0, 0, 0, 0, 0, '1|1|0|0|0|0|0|0|0|1', 1001, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 85, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0', '1|1|1|1|1|1|1|1', 0, '0/0/0', 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(1, 'Blade_Pawn', '4297f44b13955235245b2497399d7a93', 1, 0, '127.0.0.1', '127.0.0.1', '30/10/2024', '-', 58.1922, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 25, 19909140, 0, 0, 0, 0, 0, 0, 0, 0, '1,1,1,1', 52, 0, 0, 0, 0, '-', '-', 150000, 0, 0, '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '62, 54, 16, 20, 20, 20, ', '07-01-2026', 'no', 302, 68, 32, 'Нет', 'Нет', 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет', 1, 0, 0, 0, 0, '1|1|0|1|0|0|1|0|0|1|48', 0, NULL, NULL, 0, 0, 0, 0, 0, 100000, 6, 450078, 0, 0, 0, 84, 0, 0, 8, 0, 0, 0, 11.6, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 1, 0, 0, '0|0|0|0|0|0|0|0', '1|1|1|1|1|1|1|1', 0, '2026-01-04 19:27:50', 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 1738055940, 0, 0),
+(3, 'Maestro_Singles', 'ac44869c095b8925469473415cf792fc', 1, 0, '176.60.225.236', '176.60.225.236', '26/12/2025', '-', 100, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, '1,1,1,1', 0, 0, 0, 0, 0, '-', '-', 0, 0, 0, '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, ', '26-12-2025', 'vilatrp@mail.ru', 78, 13, 13, 'Нет', 'Нет', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет', 0, 0, 0, 0, 0, '1|1|0|0|0|0|0|0|0|1', 1001, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 94, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0', '1|1|1|1|1|1|1|1', 0, '0/0/0', 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(4, 'Elki_Palki', 'e10adc3949ba59abbe56e057f20f883e', 1, 0, '85.192.189.131', '85.192.189.131', '03/01/2026', '-', 100, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, '0,0,0,0', 0, 0, 0, 0, 0, '-', '-', 0, 0, 0, '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, ', '03-01-2026', 'no', 212, 1, 1, 'Нет', 'Нет', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет', 0, 0, 0, 0, 0, '1|1|0|0|0|0|0|0|0|1', 1001, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0', '1|1|1|1|1|1|1|1', 0, '0/0/0', 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(5, 'Brownield_Brandly', 'bc4e71768c878be0e0636839756a8af0', 1, 0, '212.34.142.32', '212.34.142.32', '03/01/2026', '-', 100, 0, 0, 0, 0, 0, 0, -1, 0, 1, 0, 0, 0, 0, 200, 0, 0, 0, 0, 0, 0, 0, 0, '0,0,0,0', 0, 0, 0, 0, 0, '-', '-', 0, 0, 0, '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0', '0, 0, 0, 0, 0, 0, ', '03-01-2026', 'admin@brownield.ru', 78, 1, 1, 'Нет', 'Нет', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0', ' Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет|Нет', 0, 0, 0, 0, 0, '1|1|0|0|0|0|0|0|0|1', 1001, NULL, NULL, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '0|0|0|0|0|0|0|0', '1|1|1|1|1|1|1|1', 0, '0/0/0', 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -173,41 +175,41 @@ INSERT INTO `accounts` (`pID`, `Name`, `pKey`, `pLevel`, `pJail`, `pvIp`, `pIpRe
 -- Структура таблицы `admin`
 --
 
-CREATE TABLE IF NOT EXISTS `admin` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `admin` (
+  `id` int(11) NOT NULL,
   `Name` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `rank` int(2) NOT NULL,
   `password` varchar(32) NOT NULL DEFAULT 'qwerty',
   `online_connection` datetime DEFAULT NULL,
   `date_start` datetime DEFAULT NULL,
-  `kick` int(11) DEFAULT '0',
-  `ban` int(11) NOT NULL DEFAULT '0',
-  `mute` int(11) NOT NULL DEFAULT '0',
-  `pm` int(11) NOT NULL DEFAULT '0',
-  `warn` int(11) NOT NULL DEFAULT '0',
-  `jail` int(11) NOT NULL DEFAULT '0',
-  `vig` int(11) NOT NULL DEFAULT '0',
-  `blockadmin` int(11) NOT NULL DEFAULT '0',
-  `rep` int(11) NOT NULL DEFAULT '0',
-  `online_status` int(1) NOT NULL DEFAULT '0',
-  `online_monday` int(11) NOT NULL DEFAULT '0',
-  `online_tuesday` int(11) NOT NULL DEFAULT '0',
-  `online_wednesday` int(11) NOT NULL DEFAULT '0',
-  `online_thursday` int(11) NOT NULL DEFAULT '0',
-  `online_friday` int(11) NOT NULL DEFAULT '0',
-  `online_saturday` int(11) NOT NULL DEFAULT '0',
-  `online_sunday` int(11) NOT NULL DEFAULT '0',
-  `CheckName` varchar(32) NOT NULL DEFAULT 'ALIAKSEI_MATSIUSH',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `kick` int(11) DEFAULT 0,
+  `ban` int(11) NOT NULL DEFAULT 0,
+  `mute` int(11) NOT NULL DEFAULT 0,
+  `pm` int(11) NOT NULL DEFAULT 0,
+  `warn` int(11) NOT NULL DEFAULT 0,
+  `jail` int(11) NOT NULL DEFAULT 0,
+  `vig` int(11) NOT NULL DEFAULT 0,
+  `blockadmin` int(11) NOT NULL DEFAULT 0,
+  `rep` int(11) NOT NULL DEFAULT 0,
+  `online_status` int(1) NOT NULL DEFAULT 0,
+  `online_monday` int(11) NOT NULL DEFAULT 0,
+  `online_tuesday` int(11) NOT NULL DEFAULT 0,
+  `online_wednesday` int(11) NOT NULL DEFAULT 0,
+  `online_thursday` int(11) NOT NULL DEFAULT 0,
+  `online_friday` int(11) NOT NULL DEFAULT 0,
+  `online_saturday` int(11) NOT NULL DEFAULT 0,
+  `online_sunday` int(11) NOT NULL DEFAULT 0,
+  `CheckName` varchar(32) NOT NULL DEFAULT 'ALIAKSEI_MATSIUSH'
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `admin`
 --
 
 INSERT INTO `admin` (`id`, `Name`, `rank`, `password`, `online_connection`, `date_start`, `kick`, `ban`, `mute`, `pm`, `warn`, `jail`, `vig`, `blockadmin`, `rep`, `online_status`, `online_monday`, `online_tuesday`, `online_wednesday`, `online_thursday`, `online_friday`, `online_saturday`, `online_sunday`, `CheckName`) VALUES
-(1, 'Blade_Pawn', 8, '4297f44b13955235245b2497399d7a93', '2024-10-31 00:54:16', '2024-10-30 00:00:00', 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 175, 946, 0, 0, 0, 'ALIAKSEI_MATSIUSH'),
-(2, 'Andrei_Falcone', 2, 'e10adc3949ba59abbe56e057f20f883e', '2024-10-31 00:51:01', '2024-10-31 00:51:01', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 'Blade_Pawn');
+(1, 'Blade_Pawn', 7, '4297f44b13955235245b2497399d7a93', '2026-01-08 00:17:29', '2024-10-30 00:00:00', 0, 0, 0, 2, 0, 0, 0, 0, 0, 1, 232, 0, 579, 946, 1391, 2095, 1494, 'ALIAKSEI_MATSIUSH'),
+(2, 'Andrei_Falcone', 1, 'e10adc3949ba59abbe56e057f20f883e', '2024-10-31 00:51:01', '2024-10-31 00:51:01', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 776, 0, 0, 0, 'Blade_Pawn'),
+(3, 'Maestro_Singles', 6, '446e85cb10099d21d6731e6c95967aa4', '2025-12-26 19:19:17', '2025-12-26 18:00:46', 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 785, 0, 0, 'Blade_Pawn');
 
 -- --------------------------------------------------------
 
@@ -215,16 +217,15 @@ INSERT INTO `admin` (`id`, `Name`, `rank`, `password`, `online_connection`, `dat
 -- Структура таблицы `adminlog`
 --
 
-CREATE TABLE IF NOT EXISTS `adminlog` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `adminlog` (
+  `id` int(10) UNSIGNED NOT NULL,
   `type` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL,
   `NamePlayer` varchar(25) NOT NULL,
   `reason` varchar(140) NOT NULL,
   `date` date NOT NULL,
-  `time` time NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `time` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -232,13 +233,12 @@ CREATE TABLE IF NOT EXISTS `adminlog` (
 -- Структура таблицы `adradio`
 --
 
-CREATE TABLE IF NOT EXISTS `adradio` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `adradio` (
+  `id` int(11) NOT NULL,
   `name` varchar(32) NOT NULL,
   `text` varchar(60) NOT NULL,
-  `date` varchar(40) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date` varchar(40) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -246,8 +246,8 @@ CREATE TABLE IF NOT EXISTS `adradio` (
 -- Структура таблицы `airports`
 --
 
-CREATE TABLE IF NOT EXISTS `airports` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `airports` (
+  `id` int(11) NOT NULL,
   `name` varchar(64) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL,
   `ownerid` int(11) NOT NULL,
   `owner` varchar(25) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL,
@@ -256,11 +256,10 @@ CREATE TABLE IF NOT EXISTS `airports` (
   `x` float NOT NULL,
   `y` float NOT NULL,
   `z` float NOT NULL,
-  `day` int(11) NOT NULL DEFAULT '0',
-  `bankday` int(11) NOT NULL DEFAULT '0',
-  `bank` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+  `day` int(11) NOT NULL DEFAULT 0,
+  `bankday` int(11) NOT NULL DEFAULT 0,
+  `bank` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `airports`
@@ -277,7 +276,7 @@ INSERT INTO `airports` (`id`, `name`, `ownerid`, `owner`, `price`, `coast`, `x`,
 -- Структура таблицы `anticheats`
 --
 
-CREATE TABLE IF NOT EXISTS `anticheats` (
+CREATE TABLE `anticheats` (
   `chID` int(11) NOT NULL,
   `cheatname` varchar(64) CHARACTER SET utf8 NOT NULL,
   `cheatvalue` int(11) NOT NULL
@@ -348,8 +347,8 @@ INSERT INTO `anticheats` (`chID`, `cheatname`, `cheatvalue`) VALUES
 -- Структура таблицы `atms`
 --
 
-CREATE TABLE IF NOT EXISTS `atms` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `atms` (
+  `ID` int(10) UNSIGNED NOT NULL,
   `atmID` int(11) NOT NULL,
   `ATM_X` float(12,6) NOT NULL,
   `ATM_Y` float(12,6) NOT NULL,
@@ -359,10 +358,9 @@ CREATE TABLE IF NOT EXISTS `atms` (
   `ATM_ROTZ` float(12,6) NOT NULL,
   `ATM_VW` tinyint(4) NOT NULL,
   `ATM_INT` int(11) NOT NULL,
-  `ATM_BANK` int(11) NOT NULL DEFAULT '0',
-  `ATM_BANKTIME` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=16 ;
+  `ATM_BANK` int(11) NOT NULL DEFAULT 0,
+  `ATM_BANKTIME` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `atms`
@@ -391,14 +389,13 @@ INSERT INTO `atms` (`ID`, `atmID`, `ATM_X`, `ATM_Y`, `ATM_Z`, `ATM_ROTX`, `ATM_R
 -- Структура таблицы `ban`
 --
 
-CREATE TABLE IF NOT EXISTS `ban` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ban` (
+  `ID` int(11) NOT NULL,
   `Name` varchar(24) NOT NULL,
   `Admin` varchar(24) NOT NULL,
   `Reason` varchar(100) CHARACTER SET cp1251 NOT NULL,
-  `Seconds` int(11) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+  `Seconds` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -406,12 +403,11 @@ CREATE TABLE IF NOT EXISTS `ban` (
 -- Структура таблицы `banip`
 --
 
-CREATE TABLE IF NOT EXISTS `banip` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `banip` (
+  `id` int(10) UNSIGNED NOT NULL,
   `IP` varchar(16) CHARACTER SET cp1251 NOT NULL,
-  `admin` varchar(25) CHARACTER SET cp1251 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `admin` varchar(25) CHARACTER SET cp1251 NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -419,14 +415,13 @@ CREATE TABLE IF NOT EXISTS `banip` (
 -- Структура таблицы `bank`
 --
 
-CREATE TABLE IF NOT EXISTS `bank` (
+CREATE TABLE `bank` (
   `name` varchar(64) NOT NULL,
-  `number` int(5) NOT NULL AUTO_INCREMENT,
+  `number` int(5) NOT NULL,
   `owner` varchar(24) NOT NULL,
-  `balance` int(11) NOT NULL DEFAULT '0',
-  `code` int(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`number`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `balance` int(11) NOT NULL DEFAULT 0,
+  `code` int(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -434,8 +429,8 @@ CREATE TABLE IF NOT EXISTS `bank` (
 -- Структура таблицы `billboards`
 --
 
-CREATE TABLE IF NOT EXISTS `billboards` (
-  `newid` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `billboards` (
+  `newid` int(10) UNSIGNED NOT NULL,
   `id` int(11) NOT NULL,
   `bModel` int(11) NOT NULL,
   `PosX` float NOT NULL,
@@ -445,14 +440,13 @@ CREATE TABLE IF NOT EXISTS `billboards` (
   `bText` varchar(144) NOT NULL,
   `bPosText` varchar(32) NOT NULL,
   `bOwner` varchar(24) NOT NULL,
-  `bOwned` int(11) NOT NULL DEFAULT '0',
+  `bOwned` int(11) NOT NULL DEFAULT 0,
   `bBackColor` int(11) NOT NULL,
   `bFontFace` int(11) NOT NULL,
   `bAligment` int(11) NOT NULL,
   `bFontSize` int(11) NOT NULL,
-  `bDay` int(11) NOT NULL,
-  PRIMARY KEY (`newid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=51 ;
+  `bDay` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `billboards`
@@ -516,8 +510,8 @@ INSERT INTO `billboards` (`newid`, `id`, `bModel`, `PosX`, `PosY`, `PosZ`, `PosA
 -- Структура таблицы `bints`
 --
 
-CREATE TABLE IF NOT EXISTS `bints` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `bints` (
+  `id` int(4) NOT NULL,
   `interior` int(2) NOT NULL,
   `x` float NOT NULL,
   `y` float NOT NULL,
@@ -526,9 +520,8 @@ CREATE TABLE IF NOT EXISTS `bints` (
   `xb` float NOT NULL,
   `yb` float NOT NULL,
   `zb` float NOT NULL,
-  `name` varchar(32) COLLATE cp1251_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin AUTO_INCREMENT=26 ;
+  `name` varchar(32) COLLATE cp1251_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin;
 
 --
 -- Дамп данных таблицы `bints`
@@ -567,8 +560,8 @@ INSERT INTO `bints` (`id`, `interior`, `x`, `y`, `z`, `r`, `xb`, `yb`, `zb`, `na
 -- Структура таблицы `blackmarket`
 --
 
-CREATE TABLE IF NOT EXISTS `blackmarket` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `blackmarket` (
+  `id` int(10) UNSIGNED NOT NULL,
   `gang` int(11) NOT NULL,
   `drugs` int(11) NOT NULL,
   `mats` int(11) NOT NULL,
@@ -578,9 +571,8 @@ CREATE TABLE IF NOT EXISTS `blackmarket` (
   `matsprice` int(11) NOT NULL,
   `armourprice` int(11) NOT NULL,
   `skinprice` int(11) NOT NULL,
-  `time` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `time` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `blackmarket`
@@ -595,18 +587,18 @@ INSERT INTO `blackmarket` (`id`, `gang`, `drugs`, `mats`, `armour`, `skin`, `dru
 -- Структура таблицы `bonuses`
 --
 
-CREATE TABLE IF NOT EXISTS `bonuses` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `act_level` int(11) NOT NULL DEFAULT '5',
-  `act_select` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `bonuses` (
+  `id` int(11) NOT NULL,
+  `act_level` int(11) NOT NULL DEFAULT 5,
+  `act_select` int(11) NOT NULL DEFAULT 0,
   `act_time` int(11) NOT NULL,
-  `act_skill` int(11) NOT NULL DEFAULT '1',
-  `act_exp` int(11) NOT NULL DEFAULT '1',
-  `act_sport` int(11) NOT NULL DEFAULT '1',
-  `act_mp` int(11) NOT NULL DEFAULT '1',
-  `act_gun` int(11) NOT NULL DEFAULT '1',
-  `act_fish` int(11) NOT NULL DEFAULT '1',
-  `act_renthotel` int(11) NOT NULL DEFAULT '0',
+  `act_skill` int(11) NOT NULL DEFAULT 1,
+  `act_exp` int(11) NOT NULL DEFAULT 1,
+  `act_sport` int(11) NOT NULL DEFAULT 1,
+  `act_mp` int(11) NOT NULL DEFAULT 1,
+  `act_gun` int(11) NOT NULL DEFAULT 1,
+  `act_fish` int(11) NOT NULL DEFAULT 1,
+  `act_renthotel` int(11) NOT NULL DEFAULT 0,
   `act_buyskin` int(11) NOT NULL,
   `act_buycar` int(11) NOT NULL,
   `act_rentcar` int(11) NOT NULL,
@@ -618,19 +610,18 @@ CREATE TABLE IF NOT EXISTS `bonuses` (
   `act_buynubmbercar` int(11) NOT NULL,
   `act_perfomance` int(11) NOT NULL,
   `act_tune` int(11) NOT NULL,
-  `act_timerullet` int(11) NOT NULL DEFAULT '180',
-  `act_promocode` int(11) NOT NULL DEFAULT '1',
-  `act_payday` int(11) NOT NULL DEFAULT '1',
-  `act_donate` int(11) NOT NULL DEFAULT '1',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  `act_timerullet` int(11) NOT NULL DEFAULT 180,
+  `act_promocode` int(11) NOT NULL DEFAULT 1,
+  `act_payday` int(11) NOT NULL DEFAULT 1,
+  `act_donate` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `bonuses`
 --
 
 INSERT INTO `bonuses` (`id`, `act_level`, `act_select`, `act_time`, `act_skill`, `act_exp`, `act_sport`, `act_mp`, `act_gun`, `act_fish`, `act_renthotel`, `act_buyskin`, `act_buycar`, `act_rentcar`, `act_buylic`, `act_buyimprove`, `act_disease`, `act_changesex`, `act_medcard`, `act_buynubmbercar`, `act_perfomance`, `act_tune`, `act_timerullet`, `act_promocode`, `act_payday`, `act_donate`) VALUES
-(1, 3, 1, 0, 3, 3, 1, 3, 3, 2, 5, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 180, 3, 2, 2);
+(1, 3, 0, 0, 3, 3, 1, 3, 3, 2, 5, 10, 10, 5, 5, 5, 5, 5, 5, 5, 5, 5, 180, 3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -638,8 +629,8 @@ INSERT INTO `bonuses` (`id`, `act_level`, `act_select`, `act_time`, `act_skill`,
 -- Структура таблицы `business`
 --
 
-CREATE TABLE IF NOT EXISTS `business` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `business` (
+  `id` int(4) NOT NULL,
   `name` varchar(64) COLLATE cp1251_bin NOT NULL,
   `type` int(2) NOT NULL,
   `bint` int(2) NOT NULL,
@@ -648,7 +639,7 @@ CREATE TABLE IF NOT EXISTS `business` (
   `bank` int(11) NOT NULL,
   `bankday` int(11) NOT NULL,
   `price` int(4) NOT NULL,
-  `enter` int(11) NOT NULL DEFAULT '0',
+  `enter` int(11) NOT NULL DEFAULT 0,
   `product` int(7) NOT NULL,
   `visitors` int(11) NOT NULL,
   `upgrade` varchar(64) COLLATE cp1251_bin NOT NULL DEFAULT '5000|0|0',
@@ -659,11 +650,10 @@ CREATE TABLE IF NOT EXISTS `business` (
   `y` float NOT NULL,
   `z` float NOT NULL,
   `r` float NOT NULL,
-  `deliving` int(8) NOT NULL DEFAULT '0',
+  `deliving` int(8) NOT NULL DEFAULT 0,
   `mafia` int(11) NOT NULL,
-  `owner` varchar(64) COLLATE cp1251_bin NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin AUTO_INCREMENT=83 ;
+  `owner` varchar(64) COLLATE cp1251_bin NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin;
 
 --
 -- Дамп данных таблицы `business`
@@ -745,7 +735,7 @@ INSERT INTO `business` (`id`, `name`, `type`, `bint`, `ownerid`, `sellprice`, `b
 (73, 'Риэлторское агенство ЛС', 12, 24, 0, 1000000, 693636, 12212, 5, 4000, 500, 0, '5000|0|0', 0, 0, 1, 776.369, -1036.25, 24.2736, 189.859, 1542204775, 0, ''),
 (74, 'Риэлторское агенство СФ', 12, 24, 0, 1000000, 5851, 1771, 5, 1999, 500, 0, '5000|0|0', 0, 0, 1, -2563.33, 310.073, 15.9453, 265.233, 1541772129, 0, ''),
 (75, 'Риэлторское агенство ЛВ', 12, 24, 0, 1000000, 59580, 4410, 5, 5000, 500, 0, '5000|0|0', 0, 0, 1, 2014.86, 1106.97, 10.8203, 198.469, 1542374383, 0, ''),
-(76, 'Спорт-Зал', 13, 25, 0, 1500000, 695613, 8530, 5, 5000, 7300, 0, '5000|0|0', 0, 0, 1, 2229.86, -1721.29, 13.5616, 135.136, 1541946682, 0, ''),
+(76, 'Спорт-Зал', 13, 25, 0, 1500000, 701249, 14166, 5, 5000, 7170, 0, '5000|0|0', 0, 0, 1, 2229.86, -1721.29, 13.5616, 135.136, 1541946682, 0, ''),
 (77, 'Shack Shop', 2, 13, 0, 1000000, 318310, 39992, 5, 0, 7243, 0, '5000|0|0', 0, 0, 1, 2673.11, -1095.82, 69.3138, 355.612, 1542380153, 0, ''),
 (78, 'Lavanderia 24-7', 2, 14, 0, 1000000, 53316, 0, 5, 0, 2, 0, '5000|0|0', 0, 0, 1, 2472.99, -1922.19, 13.5313, 182.988, 1542032261, 0, ''),
 (79, 'Diamonds 24-7', 2, 14, 0, 1000000, 65988, 0, 5, 0, 4, 0, '5000|0|0', 0, 0, 1, 2081.44, -1205.14, 23.9332, 87.7332, 1542029815, 0, ''),
@@ -759,22 +749,21 @@ INSERT INTO `business` (`id`, `name`, `type`, `bint`, `ownerid`, `sellprice`, `b
 -- Структура таблицы `business_func`
 --
 
-CREATE TABLE IF NOT EXISTS `business_func` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `business_func` (
+  `ID` int(11) NOT NULL,
   `bizzID` int(11) NOT NULL,
   `name` varchar(24) CHARACTER SET cp1251 NOT NULL DEFAULT '----',
   `name_car` varchar(13) COLLATE utf8_unicode_ci NOT NULL DEFAULT 'TAXI',
-  `number` int(11) NOT NULL DEFAULT '0',
+  `number` int(11) NOT NULL DEFAULT 0,
   `car` varchar(256) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `tarif` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0',
-  `color` int(11) NOT NULL DEFAULT '0',
-  `color_shash` int(11) NOT NULL DEFAULT '0',
-  `percent` int(11) NOT NULL DEFAULT '1',
-  `percent2` float NOT NULL DEFAULT '0',
-  `percent3` int(11) NOT NULL DEFAULT '1',
-  `members` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ID`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=10 ;
+  `color` int(11) NOT NULL DEFAULT 0,
+  `color_shash` int(11) NOT NULL DEFAULT 0,
+  `percent` int(11) NOT NULL DEFAULT 1,
+  `percent2` float NOT NULL DEFAULT 0,
+  `percent3` int(11) NOT NULL DEFAULT 1,
+  `members` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `business_func`
@@ -797,15 +786,14 @@ INSERT INTO `business_func` (`ID`, `bizzID`, `name`, `name_car`, `number`, `car`
 -- Структура таблицы `business_stats`
 --
 
-CREATE TABLE IF NOT EXISTS `business_stats` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `business_stats` (
+  `id` int(11) NOT NULL,
   `bizz` int(11) NOT NULL,
   `day` int(11) NOT NULL,
   `month` int(11) NOT NULL,
   `year` int(11) NOT NULL,
-  `money` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=14 ;
+  `money` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `business_stats`
@@ -832,14 +820,13 @@ INSERT INTO `business_stats` (`id`, `bizz`, `day`, `month`, `year`, `money`) VAL
 -- Структура таблицы `captchalog`
 --
 
-CREATE TABLE IF NOT EXISTS `captchalog` (
-  `clID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `captchalog` (
+  `clID` int(11) NOT NULL,
   `clName` varchar(64) NOT NULL,
   `clIP` varchar(64) NOT NULL,
   `clDate` varchar(64) NOT NULL,
-  `clStatus` int(11) NOT NULL,
-  PRIMARY KEY (`clID`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `clStatus` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -847,61 +834,66 @@ CREATE TABLE IF NOT EXISTS `captchalog` (
 -- Структура таблицы `cars`
 --
 
-CREATE TABLE IF NOT EXISTS `cars` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `cars` (
+  `id` int(11) NOT NULL,
   `owner` varchar(24) NOT NULL,
-  `model` int(11) NOT NULL DEFAULT '481',
-  `color_one` int(11) NOT NULL DEFAULT '1',
-  `color_two` int(11) NOT NULL DEFAULT '1',
-  `drived` float NOT NULL DEFAULT '0',
-  `fuel` float NOT NULL DEFAULT '100',
-  `vehcom_1` int(11) NOT NULL DEFAULT '0',
-  `vehcom_2` int(11) NOT NULL DEFAULT '0',
-  `vehcom_3` int(11) NOT NULL DEFAULT '0',
-  `vehcom_4` int(11) NOT NULL DEFAULT '0',
-  `vehcom_5` int(11) NOT NULL DEFAULT '0',
-  `vehcom_6` int(11) NOT NULL DEFAULT '0',
-  `vehcom_7` int(11) NOT NULL DEFAULT '0',
-  `vehcom_8` int(11) NOT NULL DEFAULT '0',
-  `vehcom_9` int(11) NOT NULL DEFAULT '0',
-  `vehcom_10` int(11) NOT NULL DEFAULT '0',
-  `vehcom_11` int(11) NOT NULL DEFAULT '0',
-  `vehcom_12` int(11) NOT NULL DEFAULT '0',
-  `vehcom_13` int(11) NOT NULL DEFAULT '0',
-  `vehcom_14` int(11) NOT NULL DEFAULT '0',
-  `open` int(11) NOT NULL DEFAULT '0',
-  `instrum` int(11) NOT NULL DEFAULT '0',
-  `kanistra` int(11) NOT NULL DEFAULT '0',
-  `narko` int(11) NOT NULL DEFAULT '0',
-  `mats` int(11) NOT NULL DEFAULT '0',
-  `deagle` int(11) NOT NULL DEFAULT '0',
-  `ak47` int(11) NOT NULL DEFAULT '0',
-  `m4` int(11) NOT NULL DEFAULT '0',
-  `shot` int(11) NOT NULL DEFAULT '0',
+  `model` int(11) NOT NULL DEFAULT 481,
+  `color_one` int(11) NOT NULL DEFAULT 1,
+  `color_two` int(11) NOT NULL DEFAULT 1,
+  `drived` float NOT NULL DEFAULT 0,
+  `fuel` float NOT NULL DEFAULT 100,
+  `vehcom_1` int(11) NOT NULL DEFAULT 0,
+  `vehcom_2` int(11) NOT NULL DEFAULT 0,
+  `vehcom_3` int(11) NOT NULL DEFAULT 0,
+  `vehcom_4` int(11) NOT NULL DEFAULT 0,
+  `vehcom_5` int(11) NOT NULL DEFAULT 0,
+  `vehcom_6` int(11) NOT NULL DEFAULT 0,
+  `vehcom_7` int(11) NOT NULL DEFAULT 0,
+  `vehcom_8` int(11) NOT NULL DEFAULT 0,
+  `vehcom_9` int(11) NOT NULL DEFAULT 0,
+  `vehcom_10` int(11) NOT NULL DEFAULT 0,
+  `vehcom_11` int(11) NOT NULL DEFAULT 0,
+  `vehcom_12` int(11) NOT NULL DEFAULT 0,
+  `vehcom_13` int(11) NOT NULL DEFAULT 0,
+  `vehcom_14` int(11) NOT NULL DEFAULT 0,
+  `open` int(11) NOT NULL DEFAULT 0,
+  `instrum` int(11) NOT NULL DEFAULT 0,
+  `kanistra` int(11) NOT NULL DEFAULT 0,
+  `narko` int(11) NOT NULL DEFAULT 0,
+  `mats` int(11) NOT NULL DEFAULT 0,
+  `deagle` int(11) NOT NULL DEFAULT 0,
+  `ak47` int(11) NOT NULL DEFAULT 0,
+  `m4` int(11) NOT NULL DEFAULT 0,
+  `shot` int(11) NOT NULL DEFAULT 0,
   `number` varchar(32) CHARACTER SET cp1251 NOT NULL DEFAULT 'TRANSIT',
-  `paintjob` int(11) NOT NULL DEFAULT '-1',
-  `perf_engine_1` int(11) NOT NULL DEFAULT '0',
-  `perf_engine_2` int(11) NOT NULL DEFAULT '0',
-  `perf_engine_3` int(11) NOT NULL DEFAULT '0',
-  `perf_engine_4` int(11) NOT NULL DEFAULT '0',
-  `perf_engine_5` int(11) NOT NULL DEFAULT '0',
-  `perf_brake_1` int(11) NOT NULL DEFAULT '0',
-  `perf_brake_2` int(11) NOT NULL DEFAULT '0',
-  `perf_brake_3` int(11) NOT NULL DEFAULT '0',
-  `perf_brake_4` int(11) NOT NULL DEFAULT '0',
-  `perf_brake_5` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `paintjob` int(11) NOT NULL DEFAULT -1,
+  `perf_engine_1` int(11) NOT NULL DEFAULT 0,
+  `perf_engine_2` int(11) NOT NULL DEFAULT 0,
+  `perf_engine_3` int(11) NOT NULL DEFAULT 0,
+  `perf_engine_4` int(11) NOT NULL DEFAULT 0,
+  `perf_engine_5` int(11) NOT NULL DEFAULT 0,
+  `perf_brake_1` int(11) NOT NULL DEFAULT 0,
+  `perf_brake_2` int(11) NOT NULL DEFAULT 0,
+  `perf_brake_3` int(11) NOT NULL DEFAULT 0,
+  `perf_brake_4` int(11) NOT NULL DEFAULT 0,
+  `perf_brake_5` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `cars`
 --
 
 INSERT INTO `cars` (`id`, `owner`, `model`, `color_one`, `color_two`, `drived`, `fuel`, `vehcom_1`, `vehcom_2`, `vehcom_3`, `vehcom_4`, `vehcom_5`, `vehcom_6`, `vehcom_7`, `vehcom_8`, `vehcom_9`, `vehcom_10`, `vehcom_11`, `vehcom_12`, `vehcom_13`, `vehcom_14`, `open`, `instrum`, `kanistra`, `narko`, `mats`, `deagle`, `ak47`, `m4`, `shot`, `number`, `paintjob`, `perf_engine_1`, `perf_engine_2`, `perf_engine_3`, `perf_engine_4`, `perf_engine_5`, `perf_brake_1`, `perf_brake_2`, `perf_brake_3`, `perf_brake_4`, `perf_brake_5`) VALUES
-(1, 'Blade_Pawn', 481, 108, 100, 0, 50, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(1, 'Blade_Pawn', 481, 108, 100, 0, 0, 110, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (2, 'Blade_Pawn', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
 (3, 'Andrei_Falcone', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
-(4, 'Andrei_Falcone', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
+(4, 'Andrei_Falcone', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(5, 'Maestro_Singles', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(6, 'Maestro_Singles', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(7, 'Elki_Palki', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(8, 'Elki_Palki', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(9, 'Brownield_Brandly', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0),
+(10, 'Brownield_Brandly', 481, 1, 1, 0, 100, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 'TRANSIT', -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -909,11 +901,10 @@ INSERT INTO `cars` (`id`, `owner`, `model`, `color_one`, `color_two`, `drived`, 
 -- Структура таблицы `diplomation`
 --
 
-CREATE TABLE IF NOT EXISTS `diplomation` (
-  `f_id` int(11) NOT NULL AUTO_INCREMENT,
-  `f_dip` varchar(32) NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
-  PRIMARY KEY (`f_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=23 ;
+CREATE TABLE `diplomation` (
+  `f_id` int(11) NOT NULL,
+  `f_dip` varchar(32) NOT NULL DEFAULT '0|0|0|0|0|0|0|0'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Дамп данных таблицы `diplomation`
@@ -935,10 +926,29 @@ INSERT INTO `diplomation` (`f_id`, `f_dip`) VALUES
 -- Структура таблицы `dm_arena`
 --
 
-CREATE TABLE IF NOT EXISTS `dm_arena` (
+CREATE TABLE `dm_arena` (
   `Name` varchar(25) NOT NULL,
-  `kills_dm` int(11) NOT NULL DEFAULT '0'
+  `kills_dm` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Структура таблицы `dostupcontrol`
+--
+
+CREATE TABLE `dostupcontrol` (
+  `dostupID` int(11) NOT NULL,
+  `dostupName` varchar(64) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'None',
+  `dostupPanel` varchar(24) CHARACTER SET utf8mb4 NOT NULL DEFAULT 'None'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Дамп данных таблицы `dostupcontrol`
+--
+
+INSERT INTO `dostupcontrol` (`dostupID`, `dostupName`, `dostupPanel`) VALUES
+(1, 'Управление штатом', 'Blade_Pawn');
 
 -- --------------------------------------------------------
 
@@ -946,8 +956,8 @@ CREATE TABLE IF NOT EXISTS `dm_arena` (
 -- Структура таблицы `economy`
 --
 
-CREATE TABLE IF NOT EXISTS `economy` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `economy` (
+  `id` int(10) UNSIGNED NOT NULL,
   `salary_pd` varchar(256) CHARACTER SET cp1251 NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `salary_fbi` varchar(256) CHARACTER SET cp1251 NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
   `salary_mayor` varchar(256) CHARACTER SET cp1251 NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0|0|0|0|0|0|0',
@@ -962,23 +972,22 @@ CREATE TABLE IF NOT EXISTS `economy` (
   `work_oil` int(11) NOT NULL,
   `work_alco` int(11) NOT NULL,
   `work_apple` int(11) NOT NULL,
-  `work_wood` int(11) NOT NULL DEFAULT '30',
+  `work_wood` int(11) NOT NULL DEFAULT 30,
   `nalog_1` int(11) NOT NULL,
   `nalog_2` int(11) NOT NULL,
   `nalog_3` int(11) NOT NULL,
   `nalog_4` int(11) NOT NULL,
   `nalog_5` int(11) NOT NULL,
   `nalog_6` int(11) NOT NULL,
-  `nalog_7` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=2 ;
+  `nalog_7` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Дамп данных таблицы `economy`
 --
 
 INSERT INTO `economy` (`id`, `salary_pd`, `salary_fbi`, `salary_mayor`, `salary_army`, `salary_medics`, `salary_news`, `salary_mafia`, `salary_gang`, `salary_whitehouse`, `salary_licensers`, `work_gun`, `work_oil`, `work_alco`, `work_apple`, `work_wood`, `nalog_1`, `nalog_2`, `nalog_3`, `nalog_4`, `nalog_5`, `nalog_6`, `nalog_7`) VALUES
-(1, '3400|5400|7000|8400|10000|11000|13000|15000|17200|18000|19000|2', '6800|8000|9000|10000|11000|12400|15000|15000|18000|21000|26000|', '4000|6000|5000|3000|6400|15000|18000', '3000|4000|5000|6000|7000|8200|9000|9400|11000|12200|14000|15400|16000|17000|20200', '8000|10000|12000|14000|16000|18000|22000|0|0|0|0|0|0|0|0', '5000|8000|9000|9400|9800|10000|11000|13800|16200|19000|0|0|0|0|', '2000|3000|4000|4800|5400|6000|7000|8000|10000|13000', '2000|3000|4000|4000|4000|4000|4200|4500|5000|5000', '5400|7800|8400|9800|11000|24000|24000|24000|24000|24000|27000|33000|0|0|0', '2800|4500|6500|8400|9500|10000|0|0|0|0|0|0|0|0|0', 160, 220, 40, 120, 120, 15, 15, 9000, 2, 10, 2, 2);
+(1, '3400|5400|7000|8400|10000|11000|13000|15000|17200|18000|19000|2', '6800|8000|9000|10000|11000|12400|15000|15000|18000|21000|26000|', '4000|6000|5000|3000|6400|15000|18000', '3000|4000|5000|6000|7000|8200|9000|9400|11000|12200|14000|15400|16000|17000|20200', '8000|10000|12000|14000|16000|18000|22000|0|0|0|0|0|0|0|0', '5000|8000|9000|9400|9800|10000|11000|13800|16200|19000|0|0|0|0|', '2000|3000|4000|4800|5400|6000|7000|8000|10000|13000', '2000|3000|4000|4000|4000|4000|4200|4500|5000|5000', '5400|7800|8400|9800|11000|24000|24000|24000|24000|24000|27000|33000|0|0|0', '2800|4500|6500|8400|9500|10000|0|0|0|0|0|0|0|0|0', 80, 120, 40, 70, 120, 15, 15, 9000, 2, 10, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -986,13 +995,12 @@ INSERT INTO `economy` (`id`, `salary_pd`, `salary_fbi`, `salary_mayor`, `salary_
 -- Структура таблицы `email_success`
 --
 
-CREATE TABLE IF NOT EXISTS `email_success` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `email_success` (
+  `id` int(11) NOT NULL,
   `Account` varchar(36) NOT NULL,
-  `Type` int(2) NOT NULL DEFAULT '0',
-  `HASH` varchar(70) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `Type` int(2) NOT NULL DEFAULT 0,
+  `HASH` varchar(70) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1000,7 +1008,7 @@ CREATE TABLE IF NOT EXISTS `email_success` (
 -- Структура таблицы `exit_coords`
 --
 
-CREATE TABLE IF NOT EXISTS `exit_coords` (
+CREATE TABLE `exit_coords` (
   `ID` int(11) NOT NULL,
   `x` float NOT NULL,
   `y` float NOT NULL,
@@ -1013,20 +1021,20 @@ CREATE TABLE IF NOT EXISTS `exit_coords` (
 -- Структура таблицы `family`
 --
 
-CREATE TABLE IF NOT EXISTS `family` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `family` (
+  `id` int(11) NOT NULL,
   `cname` varchar(32) NOT NULL,
   `name` varchar(32) NOT NULL,
   `time` varchar(22) NOT NULL,
   `cowner` varchar(24) NOT NULL,
   `owner` varchar(24) NOT NULL,
-  `color` int(11) NOT NULL DEFAULT '0',
-  `drugs` int(11) NOT NULL DEFAULT '0',
-  `mats` int(11) NOT NULL DEFAULT '0',
-  `invite` int(11) NOT NULL DEFAULT '7',
-  `uninvite` int(11) NOT NULL DEFAULT '7',
-  `giverank` int(11) NOT NULL DEFAULT '7',
-  `sklad` int(11) NOT NULL DEFAULT '1',
+  `color` int(11) NOT NULL DEFAULT 0,
+  `drugs` int(11) NOT NULL DEFAULT 0,
+  `mats` int(11) NOT NULL DEFAULT 0,
+  `invite` int(11) NOT NULL DEFAULT 7,
+  `uninvite` int(11) NOT NULL DEFAULT 7,
+  `giverank` int(11) NOT NULL DEFAULT 7,
+  `sklad` int(11) NOT NULL DEFAULT 1,
   `Rank_1` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT 'None',
   `Rank_2` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT 'None',
   `Rank_3` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT 'None',
@@ -1036,34 +1044,33 @@ CREATE TABLE IF NOT EXISTS `family` (
   `Rank_7` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT 'None',
   `Rank_8` varchar(25) CHARACTER SET utf8 NOT NULL DEFAULT 'None',
   `message` varchar(71) NOT NULL DEFAULT 'None',
-  `exp` int(11) NOT NULL DEFAULT '0',
-  `lvl` int(11) NOT NULL DEFAULT '1',
-  `point` int(11) NOT NULL DEFAULT '0',
-  `drugs_max` int(11) NOT NULL DEFAULT '0',
-  `mats_max` int(11) NOT NULL DEFAULT '0',
-  `fuel` int(11) NOT NULL DEFAULT '0',
-  `fuel_max` int(11) NOT NULL DEFAULT '0',
-  `remp` int(11) NOT NULL DEFAULT '0',
-  `remp_max` int(11) NOT NULL DEFAULT '0',
-  `armour` int(11) NOT NULL DEFAULT '0',
-  `armour_max` int(11) NOT NULL DEFAULT '0',
-  `health` int(11) NOT NULL DEFAULT '0',
-  `health_max` int(11) NOT NULL DEFAULT '0',
-  `mask` int(11) NOT NULL DEFAULT '0',
-  `mask_max` int(11) NOT NULL DEFAULT '0',
-  `money` int(11) NOT NULL DEFAULT '0',
-  `money_max` int(11) NOT NULL DEFAULT '0',
-  `house` int(11) NOT NULL DEFAULT '0',
-  `type` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=2 ;
+  `exp` int(11) NOT NULL DEFAULT 0,
+  `lvl` int(11) NOT NULL DEFAULT 1,
+  `point` int(11) NOT NULL DEFAULT 0,
+  `drugs_max` int(11) NOT NULL DEFAULT 0,
+  `mats_max` int(11) NOT NULL DEFAULT 0,
+  `fuel` int(11) NOT NULL DEFAULT 0,
+  `fuel_max` int(11) NOT NULL DEFAULT 0,
+  `remp` int(11) NOT NULL DEFAULT 0,
+  `remp_max` int(11) NOT NULL DEFAULT 0,
+  `armour` int(11) NOT NULL DEFAULT 0,
+  `armour_max` int(11) NOT NULL DEFAULT 0,
+  `health` int(11) NOT NULL DEFAULT 0,
+  `health_max` int(11) NOT NULL DEFAULT 0,
+  `mask` int(11) NOT NULL DEFAULT 0,
+  `mask_max` int(11) NOT NULL DEFAULT 0,
+  `money` int(11) NOT NULL DEFAULT 0,
+  `money_max` int(11) NOT NULL DEFAULT 0,
+  `house` int(11) NOT NULL DEFAULT 0,
+  `type` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `family`
 --
 
 INSERT INTO `family` (`id`, `cname`, `name`, `time`, `cowner`, `owner`, `color`, `drugs`, `mats`, `invite`, `uninvite`, `giverank`, `sklad`, `Rank_1`, `Rank_2`, `Rank_3`, `Rank_4`, `Rank_5`, `Rank_6`, `Rank_7`, `Rank_8`, `message`, `exp`, `lvl`, `point`, `drugs_max`, `mats_max`, `fuel`, `fuel_max`, `remp`, `remp_max`, `armour`, `armour_max`, `health`, `health_max`, `mask`, `mask_max`, `money`, `money_max`, `house`, `type`) VALUES
-(1, 'Paradox Family', 'Paradox Family', '2024-10-30 12:21:47', 'Blade_Pawn', 'Blade_Pawn', 7, 0, 0, 1, 7, 7, 1, 'Скачок', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 0, 6, 399523, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10000, 2, 0, 0);
+(1, 'Paradox Family', 'Paradox Family', '2024-10-30 12:21:47', 'Blade_Pawn', 'Blade_Pawn', 7, 0, 0, 1, 7, 7, 1, 'Скачок', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 'None', 139, 6, 399662, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10000, 2, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1071,15 +1078,14 @@ INSERT INTO `family` (`id`, `cname`, `name`, `time`, `cowner`, `owner`, `color`,
 -- Структура таблицы `fraclog`
 --
 
-CREATE TABLE IF NOT EXISTS `fraclog` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fraclog` (
+  `id` int(10) UNSIGNED NOT NULL,
   `type` int(11) NOT NULL,
   `Name` varchar(25) NOT NULL,
   `NameP` varchar(25) NOT NULL,
   `reason` varchar(140) NOT NULL,
-  `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `date` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1087,15 +1093,15 @@ CREATE TABLE IF NOT EXISTS `fraclog` (
 -- Структура таблицы `fracmorozed`
 --
 
-CREATE TABLE IF NOT EXISTS `fracmorozed` (
-  `MOROZ_BALLAS` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_VAGOS` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_GROVE` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_RIFA` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_AZTECAS` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_LCN` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_YAKUZA` int(11) NOT NULL DEFAULT '0',
-  `MOROZ_RM` int(11) NOT NULL DEFAULT '0'
+CREATE TABLE `fracmorozed` (
+  `MOROZ_BALLAS` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_VAGOS` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_GROVE` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_RIFA` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_AZTECAS` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_LCN` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_YAKUZA` int(11) NOT NULL DEFAULT 0,
+  `MOROZ_RM` int(11) NOT NULL DEFAULT 0
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
@@ -1111,8 +1117,8 @@ INSERT INTO `fracmorozed` (`MOROZ_BALLAS`, `MOROZ_VAGOS`, `MOROZ_GROVE`, `MOROZ_
 -- Структура таблицы `fractions`
 --
 
-CREATE TABLE IF NOT EXISTS `fractions` (
-  `ID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `fractions` (
+  `ID` int(11) NOT NULL,
   `Name` varchar(50) NOT NULL,
   `Leader` varchar(24) NOT NULL DEFAULT 'None',
   `Admin` varchar(25) CHARACTER SET cp1251 NOT NULL DEFAULT 'None',
@@ -1148,13 +1154,12 @@ CREATE TABLE IF NOT EXISTS `fractions` (
   `Rank_14` varchar(50) NOT NULL DEFAULT 'None',
   `Rank_15` varchar(50) NOT NULL DEFAULT 'None',
   `Message` varchar(71) CHARACTER SET cp1251 NOT NULL DEFAULT 'None',
-  `DrugsBuy` int(11) NOT NULL DEFAULT '0',
-  `DrugsPrice` int(11) NOT NULL DEFAULT '0',
-  `AntiTk` int(11) NOT NULL DEFAULT '1',
+  `DrugsBuy` int(11) NOT NULL DEFAULT 0,
+  `DrugsPrice` int(11) NOT NULL DEFAULT 0,
+  `AntiTk` int(11) NOT NULL DEFAULT 1,
   `fPoints` int(4) NOT NULL,
-  `fRating` int(4) NOT NULL,
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=25 ;
+  `fRating` int(4) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `fractions`
@@ -1165,7 +1170,7 @@ INSERT INTO `fractions` (`ID`, `Name`, `Leader`, `Admin`, `Time`, `Bank`, `BankC
 (2, 'Полиция СФ', 'None', 'None', '27/02/2020', 250000, 0, 0, 700000, 30, 0, 0, 283, 11, 11, 11, 11, 0, 0, 0, 'Кадет', 'Офицер I', 'Офицер II', 'Офицер III', 'Детектив', 'Старший Детектив', 'Младший Лейтенант', 'Лейтенант', 'Майор', 'Заместитель Шерифа', 'Шериф', '', '', '', '', 'Зашёл в игру?! Зайди в ТимСпик!', 0, 0, 1, 0, 0),
 (3, 'Полиция ЛВ', 'None', 'None', '14/10/2018', 250000, 0, 0, 500000, 0, 0, 0, 283, 11, 10, 10, 10, 0, 0, 0, 'Кадет', 'Офицер I', 'Офицер II', 'Офицер III', 'Детектив', 'Старший Детектив', 'Младший Лейтенант', 'Лейтенант', 'Майор', 'Заместитель Шерифа', 'Шериф', '', '', '', '', 'Балловая система повышений на форуме.', 0, 0, 1, 0, 0),
 (4, 'ФБР', 'None', 'None', '18/04/2020', 100000, 0, 0, 43800, 500, 0, 0, 166, 11, 9, 9, 10, 0, 0, 0, 'Стажёр', 'Младший Агент ФБР', 'Агент ФБР', 'Старший Агент ФБР', 'Агент CID', 'Агент DEA', 'Глава Управления CID', 'Глава Управления DEA', 'Инспектор ФБР', 'Зам.Директора', 'Директор', '', '', '', '', 'Вся информация о FBI в Discord', 0, 0, 1, 0, 0),
-(5, 'Правительство', 'None', 'None', '16/06/2018', 150000, 0, 0, 0, 0, 0, 0, 147, 7, 6, 6, 6, 0, 0, 0, 'Водитель', 'Охранник', 'Секретарь', 'Адвокат', 'Нач.службы безопасности', 'Зам.Мэра', 'Мэр', '', '', '', '', '', '', '', '', 'None', 0, 0, 1, 0, 0),
+(5, 'Правительство', 'None', 'Blade_Pawn', '03/01/2026', 150000, 0, 0, 0, 0, 0, 0, 147, 7, 6, 6, 6, 0, 0, 0, 'Водитель', 'Охранник', 'Секретарь', 'Адвокат', 'Нач.службы безопасности', 'Зам.Мэра', 'Мэр', '', '', '', '', '', '', '', '', 'None', 0, 0, 1, 0, 0),
 (6, 'Армия СФ', 'None', 'None', '10/12/2020', 7500, 0, 0, 988940, 0, 0, 0, 61, 15, 12, 13, 13, 0, 0, 0, 'Матрос', 'Ст. Матрос', 'Старшина 2 ст.', 'Старшина 1 ст.', 'Г.К. Старшина', 'Мичман', 'Ст. Мичман', 'Лейтенант', 'Ст. Лейтенант', 'Кап. Лейтенант', 'Капитан 2 ранга', 'Капитан 1 ранга', 'Контр-Адмирал', 'Вице-Адмирал', 'Адмирал', 'Командование контингента морской пехоты ВМФ РФ приветсвует Вас !', 0, 0, 0, 0, 0),
 (7, 'Армия ЛВ', 'None', 'None', '17/10/2018', 0, 0, 0, 548275, 60, 0, 0, 61, 15, 13, 12, 12, 0, 0, 0, 'Рядовой', 'Ефрейтор', 'Мл. Сержант', 'Сержант', 'Ст. Сержант', 'Старшина', 'Прапорщик', 'Ст. Прапорщик', 'Лейтенант', 'Ст. Лейтенант', 'Капитан', 'Майор', 'Подполковник', 'Полковник', 'Генерал', 'Новый устав и система повышений на форуме', 0, 0, 1, 0, 0),
 (8, 'Больница ЛС', 'None', 'None', '20/05/2020', 0, 0, 0, 0, 58, 0, 0, 70, 7, 5, 5, 6, 0, 0, 0, 'Санитар', 'Интерн', 'Терапевт', 'Нарколог', 'Хирург', 'Зам.Глав.Врача', 'Глав.Врач', '', '', '', '', '', '', '', '', 'Всем обязательно ознакомиться с офф. порталом штата!', 0, 0, 1, 0, 0),
@@ -1178,12 +1183,12 @@ INSERT INTO `fractions` (`ID`, `Name`, `Leader`, `Admin`, `Time`, `Bank`, `BankC
 (15, 'Итальянская мафия', 'None', 'None', '27/10/2018', 12619090, 0, 17373, 300000, 10, 0, 0, 113, 10, 8, 8, 9, 0, 0, 0, 'Новицио', 'Солдато', 'Ассосиате', 'Сегундо', 'Комбаттенте', 'Саргенто', 'Сото-Капо', 'Амиго', 'Консильери', 'Босс', '', '', '', '', '', 'Воруем у богатых, даём бедным.', 0, 0, 1, 0, 0),
 (16, 'Японская мафия', 'None', 'None', '27/10/2018', 4640354, 0, 19805, 300000, 500, 0, 0, 120, 10, 10, 10, 10, 0, 0, 0, 'Вакасю', 'Сятэй', 'Кёдай', 'Фуку-хомбутё', 'Вакагасира', 'Со-хомбуте', 'Камбу', 'Сайко-комон', 'Оядзи', 'Кумитэ', '', '', '', '', '', 'Discord: rPuyhMJ', 0, 0, 1, 0, 0),
 (17, 'Русская мафия', 'None', 'None', '23/10/2018', 6374986, 0, 18977, 300000, 0, 0, 0, 272, 10, 8, 9, 9, 0, 0, 0, 'Пацык', 'Фраер', 'Кабан', 'Барыга', 'Клык', 'Стражник', 'Браток', 'Свояк', 'Авторитет', 'Вор в законе', '', '', '', '', '', 'XFVqbZ - Наш ДС. Заходите, вам дадут роль.', 0, 0, 1, 0, 0),
-(18, 'Ballas Gang', 'None', 'None', '10/12/2020', 5834843, 0, 0, 300000, 496, 0, 0, 104, 10, 8, 8, 8, 0, 0, 0, 'New Blood', 'Hood Nigga', 'Dirty Nigga', 'Authority', 'Old Gangster', 'Legendary', 'Black Devil', 'East Side Pac', 'Purple Dep', 'Black Crown', '', '', '', '', '', 'discord - YDFmvz', 500, 30, 1, 0, 0),
-(19, 'Vagos Gang', 'None', 'None', '09/12/2020', 1786425, 0, 0, 300000, 197, 0, 0, 110, 10, 8, 8, 8, 0, 0, 0, 'CandyBaby [I]', 'Homie [II]', 'Ballin [III]', 'Moneybagg [IV]', 'Iceberg [V]', 'JostkiyVersetti', '† its hatte, my boy -', 'Plugstar [VIII]', '† hatte helper -', '† hatte prod. -', '', '', '', '', '', 'None', 500, 30, 1, 0, 0),
-(20, 'Grove Street Gang', 'None', 'None', '22/10/2018', 222756, 0, 0, 300000, 0, 0, 0, 270, 10, 8, 8, 8, 0, 0, 0, 'new [1]', 'playa [2]', 'fighter [3]', 'flamie [4]', 'gangster [5]', 'capture [6]', 'warrior [7]', 'defender [8]', 'legendary [9]', 'legend of gang [10]', '', '', '', '', '', 'салам пидарасы )', 500, 30, 0, 0, 0),
-(21, 'Aztecas Gang', 'None', 'None', '15/10/2018', 222573, 0, 0, 300000, 500, 0, 0, 115, 10, 8, 9, 9, 0, 0, 0, 'Novato', 'Crew [2]', 'Default[3]', 'Warrior [4]', 'Tortuga [5]', 'Lowrider[6]', 'techies', 'La Leyenda', 'White Trash', 'White King', '', '', '', '', '', 'aztec - vagos war , ballas war, rifa gold', 500, 30, 1, 0, 0),
-(22, 'Rifa Gang', 'None', 'None', '26/10/2018', 761186, 0, 0, 300000, 327, 0, 0, 273, 10, 8, 8, 8, 0, 0, 0, 'PUSSY BOY', 'BROKE BOY', 'Завалил 9 обзвонов', 'PROVERKA', 'SANCTUS HARD FLAVA', 'LIL NIGGAS', 'CAPTURE BOYS', 'Fat.Fatboy Zam', 'FatBoy Zam', 'Padre Fallison', '', '', '', '', '', 'Проверка в капт состав с 12-13 утра, НАЧАЛО КАПТОВ В 18:00', 500, 30, 1, 0, 0),
-(23, 'Белый дом', 'None', 'Marcus_Rosberg', '18/04/2020', 403063573, 0, 0, 1000000, 0, 0, 0, 17, 12, 11, 12, 12, 0, 0, 0, 'Водитель', 'Пресс-секретарь', 'Охранник', 'Нач. Охраны', 'Адвокат', 'Министр СМИ', 'Министр Здравоохранения', 'Министр Обороны', 'Министр Внутренних Дел', 'Министр Юстиции', 'Премьер-Министр', 'Президент', '', '', '', 'Всем ознакомиться с офф.порталом "Правительства"', 0, 0, 1, 0, 0);
+(18, 'Ballas Gang', 'None', 'None', '10/12/2020', 5947163, 0, 0, 300000, 496, 0, 0, 104, 10, 8, 8, 8, 0, 0, 0, 'New Blood', 'Hood Nigga', 'Dirty Nigga', 'Authority', 'Old Gangster', 'Legendary', 'Black Devil', 'East Side Pac', 'Purple Dep', 'Black Crown', '', '', '', '', '', 'discord - YDFmvz', 500, 30, 1, 0, 0),
+(19, 'Vagos Gang', 'None', 'None', '09/12/2020', 1877945, 0, 0, 300000, 197, 0, 0, 110, 10, 8, 8, 8, 0, 0, 0, 'CandyBaby [I]', 'Homie [II]', 'Ballin [III]', 'Moneybagg [IV]', 'Iceberg [V]', 'JostkiyVersetti', '† its hatte, my boy -', 'Plugstar [VIII]', '† hatte helper -', '† hatte prod. -', '', '', '', '', '', 'None', 500, 30, 1, 0, 0),
+(20, 'Grove Street Gang', 'None', 'None', '22/10/2018', 249796, 0, 0, 300000, 0, 0, 0, 270, 10, 8, 8, 8, 0, 0, 0, 'new [1]', 'playa [2]', 'fighter [3]', 'flamie [4]', 'gangster [5]', 'capture [6]', 'warrior [7]', 'defender [8]', 'legendary [9]', 'legend of gang [10]', '', '', '', '', '', 'салам пидарасы )', 500, 30, 0, 0, 0),
+(21, 'Aztecas Gang', 'None', 'None', '15/10/2018', 249613, 0, 0, 300000, 500, 0, 0, 115, 10, 8, 9, 9, 0, 0, 0, 'Novato', 'Crew [2]', 'Default[3]', 'Warrior [4]', 'Tortuga [5]', 'Lowrider[6]', 'techies', 'La Leyenda', 'White Trash', 'White King', '', '', '', '', '', 'aztec - vagos war , ballas war, rifa gold', 500, 30, 1, 0, 0),
+(22, 'Rifa Gang', 'None', 'None', '26/10/2018', 763266, 0, 0, 300000, 327, 0, 0, 273, 10, 8, 8, 8, 0, 0, 0, 'PUSSY BOY', 'BROKE BOY', 'Завалил 9 обзвонов', 'PROVERKA', 'SANCTUS HARD FLAVA', 'LIL NIGGAS', 'CAPTURE BOYS', 'Fat.Fatboy Zam', 'FatBoy Zam', 'Padre Fallison', '', '', '', '', '', 'Проверка в капт состав с 12-13 утра, НАЧАЛО КАПТОВ В 18:00', 500, 30, 1, 0, 0),
+(23, 'Белый дом', 'None', 'Blade_Pawn', '04/01/2026', 403061767, 0, 0, 1000000, 0, 0, 0, 17, 12, 11, 12, 12, 0, 0, 0, 'Водитель', 'Пресс-секретарь', 'Охранник', 'Нач. Охраны', 'Адвокат', 'Министр СМИ', 'Министр Здравоохранения', 'Министр Обороны', 'Министр Внутренних Дел', 'Министр Юстиции', 'Премьер-Министр', 'Президент', '', '', '', 'Всем ознакомиться с офф.порталом \"Правительства\"', 0, 0, 1, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1191,7 +1196,7 @@ INSERT INTO `fractions` (`ID`, `Name`, `Leader`, `Admin`, `Time`, `Bank`, `BankC
 -- Структура таблицы `fraction_bl`
 --
 
-CREATE TABLE IF NOT EXISTS `fraction_bl` (
+CREATE TABLE `fraction_bl` (
   `f_bl_id` int(6) NOT NULL,
   `f_bl_accused` varchar(32) CHARACTER SET cp1251 NOT NULL,
   `f_bl_accuser` varchar(32) CHARACTER SET cp1251 NOT NULL,
@@ -1205,7 +1210,7 @@ CREATE TABLE IF NOT EXISTS `fraction_bl` (
 -- Структура таблицы `frac_vehicle`
 --
 
-CREATE TABLE IF NOT EXISTS `frac_vehicle` (
+CREATE TABLE `frac_vehicle` (
   `fvehID` int(11) NOT NULL,
   `fvehFrac` int(11) NOT NULL,
   `fvehModel` int(11) NOT NULL,
@@ -1281,17 +1286,16 @@ INSERT INTO `frac_vehicle` (`fvehID`, `fvehFrac`, `fvehModel`, `fvehModelNew`, `
 -- Структура таблицы `frac_weapon`
 --
 
-CREATE TABLE IF NOT EXISTS `frac_weapon` (
-  `fwID` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `frac_weapon` (
+  `fwID` int(11) NOT NULL,
   `Slot` int(11) NOT NULL,
   `Fraction` int(11) NOT NULL,
   `fwName` varchar(32) NOT NULL,
-  `fwGunID` int(11) NOT NULL DEFAULT '0',
-  `fwGunAmmo` int(11) NOT NULL DEFAULT '0',
-  `fwArmor` int(11) NOT NULL DEFAULT '0',
-  `fwRank` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`fwID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=28 ;
+  `fwGunID` int(11) NOT NULL DEFAULT 0,
+  `fwGunAmmo` int(11) NOT NULL DEFAULT 0,
+  `fwArmor` int(11) NOT NULL DEFAULT 0,
+  `fwRank` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `frac_weapon`
@@ -1332,15 +1336,14 @@ INSERT INTO `frac_weapon` (`fwID`, `Slot`, `Fraction`, `fwName`, `fwGunID`, `fwG
 -- Структура таблицы `gangzone`
 --
 
-CREATE TABLE IF NOT EXISTS `gangzone` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `gangzone` (
+  `id` int(11) NOT NULL,
   `coord_one` float NOT NULL,
   `coord_two` float NOT NULL,
   `coord_three` float NOT NULL,
   `coord_four` float NOT NULL,
-  `gang_owner` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=125 ;
+  `gang_owner` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `gangzone`
@@ -1479,16 +1482,15 @@ INSERT INTO `gangzone` (`id`, `coord_one`, `coord_two`, `coord_three`, `coord_fo
 -- Структура таблицы `givecash`
 --
 
-CREATE TABLE IF NOT EXISTS `givecash` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `givecash` (
+  `id` int(10) UNSIGNED NOT NULL,
   `Name` varchar(32) NOT NULL,
   `IP` varchar(16) NOT NULL,
   `Reason` varchar(50) NOT NULL,
   `Dollar` int(11) NOT NULL,
   `Cash` int(11) NOT NULL,
-  `Date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+  `Date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `givecash`
@@ -1500,7 +1502,27 @@ INSERT INTO `givecash` (`id`, `Name`, `IP`, `Reason`, `Dollar`, `Cash`, `Date`) 
 (3, 'Blade_Pawn', '127.0.0.1', 'аренда номера отель', -3800, 19998670, '2024-10-30 09:02:02'),
 (4, 'Blade_Pawn', '127.0.0.1', 'аренда номера отель', -1900, 19994870, '2024-10-30 09:02:16'),
 (5, 'Blade_Pawn', '127.0.0.1', 'пожертвование', -100000, 19992970, '2024-10-30 09:21:02'),
-(6, 'Blade_Pawn', '127.0.0.1', 'пополнил(а) склад семьи', -10000, 19892970, '2024-10-30 09:22:59');
+(6, 'Blade_Pawn', '127.0.0.1', 'пополнил(а) склад семьи', -10000, 19892970, '2024-10-30 09:22:59'),
+(7, 'Blade_Pawn', '127.0.0.1', 'VIP lvl UP', 30000, 19882970, '2025-12-26 14:00:00'),
+(8, 'Blade_Pawn', '127.0.0.1', 'ЗП оружейный завод', 160, 19912970, '2025-12-26 14:00:14'),
+(9, 'Blade_Pawn', '91.149.165.149', 'покупка в спортзале', -750, 19913130, '2026-01-03 10:28:57'),
+(10, 'Blade_Pawn', '91.149.165.149', 'покупка в спортзале', -5000, 19912380, '2026-01-03 10:29:03'),
+(11, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 160, 19907380, '2026-01-03 13:37:08'),
+(12, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 160, 19907540, '2026-01-03 13:44:32'),
+(13, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 160, 19907700, '2026-01-03 13:49:32'),
+(14, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 160, 19907860, '2026-01-03 14:01:13'),
+(15, 'Blade_Pawn', '91.149.165.149', 'ЗП лесопилка', 120, 19908020, '2026-01-03 14:59:17'),
+(16, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908140, '2026-01-03 15:51:19'),
+(17, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908220, '2026-01-03 15:54:42'),
+(18, 'Blade_Pawn', '91.149.165.149', 'ЗП нефтезавод', 120, 19908300, '2026-01-03 16:12:47'),
+(19, 'Blade_Pawn', '91.149.165.149', 'ЗП нефтезавод', 120, 19908420, '2026-01-03 16:40:38'),
+(20, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908540, '2026-01-03 16:53:47'),
+(21, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908620, '2026-01-03 17:25:33'),
+(22, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908700, '2026-01-04 10:21:01'),
+(23, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908780, '2026-01-04 10:24:08'),
+(24, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908860, '2026-01-04 10:39:22'),
+(25, 'Blade_Pawn', '91.149.165.149', 'ЗП оружейный завод', 80, 19908940, '2026-01-04 10:41:47'),
+(26, 'Blade_Pawn', '91.149.165.149', 'ЗП нефтезавод', 120, 19909020, '2026-01-04 10:43:12');
 
 -- --------------------------------------------------------
 
@@ -1508,17 +1530,16 @@ INSERT INTO `givecash` (`id`, `Name`, `IP`, `Reason`, `Dollar`, `Cash`, `Date`) 
 -- Структура таблицы `graffity`
 --
 
-CREATE TABLE IF NOT EXISTS `graffity` (
-  `gID` int(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `graffity` (
+  `gID` int(4) NOT NULL,
   `gGang` int(10) NOT NULL,
   `coor0` float NOT NULL,
   `coor1` float NOT NULL,
   `coor2` float NOT NULL,
   `coor3` float NOT NULL,
   `coor4` float NOT NULL,
-  `coor5` float NOT NULL,
-  PRIMARY KEY (`gID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=121 ;
+  `coor5` float NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `graffity`
@@ -1652,16 +1673,15 @@ INSERT INTO `graffity` (`gID`, `gGang`, `coor0`, `coor1`, `coor2`, `coor3`, `coo
 -- Структура таблицы `greenzone`
 --
 
-CREATE TABLE IF NOT EXISTS `greenzone` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `greenzone` (
+  `id` int(11) NOT NULL,
   `grx` float NOT NULL,
   `gry` float NOT NULL,
   `grz` float NOT NULL,
   `grd` float NOT NULL,
   `grname` varchar(64) NOT NULL,
-  `grvirt` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=33 ;
+  `grvirt` int(11) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `greenzone`
@@ -1707,17 +1727,16 @@ INSERT INTO `greenzone` (`id`, `grx`, `gry`, `grz`, `grd`, `grname`, `grvirt`) V
 -- Структура таблицы `history`
 --
 
-CREATE TABLE IF NOT EXISTS `history` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `number_1` int(11) NOT NULL DEFAULT '0',
+CREATE TABLE `history` (
+  `id` int(11) NOT NULL,
+  `number_1` int(11) NOT NULL DEFAULT 0,
   `name_1` varchar(24) NOT NULL DEFAULT 'None',
   `name_2` varchar(24) NOT NULL DEFAULT 'None',
-  `number_2` int(11) NOT NULL DEFAULT '0',
-  `status` int(5) NOT NULL DEFAULT '0',
-  `money` int(11) NOT NULL DEFAULT '0',
-  `date` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `number_2` int(11) NOT NULL DEFAULT 0,
+  `status` int(5) NOT NULL DEFAULT 0,
+  `money` int(11) NOT NULL DEFAULT 0,
+  `date` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -1725,8 +1744,8 @@ CREATE TABLE IF NOT EXISTS `history` (
 -- Структура таблицы `hotels`
 --
 
-CREATE TABLE IF NOT EXISTS `hotels` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `hotels` (
+  `id` int(11) NOT NULL,
   `name` varchar(64) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL,
   `ownerid` int(11) NOT NULL,
   `owner` varchar(24) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL,
@@ -1736,12 +1755,11 @@ CREATE TABLE IF NOT EXISTS `hotels` (
   `y` float NOT NULL,
   `z` float NOT NULL,
   `level` int(11) NOT NULL,
-  `day` int(11) NOT NULL DEFAULT '0',
-  `bankday` int(11) NOT NULL DEFAULT '0',
-  `bank` int(11) NOT NULL DEFAULT '0',
-  `visitors` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+  `day` int(11) NOT NULL DEFAULT 0,
+  `bankday` int(11) NOT NULL DEFAULT 0,
+  `bank` int(11) NOT NULL DEFAULT 0,
+  `visitors` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `hotels`
@@ -1759,8 +1777,8 @@ INSERT INTO `hotels` (`id`, `name`, `ownerid`, `owner`, `price`, `coast`, `x`, `
 -- Структура таблицы `houses`
 --
 
-CREATE TABLE IF NOT EXISTS `houses` (
-  `id` int(4) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `houses` (
+  `id` int(4) NOT NULL,
   `class` int(1) NOT NULL,
   `day` int(11) NOT NULL,
   `price` int(11) NOT NULL,
@@ -1768,12 +1786,12 @@ CREATE TABLE IF NOT EXISTS `houses` (
   `improve` varchar(19) COLLATE cp1251_bin NOT NULL,
   `gun` varchar(64) COLLATE cp1251_bin NOT NULL DEFAULT '0|0|0|0|0|0|0|0|0',
   `skin` varchar(24) COLLATE cp1251_bin NOT NULL,
-  `safecode` int(4) NOT NULL DEFAULT '0',
+  `safecode` int(4) NOT NULL DEFAULT 0,
   `safemoney` int(11) NOT NULL,
   `drugs` int(11) NOT NULL,
-  `medkit` int(11) NOT NULL DEFAULT '0',
+  `medkit` int(11) NOT NULL DEFAULT 0,
   `products` int(3) NOT NULL,
-  `close` tinyint(1) NOT NULL DEFAULT '0',
+  `close` tinyint(1) NOT NULL DEFAULT 0,
   `x` float NOT NULL,
   `y` float NOT NULL,
   `z` float NOT NULL,
@@ -1790,9 +1808,8 @@ CREATE TABLE IF NOT EXISTS `houses` (
   `people1` varchar(24) COLLATE cp1251_bin NOT NULL,
   `people2` varchar(24) COLLATE cp1251_bin NOT NULL,
   `people3` varchar(24) COLLATE cp1251_bin NOT NULL,
-  `family` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin AUTO_INCREMENT=911 ;
+  `family` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin;
 
 --
 -- Дамп данных таблицы `houses`
@@ -2719,17 +2736,16 @@ INSERT INTO `houses` (`id`, `class`, `day`, `price`, `hint`, `improve`, `gun`, `
 -- Структура таблицы `jobinfo`
 --
 
-CREATE TABLE IF NOT EXISTS `jobinfo` (
-  `ji_id` int(9) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `jobinfo` (
+  `ji_id` int(9) NOT NULL,
   `ji_uid` int(9) NOT NULL,
   `ji_date_invite` date NOT NULL,
   `ji_date_uninvite` date NOT NULL,
-  `ji_fraction` int(6) NOT NULL DEFAULT '0',
+  `ji_fraction` int(6) NOT NULL DEFAULT 0,
   `ji_reason` varchar(64) NOT NULL,
-  `ji_warnings` int(6) NOT NULL DEFAULT '0',
-  `ji_rang` int(6) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`ji_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
+  `ji_warnings` int(6) NOT NULL DEFAULT 0,
+  `ji_rang` int(6) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `jobinfo`
@@ -2754,7 +2770,10 @@ INSERT INTO `jobinfo` (`ji_id`, `ji_uid`, `ji_date_invite`, `ji_date_uninvite`, 
 (16, 13, '2020-05-23', '2020-06-21', 1, 'Снят с поста лидера', 0, 11),
 (17, 13, '2020-12-09', '2020-12-09', 18, 'Снят с поста лидера', 0, 10),
 (18, 13, '2020-12-09', '2020-12-10', 19, 'Снят с поста лидера', 0, 10),
-(19, 13, '2020-12-10', '2020-12-10', 6, 'Снят с поста лидера', 0, 15);
+(19, 13, '2020-12-10', '2020-12-10', 6, 'Снят с поста лидера', 0, 15),
+(20, 1, '2026-01-03', '2026-01-03', 5, 'Снят с поста лидера', 0, 7),
+(21, 1, '2026-01-03', '2026-01-03', 23, 'Снят с поста лидера', 0, 12),
+(22, 1, '2026-01-04', '2026-01-07', 23, 'Снят с поста лидера', 0, 12);
 
 -- --------------------------------------------------------
 
@@ -2762,15 +2781,14 @@ INSERT INTO `jobinfo` (`ji_id`, `ji_uid`, `ji_date_invite`, `ji_date_uninvite`, 
 -- Структура таблицы `keys_log`
 --
 
-CREATE TABLE IF NOT EXISTS `keys_log` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `keys_log` (
+  `id` int(5) NOT NULL,
   `owner` varchar(32) NOT NULL,
   `type` varchar(24) NOT NULL,
   `items` varchar(15) NOT NULL,
   `content` varchar(23) NOT NULL,
-  `status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2778,15 +2796,14 @@ CREATE TABLE IF NOT EXISTS `keys_log` (
 -- Структура таблицы `keys_sklad`
 --
 
-CREATE TABLE IF NOT EXISTS `keys_sklad` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `keys_sklad` (
+  `id` int(5) NOT NULL,
   `owner` varchar(32) NOT NULL,
   `type` varchar(24) NOT NULL,
   `items` varchar(15) NOT NULL,
   `content` varchar(23) NOT NULL,
-  `status` int(1) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2794,15 +2811,14 @@ CREATE TABLE IF NOT EXISTS `keys_sklad` (
 -- Структура таблицы `labrary`
 --
 
-CREATE TABLE IF NOT EXISTS `labrary` (
-  `id` int(10) unsigned NOT NULL,
+CREATE TABLE `labrary` (
+  `id` int(10) UNSIGNED NOT NULL,
   `actor_1` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
   `actor_2` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
   `actor_3` varchar(64) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
   `actor_t1` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
   `actor_t2` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
-  `actor_t3` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0',
-  PRIMARY KEY (`id`)
+  `actor_t3` varchar(128) COLLATE utf8_unicode_ci NOT NULL DEFAULT '0|0|0|0|0|0|0|0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -2818,14 +2834,13 @@ INSERT INTO `labrary` (`id`, `actor_1`, `actor_2`, `actor_3`, `actor_t1`, `actor
 -- Структура таблицы `lottery_session`
 --
 
-CREATE TABLE IF NOT EXISTS `lottery_session` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lottery_session` (
+  `id` int(11) NOT NULL,
   `Name` varchar(32) NOT NULL,
   `type` varchar(32) NOT NULL,
   `win` varchar(32) NOT NULL,
-  `sell` varchar(32) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `sell` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2833,15 +2848,14 @@ CREATE TABLE IF NOT EXISTS `lottery_session` (
 -- Структура таблицы `lottery_sessionall`
 --
 
-CREATE TABLE IF NOT EXISTS `lottery_sessionall` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `lottery_sessionall` (
+  `id` int(11) NOT NULL,
   `Name` varchar(32) NOT NULL,
   `type` varchar(32) NOT NULL,
   `win` varchar(32) NOT NULL,
   `sell` varchar(32) NOT NULL,
-  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `time` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -2849,19 +2863,14 @@ CREATE TABLE IF NOT EXISTS `lottery_sessionall` (
 -- Структура таблицы `nickname_history`
 --
 
-CREATE TABLE IF NOT EXISTS `nickname_history` (
-  `nh_id` int(6) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `nickname_history` (
+  `nh_id` int(6) NOT NULL,
   `nh_owner` int(6) NOT NULL,
   `nh_oldname` varchar(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nh_newname` varchar(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `nh_date` date NOT NULL,
-  `nh_admin` varchar(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'none',
-  PRIMARY KEY (`nh_id`),
-  UNIQUE KEY `nh_id_3` (`nh_id`),
-  KEY `nh_id` (`nh_id`),
-  KEY `nh_id_2` (`nh_id`),
-  KEY `nh_owner` (`nh_owner`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `nh_admin` varchar(24) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT 'none'
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -2869,14 +2878,13 @@ CREATE TABLE IF NOT EXISTS `nickname_history` (
 -- Структура таблицы `online_player`
 --
 
-CREATE TABLE IF NOT EXISTS `online_player` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `online_player` (
+  `id` int(11) NOT NULL,
   `accountid` int(11) NOT NULL,
   `date` date NOT NULL,
-  `online_sec` int(11) NOT NULL DEFAULT '0',
-  `afk_sec` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=4 ;
+  `online_sec` int(11) NOT NULL DEFAULT 0,
+  `afk_sec` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `online_player`
@@ -2885,7 +2893,14 @@ CREATE TABLE IF NOT EXISTS `online_player` (
 INSERT INTO `online_player` (`id`, `accountid`, `date`, `online_sec`, `afk_sec`) VALUES
 (1, 1, '2024-10-30', 968, 4),
 (2, 1, '2024-10-31', 1559, 670),
-(3, 2, '2024-10-31', 1797, 1022);
+(3, 2, '2024-10-31', 1797, 1022),
+(4, 1, '2025-12-26', 1621, 230),
+(5, 3, '2025-12-26', 795, 0),
+(6, 1, '2026-01-03', 4359, 1522),
+(7, 5, '2026-01-03', 21, 0),
+(8, 4, '2026-01-03', 80, 0),
+(9, 1, '2026-01-04', 2202, 98),
+(10, 1, '2026-01-07', 464, 0);
 
 -- --------------------------------------------------------
 
@@ -2893,44 +2908,43 @@ INSERT INTO `online_player` (`id`, `accountid`, `date`, `online_sec`, `afk_sec`)
 -- Структура таблицы `others`
 --
 
-CREATE TABLE IF NOT EXISTS `others` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `bonus_payday` int(11) NOT NULL DEFAULT '1',
-  `gun_mats` int(11) NOT NULL DEFAULT '0',
-  `oil_mats` int(11) NOT NULL DEFAULT '0',
-  `pricedrugs` int(11) NOT NULL DEFAULT '0',
-  `disease` int(11) NOT NULL DEFAULT '0',
-  `bonus_donate` int(11) NOT NULL DEFAULT '0',
-  `bonus_skills` int(11) NOT NULL DEFAULT '0',
-  `casino` int(11) NOT NULL DEFAULT '0',
-  `woodsklad` int(11) NOT NULL DEFAULT '0',
-  `tk_unloading_0` int(11) NOT NULL DEFAULT '0',
-  `tk_unloading_1` int(11) NOT NULL DEFAULT '0',
-  `tk_unloading_2` int(11) NOT NULL DEFAULT '0',
-  `tk_unloading_3` int(11) NOT NULL DEFAULT '0',
-  `rep_system` int(11) NOT NULL DEFAULT '0',
-  `duels` int(11) NOT NULL DEFAULT '0',
-  `invite_frac0` int(11) NOT NULL DEFAULT '1',
-  `invite_frac1` int(11) NOT NULL DEFAULT '1',
-  `invite_frac2` int(11) NOT NULL DEFAULT '1',
-  `invite_frac3` int(11) NOT NULL DEFAULT '1',
-  `invite_frac4` int(11) NOT NULL DEFAULT '1',
-  `invite_frac5` int(11) NOT NULL DEFAULT '1',
-  `invite_frac6` int(11) NOT NULL DEFAULT '1',
-  `invite_frac7` int(11) NOT NULL DEFAULT '1',
-  `anti_tk` int(11) NOT NULL DEFAULT '1',
-  `start_money` int(11) NOT NULL DEFAULT '200',
-  `start_level` int(11) NOT NULL DEFAULT '1',
-  `show_update` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+CREATE TABLE `others` (
+  `id` int(11) NOT NULL,
+  `bonus_payday` int(11) NOT NULL DEFAULT 1,
+  `gun_mats` int(11) NOT NULL DEFAULT 0,
+  `oil_mats` int(11) NOT NULL DEFAULT 0,
+  `pricedrugs` int(11) NOT NULL DEFAULT 0,
+  `disease` int(11) NOT NULL DEFAULT 0,
+  `bonus_donate` int(11) NOT NULL DEFAULT 0,
+  `bonus_skills` int(11) NOT NULL DEFAULT 0,
+  `casino` int(11) NOT NULL DEFAULT 0,
+  `woodsklad` int(11) NOT NULL DEFAULT 0,
+  `tk_unloading_0` int(11) NOT NULL DEFAULT 0,
+  `tk_unloading_1` int(11) NOT NULL DEFAULT 0,
+  `tk_unloading_2` int(11) NOT NULL DEFAULT 0,
+  `tk_unloading_3` int(11) NOT NULL DEFAULT 0,
+  `rep_system` int(11) NOT NULL DEFAULT 0,
+  `duels` int(11) NOT NULL DEFAULT 0,
+  `invite_frac0` int(11) NOT NULL DEFAULT 1,
+  `invite_frac1` int(11) NOT NULL DEFAULT 1,
+  `invite_frac2` int(11) NOT NULL DEFAULT 1,
+  `invite_frac3` int(11) NOT NULL DEFAULT 1,
+  `invite_frac4` int(11) NOT NULL DEFAULT 1,
+  `invite_frac5` int(11) NOT NULL DEFAULT 1,
+  `invite_frac6` int(11) NOT NULL DEFAULT 1,
+  `invite_frac7` int(11) NOT NULL DEFAULT 1,
+  `anti_tk` int(11) NOT NULL DEFAULT 1,
+  `start_money` int(11) NOT NULL DEFAULT 200,
+  `start_level` int(11) NOT NULL DEFAULT 1,
+  `show_update` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `others`
 --
 
 INSERT INTO `others` (`id`, `bonus_payday`, `gun_mats`, `oil_mats`, `pricedrugs`, `disease`, `bonus_donate`, `bonus_skills`, `casino`, `woodsklad`, `tk_unloading_0`, `tk_unloading_1`, `tk_unloading_2`, `tk_unloading_3`, `rep_system`, `duels`, `invite_frac0`, `invite_frac1`, `invite_frac2`, `invite_frac3`, `invite_frac4`, `invite_frac5`, `invite_frac6`, `invite_frac7`, `anti_tk`, `start_money`, `start_level`, `show_update`) VALUES
-(1, 1, 84184916, 147688, 50, 2, 0, 1, 0, 2542866, 1000, 760, 850, 850, 0, 0, 3, 8, 1, 2, 2, 1, 8, 4, 1, 200, 1, 0);
+(1, 1, 84190416, 147691, 50, 0, 0, 1, 0, 2542878, 1000, 760, 850, 850, 0, 0, 3, 8, 1, 2, 2, 1, 8, 4, 1, 5000, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -2938,7 +2952,7 @@ INSERT INTO `others` (`id`, `bonus_payday`, `gun_mats`, `oil_mats`, `pricedrugs`
 -- Структура таблицы `perenos`
 --
 
-CREATE TABLE IF NOT EXISTS `perenos` (
+CREATE TABLE `perenos` (
   `Name` varchar(69) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -2948,20 +2962,19 @@ CREATE TABLE IF NOT EXISTS `perenos` (
 -- Структура таблицы `plane`
 --
 
-CREATE TABLE IF NOT EXISTS `plane` (
-  `ID` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `plane` (
+  `ID` int(10) UNSIGNED NOT NULL,
   `Airport` int(11) NOT NULL,
   `Plane` int(3) NOT NULL,
   `Owner` varchar(24) CHARACTER SET utf8 NOT NULL DEFAULT 'State',
   `Time` int(11) NOT NULL,
-  `Price` int(11) NOT NULL DEFAULT '0',
+  `Price` int(11) NOT NULL DEFAULT 0,
   `Fuel` varchar(16) CHARACTER SET utf8 NOT NULL DEFAULT '200.0',
   `PosX` varchar(16) CHARACTER SET utf8 NOT NULL DEFAULT '0.0',
   `PosY` varchar(16) CHARACTER SET ucs2 NOT NULL DEFAULT '0.0',
   `PosZ` varchar(16) CHARACTER SET ucs2 NOT NULL DEFAULT '0.0',
-  `PosXY` varchar(16) CHARACTER SET ucs2 NOT NULL DEFAULT '0.0',
-  PRIMARY KEY (`ID`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 AUTO_INCREMENT=25 ;
+  `PosXY` varchar(16) CHARACTER SET ucs2 NOT NULL DEFAULT '0.0'
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 --
 -- Дамп данных таблицы `plane`
@@ -2999,13 +3012,13 @@ INSERT INTO `plane` (`ID`, `Airport`, `Plane`, `Owner`, `Time`, `Price`, `Fuel`,
 -- Структура таблицы `promocode`
 --
 
-CREATE TABLE IF NOT EXISTS `promocode` (
+CREATE TABLE `promocode` (
   `code` varchar(32) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
   `money` int(11) NOT NULL,
   `skills` int(11) NOT NULL,
   `lics` int(11) NOT NULL,
   `data` int(11) NOT NULL,
-  `used_count` int(11) NOT NULL DEFAULT '0'
+  `used_count` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -3014,13 +3027,11 @@ CREATE TABLE IF NOT EXISTS `promocode` (
 -- Структура таблицы `promocode_used`
 --
 
-CREATE TABLE IF NOT EXISTS `promocode_used` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `promocode_used` (
+  `id` int(5) NOT NULL,
   `idacca` varchar(30) COLLATE cp1251_bin DEFAULT NULL,
-  `code` varchar(32) CHARACTER SET cp1251 COLLATE cp1251_general_cs DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `id` (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin ROW_FORMAT=FIXED AUTO_INCREMENT=8 ;
+  `code` varchar(32) CHARACTER SET cp1251 COLLATE cp1251_general_cs DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin ROW_FORMAT=FIXED;
 
 -- --------------------------------------------------------
 
@@ -3028,7 +3039,7 @@ CREATE TABLE IF NOT EXISTS `promocode_used` (
 -- Структура таблицы `questsprogress`
 --
 
-CREATE TABLE IF NOT EXISTS `questsprogress` (
+CREATE TABLE `questsprogress` (
   `idquest` int(11) NOT NULL,
   `progress` int(11) NOT NULL,
   `accept` int(11) NOT NULL,
@@ -3041,14 +3052,13 @@ CREATE TABLE IF NOT EXISTS `questsprogress` (
 -- Структура таблицы `reports`
 --
 
-CREATE TABLE IF NOT EXISTS `reports` (
-  `id` int(5) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `reports` (
+  `id` int(5) NOT NULL,
   `rText` varchar(64) NOT NULL,
   `rOtvet` varchar(64) NOT NULL,
   `rNick` varchar(32) NOT NULL,
-  `count` int(5) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `count` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -3056,15 +3066,14 @@ CREATE TABLE IF NOT EXISTS `reports` (
 -- Структура таблицы `rjlist`
 --
 
-CREATE TABLE IF NOT EXISTS `rjlist` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rjlist` (
+  `id` int(11) NOT NULL,
   `pid` int(11) NOT NULL,
-  `lvl` int(11) NOT NULL DEFAULT '0',
+  `lvl` int(11) NOT NULL DEFAULT 0,
   `nick` varchar(25) NOT NULL,
-  `forum` int(11) NOT NULL DEFAULT '0',
-  `vk` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `forum` int(11) NOT NULL DEFAULT 0,
+  `vk` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -3072,19 +3081,18 @@ CREATE TABLE IF NOT EXISTS `rjlist` (
 -- Структура таблицы `rooms`
 --
 
-CREATE TABLE IF NOT EXISTS `rooms` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `rooms` (
+  `id` int(11) NOT NULL,
   `owner` varchar(24) CHARACTER SET cp1251 COLLATE cp1251_bin NOT NULL DEFAULT 'None',
   `x` float NOT NULL,
   `y` float NOT NULL,
   `z` float NOT NULL,
   `r` float NOT NULL,
-  `doors` int(11) NOT NULL DEFAULT '0',
-  `day` int(11) NOT NULL DEFAULT '0',
+  `doors` int(11) NOT NULL DEFAULT 0,
+  `day` int(11) NOT NULL DEFAULT 0,
   `hotel` int(11) NOT NULL,
-  `vw` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=241 ;
+  `vw` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `rooms`
@@ -3151,7 +3159,7 @@ INSERT INTO `rooms` (`id`, `owner`, `x`, `y`, `z`, `r`, `doors`, `day`, `hotel`,
 (58, 'None', 180.661, -6.8395, 1002.11, 0.8424, 0, 1541009495, 1, 6),
 (59, 'None', 174.251, -6.8125, 1002.11, 3.0356, 0, 1540826089, 1, 6),
 (60, 'None', 167.876, -6.8075, 1002.11, 0.8422, 0, 1541558722, 1, 6),
-(61, 'Blade_Pawn', 155.553, -11.1256, 1002.11, 269.371, 0, 1731661302, 2, 7),
+(61, 'None', 155.553, -11.1256, 1002.11, 269.371, 0, 1731661302, 2, 7),
 (62, 'None', 155.538, -6.2936, 1002.11, 269.371, 0, 1541599400, 2, 7),
 (63, 'None', 155.544, -1.3367, 1002.11, 269.685, 0, 1541313659, 2, 7),
 (64, 'None', 161.488, 1.5253, 1002.11, 181.324, 0, 1541865816, 2, 7),
@@ -3338,13 +3346,12 @@ INSERT INTO `rooms` (`id`, `owner`, `x`, `y`, `z`, `r`, `doors`, `day`, `hotel`,
 -- Структура таблицы `site_offuninvite`
 --
 
-CREATE TABLE IF NOT EXISTS `site_offuninvite` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `site_offuninvite` (
+  `id` int(11) NOT NULL,
   `Leader` varchar(50) NOT NULL,
   `Player` varchar(50) NOT NULL,
-  `Date` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `Date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -3352,15 +3359,14 @@ CREATE TABLE IF NOT EXISTS `site_offuninvite` (
 -- Структура таблицы `tickets`
 --
 
-CREATE TABLE IF NOT EXISTS `tickets` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `tickets` (
+  `id` int(11) NOT NULL,
   `name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `give_name` varchar(32) CHARACTER SET utf8 NOT NULL,
   `total` int(11) NOT NULL,
   `reason` varchar(55) CHARACTER SET utf8 NOT NULL,
-  `date` varchar(32) CHARACTER SET utf8 NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+  `date` varchar(32) CHARACTER SET utf8 NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
 
 -- --------------------------------------------------------
 
@@ -3368,19 +3374,18 @@ CREATE TABLE IF NOT EXISTS `tickets` (
 -- Структура таблицы `transport`
 --
 
-CREATE TABLE IF NOT EXISTS `transport` (
-  `id` int(3) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `transport` (
+  `id` int(3) NOT NULL,
   `model` int(3) NOT NULL,
   `name` varchar(35) COLLATE cp1251_bin NOT NULL,
   `price` int(8) NOT NULL,
   `tank` int(3) NOT NULL,
   `consumption` int(2) NOT NULL,
   `class` int(1) NOT NULL,
-  `fuelable` tinyint(1) NOT NULL DEFAULT '1',
-  `sellable` tinyint(1) NOT NULL DEFAULT '1',
-  `prods` int(11) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin ROW_FORMAT=DYNAMIC AUTO_INCREMENT=213 ;
+  `fuelable` tinyint(1) NOT NULL DEFAULT 1,
+  `sellable` tinyint(1) NOT NULL DEFAULT 1,
+  `prods` int(11) NOT NULL DEFAULT 0
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251 COLLATE=cp1251_bin ROW_FORMAT=DYNAMIC;
 
 --
 -- Дамп данных таблицы `transport`
@@ -3543,8 +3548,8 @@ INSERT INTO `transport` (`id`, `model`, `name`, `price`, `tank`, `consumption`, 
 (154, 553, 'Nevada', 0, 0, 0, 9, 0, 0, 0),
 (155, 554, 'Yosemite', 200000, 50, 10, 1, 1, 1, 425),
 (156, 555, 'Windsor', 180000, 35, 15, 1, 1, 1, 382),
-(157, 556, 'Monster "A"', 2000000, 100, 15, 9, 1, 0, 0),
-(158, 557, 'Monster "B"', 2000000, 100, 15, 9, 1, 0, 0),
+(157, 556, 'Monster \"A\"', 2000000, 100, 15, 9, 1, 0, 0),
+(158, 557, 'Monster \"B\"', 2000000, 100, 15, 9, 1, 0, 0),
 (159, 558, 'Uranus', 320000, 50, 11, 1, 1, 1, 680),
 (160, 559, 'Jester', 850000, 50, 12, 2, 1, 1, 700),
 (161, 560, 'Sultan', 1000000, 50, 12, 2, 1, 1, 800),
@@ -3593,8 +3598,8 @@ INSERT INTO `transport` (`id`, `model`, `name`, `price`, `tank`, `consumption`, 
 (204, 603, 'Phoenix', 412500, 50, 14, 1, 1, 1, 876),
 (205, 604, 'Glendale Shit', 0, 50, 10, 9, 1, 0, 0),
 (206, 605, 'Sadler Shit', 0, 50, 10, 9, 1, 0, 0),
-(207, 606, 'Baggage Trailer "A"', 0, 0, 0, 9, 0, 0, 0),
-(208, 607, 'Baggage Trailer "B"', 0, 0, 0, 9, 0, 0, 0),
+(207, 606, 'Baggage Trailer \"A\"', 0, 0, 0, 9, 0, 0, 0),
+(208, 607, 'Baggage Trailer \"B\"', 0, 0, 0, 9, 0, 0, 0),
 (209, 608, 'Tug Stairs Trailer', 0, 0, 0, 9, 0, 0, 0),
 (210, 609, 'Boxburg', 0, 50, 10, 9, 1, 0, 0),
 (211, 610, 'Farm Trailer', 0, 0, 0, 9, 0, 0, 0),
@@ -3606,14 +3611,13 @@ INSERT INTO `transport` (`id`, `model`, `name`, `price`, `tank`, `consumption`, 
 -- Структура таблицы `ucp_login`
 --
 
-CREATE TABLE IF NOT EXISTS `ucp_login` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ucp_login` (
+  `id` int(10) UNSIGNED NOT NULL,
   `Player` varchar(60) NOT NULL,
   `IP` varchar(60) NOT NULL,
   `Type` varchar(60) NOT NULL,
-  `Date` varchar(60) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `Date` varchar(60) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -3621,17 +3625,16 @@ CREATE TABLE IF NOT EXISTS `ucp_login` (
 -- Структура таблицы `unitpay_payments`
 --
 
-CREATE TABLE IF NOT EXISTS `unitpay_payments` (
-  `id` int(10) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `unitpay_payments` (
+  `id` int(10) NOT NULL,
   `unitpayId` varchar(255) NOT NULL,
   `account` varchar(255) NOT NULL,
   `sum` float NOT NULL,
-  `itemsCount` int(11) NOT NULL DEFAULT '1',
+  `itemsCount` int(11) NOT NULL DEFAULT 1,
   `dateCreate` datetime NOT NULL,
   `dateComplete` datetime DEFAULT NULL,
-  `status` tinyint(4) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `status` tinyint(4) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -3639,8 +3642,8 @@ CREATE TABLE IF NOT EXISTS `unitpay_payments` (
 -- Структура таблицы `vip`
 --
 
-CREATE TABLE IF NOT EXISTS `vip` (
-  `id_vip` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `vip` (
+  `id_vip` int(11) NOT NULL,
   `vip_payday` int(11) NOT NULL,
   `vip_afk` int(11) NOT NULL,
   `vip_carlic` int(11) NOT NULL,
@@ -3693,9 +3696,8 @@ CREATE TABLE IF NOT EXISTS `vip` (
   `vip_percent_bank` int(11) NOT NULL,
   `vip_percent_atm` int(11) NOT NULL,
   `vip_call` int(11) NOT NULL,
-  `vip_report_color` int(11) NOT NULL,
-  PRIMARY KEY (`id_vip`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=8 ;
+  `vip_report_color` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Дамп данных таблицы `vip`
@@ -3717,7 +3719,7 @@ INSERT INTO `vip` (`id_vip`, `vip_payday`, `vip_afk`, `vip_carlic`, `vip_lvl`, `
 -- Структура таблицы `vote`
 --
 
-CREATE TABLE IF NOT EXISTS `vote` (
+CREATE TABLE `vote` (
   `vote_name` varchar(24) NOT NULL,
   `vote_count` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
@@ -3728,15 +3730,14 @@ CREATE TABLE IF NOT EXISTS `vote` (
 -- Структура таблицы `warnlog`
 --
 
-CREATE TABLE IF NOT EXISTS `warnlog` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `warnlog` (
+  `id` int(10) UNSIGNED NOT NULL,
   `name` varchar(25) NOT NULL,
   `warn` int(11) NOT NULL,
   `admin` varchar(25) NOT NULL,
   `reason` varchar(64) CHARACTER SET utf8 NOT NULL,
-  `time` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=cp1251 AUTO_INCREMENT=1 ;
+  `time` datetime NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=cp1251;
 
 -- --------------------------------------------------------
 
@@ -3744,15 +3745,682 @@ CREATE TABLE IF NOT EXISTS `warnlog` (
 -- Структура таблицы `warns`
 --
 
-CREATE TABLE IF NOT EXISTS `warns` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+CREATE TABLE `warns` (
+  `id` int(11) NOT NULL,
   `name` varchar(25) NOT NULL,
   `warn` int(1) NOT NULL,
   `time` datetime NOT NULL,
   `admin` varchar(25) NOT NULL,
-  `reason` varchar(34) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  `reason` varchar(34) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Индексы сохранённых таблиц
+--
+
+--
+-- Индексы таблицы `accounts`
+--
+ALTER TABLE `accounts`
+  ADD PRIMARY KEY (`pID`);
+
+--
+-- Индексы таблицы `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `adminlog`
+--
+ALTER TABLE `adminlog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `adradio`
+--
+ALTER TABLE `adradio`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `airports`
+--
+ALTER TABLE `airports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `atms`
+--
+ALTER TABLE `atms`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Индексы таблицы `ban`
+--
+ALTER TABLE `ban`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Индексы таблицы `banip`
+--
+ALTER TABLE `banip`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `bank`
+--
+ALTER TABLE `bank`
+  ADD PRIMARY KEY (`number`);
+
+--
+-- Индексы таблицы `billboards`
+--
+ALTER TABLE `billboards`
+  ADD PRIMARY KEY (`newid`);
+
+--
+-- Индексы таблицы `bints`
+--
+ALTER TABLE `bints`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `blackmarket`
+--
+ALTER TABLE `blackmarket`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `bonuses`
+--
+ALTER TABLE `bonuses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `business`
+--
+ALTER TABLE `business`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `business_func`
+--
+ALTER TABLE `business_func`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Индексы таблицы `business_stats`
+--
+ALTER TABLE `business_stats`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `captchalog`
+--
+ALTER TABLE `captchalog`
+  ADD PRIMARY KEY (`clID`);
+
+--
+-- Индексы таблицы `cars`
+--
+ALTER TABLE `cars`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `diplomation`
+--
+ALTER TABLE `diplomation`
+  ADD PRIMARY KEY (`f_id`);
+
+--
+-- Индексы таблицы `dostupcontrol`
+--
+ALTER TABLE `dostupcontrol`
+  ADD PRIMARY KEY (`dostupID`);
+
+--
+-- Индексы таблицы `economy`
+--
+ALTER TABLE `economy`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `email_success`
+--
+ALTER TABLE `email_success`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `family`
+--
+ALTER TABLE `family`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `fraclog`
+--
+ALTER TABLE `fraclog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `fractions`
+--
+ALTER TABLE `fractions`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Индексы таблицы `frac_weapon`
+--
+ALTER TABLE `frac_weapon`
+  ADD PRIMARY KEY (`fwID`);
+
+--
+-- Индексы таблицы `gangzone`
+--
+ALTER TABLE `gangzone`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `givecash`
+--
+ALTER TABLE `givecash`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `graffity`
+--
+ALTER TABLE `graffity`
+  ADD PRIMARY KEY (`gID`);
+
+--
+-- Индексы таблицы `greenzone`
+--
+ALTER TABLE `greenzone`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `history`
+--
+ALTER TABLE `history`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `hotels`
+--
+ALTER TABLE `hotels`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `houses`
+--
+ALTER TABLE `houses`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `jobinfo`
+--
+ALTER TABLE `jobinfo`
+  ADD PRIMARY KEY (`ji_id`);
+
+--
+-- Индексы таблицы `keys_log`
+--
+ALTER TABLE `keys_log`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `keys_sklad`
+--
+ALTER TABLE `keys_sklad`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `labrary`
+--
+ALTER TABLE `labrary`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lottery_session`
+--
+ALTER TABLE `lottery_session`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `lottery_sessionall`
+--
+ALTER TABLE `lottery_sessionall`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `nickname_history`
+--
+ALTER TABLE `nickname_history`
+  ADD PRIMARY KEY (`nh_id`),
+  ADD UNIQUE KEY `nh_id_3` (`nh_id`),
+  ADD KEY `nh_id` (`nh_id`),
+  ADD KEY `nh_id_2` (`nh_id`),
+  ADD KEY `nh_owner` (`nh_owner`);
+
+--
+-- Индексы таблицы `online_player`
+--
+ALTER TABLE `online_player`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `others`
+--
+ALTER TABLE `others`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `plane`
+--
+ALTER TABLE `plane`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Индексы таблицы `promocode_used`
+--
+ALTER TABLE `promocode_used`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id` (`id`);
+
+--
+-- Индексы таблицы `reports`
+--
+ALTER TABLE `reports`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `rjlist`
+--
+ALTER TABLE `rjlist`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `rooms`
+--
+ALTER TABLE `rooms`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `site_offuninvite`
+--
+ALTER TABLE `site_offuninvite`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `tickets`
+--
+ALTER TABLE `tickets`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `transport`
+--
+ALTER TABLE `transport`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `ucp_login`
+--
+ALTER TABLE `ucp_login`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `unitpay_payments`
+--
+ALTER TABLE `unitpay_payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `vip`
+--
+ALTER TABLE `vip`
+  ADD PRIMARY KEY (`id_vip`);
+
+--
+-- Индексы таблицы `warnlog`
+--
+ALTER TABLE `warnlog`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Индексы таблицы `warns`
+--
+ALTER TABLE `warns`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT для сохранённых таблиц
+--
+
+--
+-- AUTO_INCREMENT для таблицы `accounts`
+--
+ALTER TABLE `accounts`
+  MODIFY `pID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT для таблицы `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `adminlog`
+--
+ALTER TABLE `adminlog`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `adradio`
+--
+ALTER TABLE `adradio`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `airports`
+--
+ALTER TABLE `airports`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT для таблицы `atms`
+--
+ALTER TABLE `atms`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
+-- AUTO_INCREMENT для таблицы `ban`
+--
+ALTER TABLE `ban`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `banip`
+--
+ALTER TABLE `banip`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `bank`
+--
+ALTER TABLE `bank`
+  MODIFY `number` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `billboards`
+--
+ALTER TABLE `billboards`
+  MODIFY `newid` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
+
+--
+-- AUTO_INCREMENT для таблицы `bints`
+--
+ALTER TABLE `bints`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT для таблицы `blackmarket`
+--
+ALTER TABLE `blackmarket`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `bonuses`
+--
+ALTER TABLE `bonuses`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `business`
+--
+ALTER TABLE `business`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=83;
+
+--
+-- AUTO_INCREMENT для таблицы `business_func`
+--
+ALTER TABLE `business_func`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT для таблицы `business_stats`
+--
+ALTER TABLE `business_stats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
+--
+-- AUTO_INCREMENT для таблицы `captchalog`
+--
+ALTER TABLE `captchalog`
+  MODIFY `clID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `cars`
+--
+ALTER TABLE `cars`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `diplomation`
+--
+ALTER TABLE `diplomation`
+  MODIFY `f_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT для таблицы `dostupcontrol`
+--
+ALTER TABLE `dostupcontrol`
+  MODIFY `dostupID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT для таблицы `economy`
+--
+ALTER TABLE `economy`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `email_success`
+--
+ALTER TABLE `email_success`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `family`
+--
+ALTER TABLE `family`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `fraclog`
+--
+ALTER TABLE `fraclog`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `fractions`
+--
+ALTER TABLE `fractions`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT для таблицы `frac_weapon`
+--
+ALTER TABLE `frac_weapon`
+  MODIFY `fwID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+
+--
+-- AUTO_INCREMENT для таблицы `gangzone`
+--
+ALTER TABLE `gangzone`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+
+--
+-- AUTO_INCREMENT для таблицы `givecash`
+--
+ALTER TABLE `givecash`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+
+--
+-- AUTO_INCREMENT для таблицы `graffity`
+--
+ALTER TABLE `graffity`
+  MODIFY `gID` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=121;
+
+--
+-- AUTO_INCREMENT для таблицы `greenzone`
+--
+ALTER TABLE `greenzone`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+
+--
+-- AUTO_INCREMENT для таблицы `history`
+--
+ALTER TABLE `history`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `hotels`
+--
+ALTER TABLE `hotels`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT для таблицы `houses`
+--
+ALTER TABLE `houses`
+  MODIFY `id` int(4) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=911;
+
+--
+-- AUTO_INCREMENT для таблицы `jobinfo`
+--
+ALTER TABLE `jobinfo`
+  MODIFY `ji_id` int(9) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT для таблицы `keys_log`
+--
+ALTER TABLE `keys_log`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `keys_sklad`
+--
+ALTER TABLE `keys_sklad`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `lottery_session`
+--
+ALTER TABLE `lottery_session`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `lottery_sessionall`
+--
+ALTER TABLE `lottery_sessionall`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `nickname_history`
+--
+ALTER TABLE `nickname_history`
+  MODIFY `nh_id` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `online_player`
+--
+ALTER TABLE `online_player`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT для таблицы `others`
+--
+ALTER TABLE `others`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT для таблицы `plane`
+--
+ALTER TABLE `plane`
+  MODIFY `ID` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
+--
+-- AUTO_INCREMENT для таблицы `promocode_used`
+--
+ALTER TABLE `promocode_used`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `reports`
+--
+ALTER TABLE `reports`
+  MODIFY `id` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `rjlist`
+--
+ALTER TABLE `rjlist`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `rooms`
+--
+ALTER TABLE `rooms`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=241;
+
+--
+-- AUTO_INCREMENT для таблицы `site_offuninvite`
+--
+ALTER TABLE `site_offuninvite`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `tickets`
+--
+ALTER TABLE `tickets`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `transport`
+--
+ALTER TABLE `transport`
+  MODIFY `id` int(3) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=213;
+
+--
+-- AUTO_INCREMENT для таблицы `ucp_login`
+--
+ALTER TABLE `ucp_login`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `unitpay_payments`
+--
+ALTER TABLE `unitpay_payments`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `vip`
+--
+ALTER TABLE `vip`
+  MODIFY `id_vip` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT для таблицы `warnlog`
+--
+ALTER TABLE `warnlog`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT для таблицы `warns`
+--
+ALTER TABLE `warns`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
