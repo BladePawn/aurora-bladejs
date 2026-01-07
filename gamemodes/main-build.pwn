@@ -79,7 +79,7 @@ native 		IsValidVehicle(vehicleid);
 //new CHAT_GLOBAL[144];
 //new MYSQL_GLOBAL[2048];
 new COMMAND_GLOBAL[256];
-//new STRING_GLOBAL[4096];
+new STRING_GLOBAL[4096];
 /*============================================================================*/
 #define 	FullServName 		"Aurora Role Play"
 #define 	NameServer 			"Aurora-RP"
@@ -856,6 +856,14 @@ enum track_info {
 }
 new TrackInfo[track_info];
 
+
+
+#define MAX_CHEAT_PANEL_LINE	(10)
+new Text:AdminCP_TD[MAX_CHEAT_PANEL_LINE];
+
+
+
+
 //youtube
 enum e_tube {
 	you_uid,
@@ -1303,7 +1311,7 @@ enum admCMD {
 	cmdInfo[64],
 	cmdLVL
 };
-#define MAX_ADM_CMDS 118
+#define MAX_ADM_CMDS 119
 new AdminCommand[MAX_ADM_CMDS][admCMD] = {
 	{"/alogin", "авторизоваться в админ панели", 1},
 	{"/a", "чат администрации", 1},
@@ -1333,6 +1341,7 @@ new AdminCommand[MAX_ADM_CMDS][admCMD] = {
 	{"/ainfo", "узнать свою статистику", 1},
 	{"/afklist", "игроки в АФК", 1},
 	{"/hp", "выдать себе 100 хп", 1},
+	{"/acpanel", "Сменить вид чит-панели или вовсе выключить", 1},
 
 	{"/aad", "отправить сообщение в общий чат (видно всем игрокам)", 2},
 	{"/spcar", "заспавнить автомобиль (в котором сидишь)", 2},
@@ -4602,10 +4611,10 @@ new FirstFire[MAX_PLAYERS],
 enum chetinfo {
 	cheatid1
 }
-new Float:ChetInfo[10][chetinfo],
-	Cheat1,
+new Float:ChetInfo[10][chetinfo];
+	/*Cheat1,
 	Text:CheatText[10],
-	Text:CheatPanel[3];
+	Text:CheatPanel[3];*/
 
 new Text:reg_td[19],
 	PlayerText:reg_tds[MAX_PLAYERS][3],
@@ -4895,6 +4904,8 @@ new house_car[MAX_PLAYERS][2],
 new WantNickChange[MAX_PLAYERS][MAX_PLAYER_NAME];
 
 new Text:LogoProject [ 8 ];
+
+new Text:CheatPanelTD[5];
 
 new HealOffer[MAX_PLAYERS],
 	HealPrice[MAX_PLAYERS];
@@ -5527,9 +5538,12 @@ enum pInfo {
 	pFMute,
 	pDonateBank,
 	pDonateBh,
-	pBoomBox
+	pBoomBox,
+
+	pAdminTypeCP
 };
 new PlayerInfo[MAX_PLAYERS][pInfo],
+	NULL_PI[pInfo],
 	pPhoneName[MAX_PLAYERS][25][MAX_PLAYER_NAME],
 	lic[MAX_PLAYERS][64],
 	start_work[MAX_PLAYERS],
@@ -13130,19 +13144,14 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 
 				}
 				case 1: { // Даем доступ
-					if(strcmp(DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true) == 0)
-					{
-						//////
-					}else{
-						return ErrorMessage(playerid, "Игрок уже назначен!!!");
-					}
+				
 					static const dostup_string[] = ""W"Укажите {E286F7}ID игрока"W", которому хотите дать доступ к {86F7A1}%s";
 					new string[sizeof(dostup_string) +1 + (-2 + MAX_PLAYER_NAME) + 24];
 					format(string,sizeof(string), dostup_string, DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
 					D(playerid, DIALOG_DOSTUP_ADD, DSI, "{0096D2}Выдать доступ",string,"Выбрать","Отмена");
 				}
 				case 2: { // Убираем доступ у игрока
-					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "Ну как ты бл его снять собрался?, если его нет в досутпе! Ты, бл, тупоголовый... Иди уроки делай, а то дадут тебе по голове!");
+					//if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "Ну как ты бл его снять собрался?, если его нет в досутпе! Ты, бл, тупоголовый... Иди уроки делай, а то дадут тебе по голове!");
 
 					static const claear_dostp_str[] = ""W"Вы действительно хотите убрать {D88D00}%s "W"с доступа: {C400D2}%s";
 				    new string[sizeof(claear_dostp_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
@@ -13199,7 +13208,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 		    	format(string, sizeof(string), dclear_str, player_name[playerid]);
 		    	SendOk(ID, string);
 
-				format(string, sizeof(string), "[Система доступа] %s[%d] снял %s[%d] с доступа %s", player_name[playerid], playerid, player_name[ID], ID, DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupName]);
+				format(string, sizeof(string), "[Система доступа] %s[%d] снял %s[%d] с доступа %s", player_name[playerid], playerid, DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupPanel], DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupName]);
 				AdmMSG(0xAFAFAFAA, string, 1);
 			}
 			else {
@@ -29323,7 +29332,7 @@ public OnPlayerEnterDynamicArea(playerid, areaid) {
 			case 17: return D(playerid, D_GAME_DM, DSL, ""P"Сумасшедшие войны",""P"1."W" Регистрация на сумасшедшие войны\n"P"2."W" Информация о данном мероприятии", "Выбрать", "Закрыть");
 			case 18: {
 				if(PlayerInfo[playerid][pLeader] != fWHITEHOUSE) return ErrorMessage(playerid,"Доступно только Президенту штата");
-				if(!GetString(player_name[playerid],"Blade_Pawn")) return ErrorMessage(playerid,"Доступно только Президенту штата (Впишите Ник в мод)");
+				if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "Доступ можно получить только через администратора 6-го уровня!");
 				D(playerid,D_ECONOMY,DSL,""P"Управление штатом","\
 					"P"1."W" Информация\n\
 					"P"2."W" Зарплата на оружейном заводе\n\
@@ -30659,13 +30668,18 @@ public OnDynamicObjectMoved(objectid) {
 
 public OnPlayerDisconnect(playerid, reason) {
 	leave_robhouse(playerid);
-	for(new i;i<10;i++) {
+	/*for(new i;i<10;i++) {
 	    if(ChetInfo[i][cheatid1]==playerid) {
 			TextDrawSetString(CheatText[i], "-");
 			Cheat1 ++;
 			if(Cheat1 > 9) Cheat1 = 0;
 		}
- 	}
+ 	}*/
+	for (new i = 0; i < 10; i++) {
+		if (ChetInfo[i][cheatid1] == playerid)
+			ChetInfo[i][cheatid1] = INVALID_PLAYER_ID;
+		UpdateCheatPanel();
+	}
 	if(actorereg[playerid][0] != -1) DestroyActor(actorereg[playerid][0]);
 	if(actorereg[playerid][1] != -1) DestroyActor(actorereg[playerid][1]);
 	if(maniken[playerid] != -1) DestroyDynamicObject(maniken[playerid]);
@@ -33774,6 +33788,9 @@ public OnGameModeInit() {
 	format(query, sizeof(query), "ALTER TABLE `accounts` ALTER `pLevel` SET DEFAULT '%d'", OthersInfo[start_level]);
 	mysql_tquery(connects, query, "", "");
 	//
+	//тут новый код будет с авторы
+	NULL_PI[pAdminTypeCP] = 1;
+	//
 
 	for(new d = 0; d < MAX_DUELS; d++) {
 		DI[d][duel_owner_id] = DI[d][duel_id][0] = DI[d][duel_id][1] = DI[d][duel_id][2] = DI[d][duel_id][3] = DI[d][duel_id][4] = DI[d][duel_id][5] = INVALID_PLAYER_ID;
@@ -34918,6 +34935,30 @@ stock Create3dText() {
 	return 1;
 }
 stock CreateTexdraw() {
+	// AdminCP_TD[-1] = TextDrawCreate(150.000000, 430.000000, "_");
+	AdminCP_TD[0] = TextDrawCreate(150.0, 420.0, "_");
+	AdminCP_TD[1] = TextDrawCreate(150.0, 410.0, "_");
+	AdminCP_TD[2] = TextDrawCreate(150.0, 400.0, "_");
+	AdminCP_TD[3] = TextDrawCreate(150.0, 390.0, "_");
+	AdminCP_TD[4] = TextDrawCreate(150.0, 380.0, "_");
+	AdminCP_TD[5] = TextDrawCreate(150.0, 370.0, "_");
+	AdminCP_TD[6] = TextDrawCreate(150.0, 360.0, "_");
+	AdminCP_TD[7] = TextDrawCreate(150.0, 350.0, "_");
+	AdminCP_TD[8] = TextDrawCreate(150.0, 340.0, "_");
+	AdminCP_TD[9] = TextDrawCreate(150.0, 330.0, "_");
+
+	for (new td_id = 0; td_id < sizeof (AdminCP_TD); td_id++) {
+		TextDrawLetterSize(AdminCP_TD[td_id], 0.193, 1.0225);
+		TextDrawTextSize(AdminCP_TD[td_id], 440.0, 0.0);
+		TextDrawAlignment(AdminCP_TD[td_id], 1);
+		TextDrawColor(AdminCP_TD[td_id], -1);
+		TextDrawSetShadow(AdminCP_TD[td_id], 0);
+		TextDrawSetOutline(AdminCP_TD[td_id], 1);
+		TextDrawBackgroundColor(AdminCP_TD[td_id], 255);
+		TextDrawFont(AdminCP_TD[td_id], 1);
+		TextDrawSetProportional(AdminCP_TD[td_id], 1);
+	}
+
 	td_game[0] = TextDrawCreate(629.555114, 288.220062, "usebox");
 	TextDrawLetterSize(td_game[0], 0.000000, 3.759377);
 	TextDrawTextSize(td_game[0], 518.444030, 0.000000);
@@ -36403,54 +36444,61 @@ stock CreateTexdraw() {
 	
 	/* ---------------------------------------- */
 
-	CheatPanel[0] = TextDrawCreate(644.666503, 435.562164, "usebox");
-	TextDrawLetterSize(CheatPanel[0], 0.000000, 1.010738);
-	TextDrawTextSize(CheatPanel[0], 457.110839, 0.000000);
-	TextDrawAlignment(CheatPanel[0], 1);
-	TextDrawColor(CheatPanel[0], 0);
-	TextDrawUseBox(CheatPanel[0], true);
-	TextDrawBoxColor(CheatPanel[0], 471604479);
-	TextDrawSetShadow(CheatPanel[0], 0);
-	TextDrawSetOutline(CheatPanel[0], 0);
-	TextDrawFont(CheatPanel[0], 0);
+	CheatPanelTD[0] = TextDrawCreate(450.000000, 434.416748, "bg_panel");
+	TextDrawLetterSize(CheatPanelTD[0], 0.000000, 0.937541);
+	TextDrawTextSize(CheatPanelTD[0], 635.659667, 0.000000);
+	TextDrawAlignment(CheatPanelTD[0], 1);
+	TextDrawColor(CheatPanelTD[0], -1);
+	TextDrawUseBox(CheatPanelTD[0], 1);
+	TextDrawBoxColor(CheatPanelTD[0], 255);
+	TextDrawSetShadow(CheatPanelTD[0], 0);
+	TextDrawBackgroundColor(CheatPanelTD[0], 255);
+	TextDrawFont(CheatPanelTD[0], 1);
+	TextDrawSetProportional(CheatPanelTD[0], 1);
 
-	CheatPanel[1] = TextDrawCreate(484.777862, 435.566650, "usebox");
-	TextDrawLetterSize(CheatPanel[1], 0.000000, 1.010738);
-	TextDrawTextSize(CheatPanel[1], 457.110961, 0.000000);
-	TextDrawAlignment(CheatPanel[1], 1);
-	TextDrawColor(CheatPanel[1], 0);
-	TextDrawUseBox(CheatPanel[1], true);
-	TextDrawBoxColor(CheatPanel[1], -668439399);
-	TextDrawSetShadow(CheatPanel[1], 0);
-	TextDrawSetOutline(CheatPanel[1], 0);
-	TextDrawFont(CheatPanel[1], 1);
+	CheatPanelTD[1] = TextDrawCreate(430.000000, 434.099853, "CHECK");
+	TextDrawLetterSize(CheatPanelTD[1], 0.204843, 0.964166);
+	TextDrawTextSize(CheatPanelTD[1], 450.174682, 0.000000);
+	TextDrawAlignment(CheatPanelTD[1], 1);
+	TextDrawColor(CheatPanelTD[1], -1);
+	TextDrawUseBox(CheatPanelTD[1], 1);
+	TextDrawBoxColor(CheatPanelTD[1], 0x009CFDFF);
+	TextDrawSetShadow(CheatPanelTD[1], 0);
+	TextDrawBackgroundColor(CheatPanelTD[1], 255);
+	TextDrawFont(CheatPanelTD[1], 1);
+	TextDrawSetProportional(CheatPanelTD[1], 1);
 
-	CheatPanel[2] = TextDrawCreate(460.999816, 436.057586, "CHECK");
-	TextDrawLetterSize(CheatPanel[2], 0.158000, 0.918043);
-	TextDrawAlignment(CheatPanel[2], 1);
-	TextDrawColor(CheatPanel[2], -1);
-	TextDrawUseBox(CheatPanel[2], true);
-	TextDrawBoxColor(CheatPanel[2], 0);
-	TextDrawSetShadow(CheatPanel[2], 0);
-	TextDrawSetOutline(CheatPanel[2], 0);
-	TextDrawBackgroundColor(CheatPanel[2], 51);
-	TextDrawFont(CheatPanel[2], 2);
-	TextDrawSetProportional(CheatPanel[2], 1);
+	CheatPanelTD[2] = TextDrawCreate(456.200012, 433.4, "000__000__000__000__000__000__000__000__000__000");
+	TextDrawLetterSize(CheatPanelTD[2], 0.171102, 1.010833);
+	TextDrawTextSize(CheatPanelTD[2], 700.000000, 0.000000);
+	TextDrawAlignment(CheatPanelTD[2], 1);
+	TextDrawColor(CheatPanelTD[2], -1);
+	TextDrawSetShadow(CheatPanelTD[2], 0);
+	TextDrawBackgroundColor(CheatPanelTD[2], 255);
+	TextDrawFont(CheatPanelTD[2], 2);
+	TextDrawSetProportional(CheatPanelTD[2], 1);
 
-	for(new i;i<10;i++) ChetInfo[i][cheatid1]=-1;
-	new Float:DrawPos = 485.111267;
-	Cheat1 = 0;
-	for(new i;i<10;i++) {
-		if(i > 0) DrawPos+=16.0;
-		CheatText[i] = TextDrawCreate(DrawPos, 435.564666,"-");
-		TextDrawColor(CheatText[i], -668439399);
-		TextDrawSetShadow(CheatText[i], 0);
-		TextDrawFont(CheatText[i], 2);
-		TextDrawSetOutline(CheatText[i], 0);
-		TextDrawLetterSize(CheatText[i],0.161109, 0.997685);
-		TextDrawAlignment(CheatText[i], 1);
-		TextDrawSetProportional(CheatText[i], 1);
-	}
+	CheatPanelTD[3] = TextDrawCreate(426.671508, 433.183654, "particle:lamp_shad_64");
+	TextDrawTextSize(CheatPanelTD[3], 219.000000, 12.000000);
+	TextDrawAlignment(CheatPanelTD[3], 1);
+	TextDrawColor(CheatPanelTD[3], 0x009CFD70);
+	TextDrawSetShadow(CheatPanelTD[3], 0);
+	TextDrawBackgroundColor(CheatPanelTD[3], 0);
+	TextDrawFont(CheatPanelTD[3], 4);
+	TextDrawSetProportional(CheatPanelTD[3], 0);
+
+	CheatPanelTD[4] = TextDrawCreate(427.608551, 444.150909, "particle:lamp_shad_64");
+	TextDrawTextSize(CheatPanelTD[4], 218.860000, -12.000000);
+	TextDrawAlignment(CheatPanelTD[4], 1);
+	TextDrawColor(CheatPanelTD[4], 0x009CFD70);
+	TextDrawSetShadow(CheatPanelTD[4], 0);
+	TextDrawBackgroundColor(CheatPanelTD[4], 0);
+	TextDrawFont(CheatPanelTD[4], 4);
+	TextDrawSetProportional(CheatPanelTD[4], 0);
+
+
+	for (new i; i < 10; i++)
+		ChetInfo[i][cheatid1] = INVALID_PLAYER_ID;
 	return 1;
 }
 stock PayChecks(i) {
@@ -47826,7 +47874,7 @@ stock RemoveTuning(c,carid,car) {
 	if(gPlayerCars[c][carPBrake_5][car]!=0) gPlayerCars[c][carPBrake_5][car] = 0;
 }
 stock AddCheater(playerid) {
-	new str[10];
+	/*new str[10];
  	if(addchet[playerid]==0) addchet[playerid]=1;
 	else addchet[playerid]=2;
     for(new i;i<10;i++) {
@@ -47836,9 +47884,40 @@ stock AddCheater(playerid) {
 	format(str, sizeof(str), "%d", playerid);
 	TextDrawSetString(CheatText[Cheat1], str);
 	Cheat1 ++;
-	if(Cheat1 > 9) Cheat1 = 0;
+	if(Cheat1 > 9) Cheat1 = 0;*/
+
+	if (addchet[playerid] == 0)
+		addchet[playerid] = 1;
+	else addchet[playerid] = 2;
+
+	// for (new i; i < 10; i++) if (ChetInfo[i][cheatid1] == playerid)return false;
+	for (new i = 1; i < 10; i++)  {
+
+		ChetInfo[i][cheatid1] = ChetInfo[i - 1][cheatid1];
+	}
+	ChetInfo[0][cheatid1] = playerid;
+
+	UpdateCheatPanel();
 	return 1;
 }
+stock UpdateCheatPanel() {
+	STRING_GLOBAL[0] = EOS;
+
+	for (new i = 0, str[22]; i < 10; i++) {
+		if (INVALID_PLAYER_ID == ChetInfo[i][cheatid1])
+			format(str, sizeof(str), "~w~000__");
+		else {
+			switch (ChetInfo[i][cheatid1]) {
+				case 0..9:  format(str, sizeof(str), "~w~00~r~~h~~h~~h~%i__", ChetInfo[i][cheatid1]);
+				case 10..99: format(str, sizeof(str), "~w~0~r~~h~~h~~h~%i__", ChetInfo[i][cheatid1]);
+				default: format(str, sizeof(str), "~r~~h~~h~~h~%i__", ChetInfo[i][cheatid1]);
+			}
+		}
+		strcat(STRING_GLOBAL, str);
+	}
+	TextDrawSetString(CheatPanelTD[2], STRING_GLOBAL), STRING_GLOBAL[0] = EOS;
+}
+
 public OnPlayerSelectObject(playerid, type, objectid, modelid, Float:fX, Float:fY, Float:fZ) {
 	if(PlayerInfo[playerid][pAdmin] < 5 || dostup[playerid] == 0) return true;
 	return EditObject(playerid,objectid);
@@ -49148,6 +49227,9 @@ CB: load_account(playerid) {
 	cache_get_value_name_int(0,"pJemmy", PlayerInfo[playerid][pJemmy]);
 	cache_get_value_name_int(0,"pFMute", PlayerInfo[playerid][pFMute]);
 
+	//новая аврора
+	cache_get_value_name_int(0, "AdminTypeCP", PlayerInfo[playerid][pAdminTypeCP]);
+
 	//угон
 	cache_get_value_name_int(0,"theftSkill", PlayerInfo[playerid][ptheftSkill]);
 	cache_get_value_name_int(0,"theftExp", PlayerInfo[playerid][ptheftExp]);
@@ -49772,14 +49854,44 @@ stock save_salary(member) {
 	}
 	return true;
 }
-stock ACLoad(playerid) {
-    if(PlayerInfo[playerid][pAdmin] > 0) {
-        for(new i;i<10;i++) 			TextDrawShowForPlayer(playerid, CheatText[i]);
-		for(new i;i<3;i++) 				TextDrawShowForPlayer(playerid, CheatPanel[i]);
-		for(new i = 53; i != -1; --i) 	EnableAntiCheatForPlayer(playerid, i, 0);  
-        return true;
-    }
-    return true;
+stock ACLoad(playerid)
+{
+	if (PlayerInfo[playerid][pAdmin] > 0)
+	{
+		//for (new i; i < 10; i++) TextDrawShowForPlayer(playerid, CheatText[i]);
+		//for (new i; i < 3; i++)   TextDrawShowForPlayer(playerid, CheatPanel[i]);
+		UpdateAdminCP(playerid);
+		for (new i = 53; i != -1; --i)  EnableAntiCheatForPlayer(playerid, i, 0);
+		return true;
+	}
+	return true;
+}
+stock UpdateAdminCP(playerid, typeid = -1) {
+	new type = PlayerInfo[playerid][pAdminTypeCP];
+	if (typeid != -1) type = typeid;
+	if (PlayerInfo[playerid][pAdmin] < 1 || !dostup[playerid]) type = 2;
+
+	switch (type) {
+		case 0: {
+			for (new i; i < sizeof(CheatPanelTD); i++)
+				TextDrawShowForPlayer(playerid, CheatPanelTD[i]);
+			for (new td_id = 0; td_id < sizeof(AdminCP_TD); td_id++)
+				TextDrawHideForPlayer(playerid, AdminCP_TD[td_id]);
+		}
+		case 1: {
+			for (new i; i < sizeof(CheatPanelTD); i++)
+				TextDrawHideForPlayer(playerid, CheatPanelTD[i]);
+			for (new td_id = 0; td_id < sizeof(AdminCP_TD); td_id++)
+				TextDrawShowForPlayer(playerid, AdminCP_TD[td_id]);
+		}
+		default: {
+			for (new i; i < sizeof(CheatPanelTD); i++)
+				TextDrawHideForPlayer(playerid, CheatPanelTD[i]);
+			for (new td_id = 0; td_id < sizeof(AdminCP_TD); td_id++)
+				TextDrawHideForPlayer(playerid, AdminCP_TD[td_id]);
+		}
+	}
+
 }
 CB: sad_temp_1(field) {
 	SI[field][sad_temp] = 2;
@@ -51332,12 +51444,17 @@ CB: password_adm(playerid,const inputtext[]) {
 		dostup[playerid] = 1;
 		ACLoad(playerid);
 
-		for(new i;i<10;i++) {
+		/*for(new i;i<10;i++) {
 			if(ChetInfo[i][cheatid1]==playerid) {
 				TextDrawSetString(CheatText[i], "-");
 				Cheat1 ++;
 				if(Cheat1 > 9) Cheat1 = 0;
 			}
+		}*/
+		for (new i = 0; i < 10; i++) {
+			if (ChetInfo[i][cheatid1] == playerid)
+				ChetInfo[i][cheatid1] = INVALID_PLAYER_ID;
+			UpdateCheatPanel();
 		}
 
 		new Admin[32];
@@ -54947,6 +55064,30 @@ CMD:gettime(playerid, params[]) {
 	D(playerid, DIALOG_NONE, DSM, ""P"Точное время", string, "Закрыть", "");
 	return 1;
 }
+
+CMD:acpanel(playerid) {
+	if (PlayerInfo[playerid][pAdmin] < 1 || dostup[playerid] == 0)
+		return true;
+	PlayerInfo[playerid][pAdminTypeCP]++;
+	if (PlayerInfo[playerid][pAdminTypeCP] == 3)
+		PlayerInfo[playerid][pAdminTypeCP] = 0;
+	UpdatePlayerData(playerid, "AdminTypeCP", PlayerInfo[playerid][pAdminTypeCP]);
+	UpdateAdminCP(playerid);
+	switch (PlayerInfo[playerid][pAdminTypeCP]) {
+		case 0: {
+			SendOk(playerid, "Вы изменили тип панели читеров (стандарт - табличка).");
+		}
+		case 1: {
+			SendOk(playerid, "Вы изменили тип панели читеров (текстовые строки).");
+		}
+		case 2: {
+			SendOk(playerid, "Вы изменили тип панели читеров (выключено).");
+		}
+	}
+	
+	return true;
+}
+
 CMD:gm(playerid, params[]) {
 	if(PlayerInfo[playerid][pAdmin] < 1 || dostup[playerid] == 0) return true;
 	if(player_gm{playerid}) {
