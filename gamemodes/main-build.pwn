@@ -13142,13 +13142,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 					D(playerid, DIALOG_DOSTUP_ADD, DSI, "{0096D2}Выдать доступ",string,"Выбрать","Отмена");
 				}
 				case 2: { // Убираем доступ у игрока
-					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "Ну как ты бля его снять собрался?, если его нет в досутпе! Ты, бл, тупоголовый!");
+					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel], "None", true)) return ErrorMessage(playerid, "Ну как ты бл его снять собрался?, если его нет в досутпе! Ты, бл, тупоголовый... Иди уроки делай, а то дадут тебе по голове!");
 
-					static const f_str[] = ""W"Вы действительно хотите убрать "NO"%s "W"с доступа: {0096D2}%s";
-				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
+					static const claear_dostp_str[] = ""W"Вы действительно хотите убрать {D88D00}%s "W"с доступа: {C400D2}%s";
+				    new string[sizeof(claear_dostp_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
 				    
-				    format(string,sizeof(string), f_str, DOSTP[GetPVarInt(playerid, "use_dostup")][dostupPanel], DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
-					D(playerid, DIALOG_MAKEDOSTUP_CLEAR, DSM, "{0096D2}Снять с доступа",string,"Да","Нет");
+				    format(string,sizeof(string), claear_dostp_str, DOSTP[GetPVarInt(playerid, "use_dostup")][dostupPanel], DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupName]);
+					D(playerid, DIALOG_MAKEDOSTUP_CLEAR, DSM, "{0096D2}Снять с доступа", string, "Снять","Нет");
 				}
 			}
 		}
@@ -13203,52 +13203,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 				AdmMSG(0xAFAFAFAA, string, 1);
 			}
 			else {
-				////
+				new string[128];
+				format(string, sizeof(string), "[A] %s[%d] снял %s с доступа %s", player_name[playerid], playerid, DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupPanel], DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupName]);
+				AdmMSG(0xAFAFAFAA, string, 1);
+			    SendOk(playerid, "Доступ игроку успешно снят в оффлайн");
+			    new query[128];
+			    mysql_format(connects,query, sizeof(query), "UPDATE `dostupcontrol` SET dostupPanel = 'None' WHERE dostupPanel = '%s'", DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupPanel]);
+    			mysql_tquery(connects, query, "", "");
 			}
 			format(DOSTP[GetPVarInt(playerid, "use_d_clear")][dostupPanel], 5, "None");
 	        SaveDostupControl(GetPVarInt(playerid, "use_d_clear"));
 		}
-		/*
-		
-     	case D_MAKELEADER_CLEAR: {
-         	if(!response) return 1;
-	        new ID = GetCheckID(FI[GetPVarInt(playerid, "use_frac")][fLeader]);
-		    if(ID != INVALID_PLAYER_ID) {
-				if(IsAGang(ID)) EndCapt(ID);
-				add_jobinfo(ID,"Снят с поста лидера");
-	        	PlayerInfo[ID][pLeader] = 0;
-				PlayerInfo[ID][pMember] = 0;
-    			PlayerInfo[ID][pRank] = 0;
-				start_work[ID] = 0;
-    			static const f_str[] = ""W"%s "G"забрал у Вас полномочия лидера организации";
-    			new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME)];
-    			
-		    	format(string,sizeof(string),f_str,player_name[playerid]);
-		    	SendOk(ID,string);
-
-				format(string, sizeof(string), "[A] %s[%d] снял %s[%d] с поста лидера %s",player_name[playerid],playerid,player_name[ID],ID,FI[GetPVarInt(playerid, "use_frac")][fName]);
-				AdmMSG(0xAFAFAFAA, string,1);
-
-				if(PlayerInfo[playerid][pHouse] > 0) PlayerInfo[ID][pSpawn] = 1;
-				else PlayerInfo[ID][pSpawn] = 0;
-				skin_player(ID);
-				SaveAccount(ID);
-		    	PlayerSpawn(ID);
-	        }
-	        else {
-				new string[128];
-				format(string, sizeof(string), "[A] %s[%d] снял %s с поста лидера %s",player_name[playerid],playerid,FI[GetPVarInt(playerid, "use_frac")][fLeader],FI[GetPVarInt(playerid, "use_frac")][fName]);
-				AdmMSG(0xAFAFAFAA, string,1);
-				off_add_jobinfo(FI[GetPVarInt(playerid, "use_frac")][fName],"Недееспособен");
-			    SendOk(playerid, "Лидер организации успешно снят в оффлайн");
-			    new query[128];
-			    mysql_format(connects,query, sizeof(query), "UPDATE `"TABLE_ACCOUNTS"` SET pLeader = '0',pMember = '0',pRank = '0',pModel = '0' WHERE Name = '%s'",FI[GetPVarInt(playerid, "use_frac")][fLeader]);
-    			mysql_tquery(connects, query, "", "");
-			}
-	        format(FI[GetPVarInt(playerid, "use_frac")][fLeader], 5, "None");
-	        SaveFraction(GetPVarInt(playerid, "use_frac"));
-	    }*/
-
 		case DIALOG_STARTBONUS: {
 			if(!response) return pc_cmd_apanel(playerid, "");
 			new string[200], level, money;
