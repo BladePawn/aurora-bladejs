@@ -76,10 +76,10 @@ native 		IsValidVehicle(vehicleid);
 #define 	MAX_OGRAD 								500
 
 
-new CHAT_GLOBAL[144];
-new MYSQL_GLOBAL[2048];
+//new CHAT_GLOBAL[144];
+//new MYSQL_GLOBAL[2048];
 new COMMAND_GLOBAL[256];
-new STRING_GLOBAL[4096];
+//new STRING_GLOBAL[4096];
 /*============================================================================*/
 #define 	FullServName 		"Aurora Role Play"
 #define 	NameServer 			"Aurora-RP"
@@ -5906,6 +5906,15 @@ enum Vacancy {
 	VacancyTime[6],
 };
 new VacancyInfo[14][Vacancy];
+
+#define MAX_DOSTUP 64
+enum _dostupInfo {
+	dostupID,
+	dostupName[64],
+	dostupPanel[MAX_PLAYER_NAME],
+	dostupMember
+}
+new DOSTP[MAX_DOSTUP + 1][_dostupInfo];
 //=================================================
 CB: kick(giveplayerid) {
 	return Kick(giveplayerid);
@@ -12915,13 +12924,13 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
 							}
 						}
 						static const f_str[] = "\
-Фракция\tИгроки\nПолиция ЛС\t%d\nПолиция СФ\t%d\nПолиция ЛВ\t%d\nФБР\t%d\n\
-Мэрия\t%d\nАрмия СФ\t%d\nАрмия ЛВ\t%d\n\
-Больница ЛС\t%d\nБольница СФ\t%d\nБольница ЛВ\t%d\n\
-Радиоцентр ЛС\t%d\nРадиоцентр СФ\t%d\nРадиоцентр ЛВ\t%d\n\
-Автошкола\t%d\nИтальянская мафия\t%d\nЯпонская мафия\t%d\n\
-Русская мафия\t%d\nThe Ballas\t%d\nThe Vagos\t%d\n\
-The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
+							Фракция\tИгроки\nПолиция ЛС\t%d\nПолиция СФ\t%d\nПолиция ЛВ\t%d\nФБР\t%d\n\
+							Мэрия\t%d\nАрмия СФ\t%d\nАрмия ЛВ\t%d\n\
+							Больница ЛС\t%d\nБольница СФ\t%d\nБольница ЛВ\t%d\n\
+							Радиоцентр ЛС\t%d\nРадиоцентр СФ\t%d\nРадиоцентр ЛВ\t%d\n\
+							Автошкола\t%d\nИтальянская мафия\t%d\nЯпонская мафия\t%d\n\
+							Русская мафия\t%d\nThe Ballas\t%d\nThe Vagos\t%d\n\
+							The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
 						new string[sizeof(f_str) +1 + (30)];
 						format(string,sizeof(string),f_str,frac_online[fLSPD],frac_online[fSFPD],frac_online[fLVPD],frac_online[fFBI],frac_online[fMAYOR],frac_online[fARMYSF],frac_online[fARMYLV],frac_online[fMEDICLS],frac_online[fMEDICSF],frac_online[fMEDICLV],
 															frac_online[fLSNEWS],frac_online[fSFNEWS],frac_online[fLVNEWS],frac_online[fINSTRUCTORS],frac_online[fLCN],frac_online[fYAKUZA],frac_online[fRM],frac_online[fBALLAS],frac_online[fVAGOS],frac_online[fGROVE],
@@ -12971,14 +12980,14 @@ The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
 						}
 						else hour[7] = minute[7] = second[7] = 0;
 						static const f_str[] = "\
-"P"1."W" The Ballas\t\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"2."W" The Vagos\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"3."W" The Grove\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"4."W" The Rifa\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"5."W" The Aztec\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"6."W" Итальянская мафия\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"7."W" Японская мафия\t\t"ORANGE"%dч %dмин %dсек\n\
-"P"8."W" Русская мафия\t\t\t"ORANGE"%dч %dмин %dсек";
+							"P"1."W" The Ballas\t\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"2."W" The Vagos\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"3."W" The Grove\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"4."W" The Rifa\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"5."W" The Aztec\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"6."W" Итальянская мафия\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"7."W" Японская мафия\t\t"ORANGE"%dч %dмин %dсек\n\
+							"P"8."W" Русская мафия\t\t\t"ORANGE"%dч %dмин %dсек";
 						new string[sizeof(f_str) + 90];
 						format(string,sizeof(string),f_str,hour[0], minute[0], second[0],hour[1], minute[1], second[1],hour[2], minute[2], second[2],hour[3], minute[3], second[3],
 															hour[4], minute[4], second[4],hour[5], minute[5], second[5],hour[6], minute[6], second[6],hour[7], minute[7], second[7]);
@@ -13055,10 +13064,10 @@ The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
 					case 20: {
 						if(PlayerInfo[playerid][pAdmin] < 6 || dostup[playerid] == 0) return 1;
       					static const f_str[] = "\
-"W"Оружейный завод - Порт г. СФ\t\t\t"ORANGE"$%d\n\
-"W"Лесопилка - Порт г. СФ\t\t"ORANGE"$%d\n\
-"W"Лесопилка - Порт г. ЛС\t\t\t"ORANGE"$%d\n\
-"W"Лесопилка - Оружейный завод\t\t\t"ORANGE"$%d";
+							"W"Оружейный завод - Порт г. СФ\t\t\t"ORANGE"$%d\n\
+							"W"Лесопилка - Порт г. СФ\t\t"ORANGE"$%d\n\
+							"W"Лесопилка - Порт г. ЛС\t\t\t"ORANGE"$%d\n\
+							"W"Лесопилка - Оружейный завод\t\t\t"ORANGE"$%d";
 						new string[sizeof(f_str) + 40];
 						format(string,sizeof(string),f_str,tk_unloading[0],tk_unloading[1],tk_unloading[2],tk_unloading[3]);
 						D(playerid,D_ADMIN_TK,DST, "Дальнобойщики", string, "Изменить", "Отмена");
@@ -13071,9 +13080,9 @@ The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
 						if(PlayerInfo[playerid][pAdmin] < 6 || dostup[playerid] == 0) return 1;
 						new str[3][20] = {"Отключены","Только для новичков","Для всех"};
 						static const f_str[] = "\
-Бонусы\t\t\t"P"[%s]"W"\n\
-Ограничение по уровню новичков\t\t"P"[%d уровень]"W"\n\
-Управление бонусами";
+							Бонусы\t\t\t"P"[%s]"W"\n\
+							Ограничение по уровню новичков\t\t"P"[%d уровень]"W"\n\
+							Управление бонусами";
 						new string[sizeof(f_str) + 90];
 						format(string,sizeof(string),f_str,str[BonusInfo[act_select]],BonusInfo[act_level]);
 						D(playerid,D_ADMIN_OSNOVA,DST, "Бонусы", string, "Выбрать", "Отмена");
@@ -13104,9 +13113,197 @@ The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
                         if(PlayerInfo[playerid][pAdmin] < 6 || dostup[playerid] == 0) return 1;
 						OthersInfo[show_update] = (!OthersInfo[show_update])?(1):(0),UpdateOtherData("show_update",OthersInfo[show_update]),pc_cmd_apanel(playerid,"");
 					}
+					case 28: {
+						if(PlayerInfo[playerid][pAdmin] < 6 || dostup[playerid] == 0) return 1;
+						D( playerid , DIALOG_DOSTUD_PLAYER_CONTROL , DSL , "Предоставить доступ", "1. Доступ (1)", "Далее", "Отмена" ) ;
+					}
 				}
 			}
 		}
+		case DIALOG_DOSTUD_PLAYER_CONTROL: {
+			if(!response) return pc_cmd_apanel(playerid, "");
+			switch ( listitem ){
+				case 0: {
+					static const dostup_str[] = "ID: {E286F7}%d "W"| "ORANGE"%s";
+					new string[sizeof(dostup_str) +1 + (-2 + 24) + (-2 + MAX_PLAYER_NAME)];
+					SetPVarInt(playerid, "use_dostup_control", listitem+1);
+
+					format(string, sizeof(string), dostup_str, 
+						DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupID], 
+						DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel]);
+					D ( playerid , DIALOG_DOSTUDL_INFO, DIALOG_STYLE_LIST, 
+						string, 
+						"{E286F7}1. "W"Информация о доступе\n{E286F7}2. "W"Дать доступ\n{E286F7}3. "W"Убрать доступ", 
+						"Выбрать", "Отмена");
+				}
+			}
+		}
+		case DIALOG_DOSTUDL_INFO: {
+			if(!response) return 1;
+			switch(listitem) {
+				case 0: {
+					if(!strcmp ( DOSTP[GetPVarInt(playerid, "use_dostup_control")][dostupPanel],"None",true)) return ErrorMessage(playerid, "У данной панели не назначен игрок!");
+					new ID = GetPVarInt ( playerid, "use_dostup_control");
+					new query [ 200 ] ;
+					format(query, sizeof(query), "SELECT `dostupName`, `dostupPanel` FROM `dostupcontrol` WHERE `dostupMember` = '%i'", ID);
+					mysql_pquery(connects, query, "info_dostup", "ii", playerid, ID);
+				}
+			}
+		}
+		/*
+		case D_MAKELEADER_INFO: {
+			if(!response) return 1;
+			//if(listitem == fINSTRUCTORS-1) return ErrorMessage(playerid,"Недоступно");
+			//if(listitem == fMAYOR-1) return ErrorMessage(playerid,"Недоступно");
+			static const f_str[] = ""P"%s "W"| "ORANGE"%s";
+			new string[sizeof(f_str) +1 + (-2 + 24) + (-2 + MAX_PLAYER_NAME)];
+			
+			SetPVarInt(playerid, "use_frac", listitem+1);
+			format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fName],FI[GetPVarInt(playerid, "use_frac")][fLeader]);
+			D(playerid,D_MAKELEADER_LIST,DSL,string,""P"1."W" Информация о фракции\n"P"2."W" Назначить лидера\n"P"3."W" Снять лидера\n"P"4."W" Вступить в организацию","Выбрать","Отмена");
+		}
+		case D_MAKELEADER_LIST: {
+		    if(!response) return 1;
+		    switch(listitem) {
+		        case 0: {
+					if(!strcmp(FI[GetPVarInt(playerid, "use_frac")][fLeader],"None",true)) return ErrorMessage(playerid, "У данной организации нет лидера");
+					new ID = GetPVarInt(playerid, "use_frac");
+					new query[200];
+					format(query,sizeof(query),"SELECT `Name`,`pRank` FROM `accounts` WHERE `pMember` = '%i'", ID);
+					mysql_pquery(connects, query, "info_fraction", "ii", playerid,ID);
+				}
+		        case 1: {
+				    if(strcmp(FI[GetPVarInt(playerid, "use_frac")][fLeader],"None",true)) return ErrorMessage(playerid, "У данной организации уже есть лидер");
+				    
+				    static const f_str[] = ""W"Укажите ID игрока,которого хотите назначить на должность лидера "P"%s";
+				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
+				    
+				    format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fName]);
+					D(playerid,D_MAKELEADER_ADD,DSI, ""P"Назначение",string,"Выбрать","Отмена");
+				}
+		        case 2: {
+					if(!strcmp(FI[GetPVarInt(playerid, "use_frac")][fLeader],"None",true)) return ErrorMessage(playerid, "У данной организации нет лидера");
+				    static const f_str[] = ""W"Вы действительно хотите снять "NO"%s "W"с поста лидера организации "P"%s";
+				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + 24];
+				    
+				    format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fLeader],FI[GetPVarInt(playerid, "use_frac")][fName]);
+					D(playerid,D_MAKELEADER_CLEAR,DSM, ""P"Снятие",string,"Выбрать","Отмена");
+				}
+		        case 3: {
+					new frac = GetPVarInt(playerid, "use_frac");
+					PlayerInfo[playerid][pLeader] = frac;
+					PlayerInfo[playerid][pMember] = frac;
+					PlayerInfo[playerid][pRank] = FI[frac][fMaxRang];
+					start_work[playerid] = 1;
+					SaveAccount(playerid);
+					static const f_str[] = ""W"Вы успешно вступили в организацию "P"%s(ID: %d)";
+				    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 3)];
+					
+					format(string, sizeof(string), f_str, FI[frac][fName], frac);
+					SendOk(playerid, string);
+					SendOk(playerid, "Для увольнения введите: "W"/uval");
+					PlayerInfo[playerid][pFracSkin] = FI[frac][fSkin];
+					A_SetPlayerSkin(playerid,PlayerInfo[playerid][pFracSkin]);
+					SetPlayerColor(playerid,gFractionSpawn[PlayerInfo[playerid][pMember]][fracColor]);
+		        }
+		    }
+		}
+		case D_MAKELEADER_ADD: {
+		    if(!response) return 1;
+			if(!strlen(inputtext)) {
+				static const f_str[] = ""W"Укажите ID игрока,которого хотите назначить на должность лидера "P"%s";
+				new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME)];
+				
+				format(string,sizeof(string),f_str,FI[GetPVarInt(playerid, "use_frac")][fName]);
+				D(playerid,D_MAKELEADER_ADD,DSI, ""P"Назначение",string,"Выбрать","Отмена");
+				return 1;
+			}
+		    if(!IsPlayerConnected(strval(inputtext))) return ErrorMessage(playerid, "Игрок оффлайн");
+		    if(!TI[strval(inputtext)][tLogin]) return ErrorMessage(playerid, "Игрок не авторизован на сервере");
+		    if(PlayerInfo[strval(inputtext)][pLeader] != 0) return ErrorMessage(playerid, "Игрок уже лидер организации");
+			if(PlayerInfo[strval(inputtext)][pMember] != 0) return ErrorMessage(playerid, "Игрок состоит в организации");
+			//if(!PlayerInfo[strval(inputtext)][pGoogleSec]) return ErrorMessage(playerid, "У игрока отсутствует защита Google Authenticator");
+		    SetPVarInt(playerid, "use_leader", strval(inputtext));
+		    
+		    static const f_str[] = ""W"Вы действительно хотите назначить "ORANGE"%s"W" на поста лидера организации "P"%s";
+		    new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 24)];
+		    
+		    format(string,sizeof(string),f_str,player_name[GetPVarInt(playerid, "use_leader")],FI[GetPVarInt(playerid, "use_frac")][fName]);
+			D(playerid,D_MAKELEADER,DSM, ""P"Назначение",string,"Назначить","Отмена");
+		}
+		case D_MAKELEADER: {
+		    if(!response) return 1;
+			new ID = GetPVarInt(playerid, "use_leader");
+			new frac = GetPVarInt(playerid, "use_frac");
+	        format(FI[frac][fLeader], 24, "%s", player_name[ID]);
+			format(FI[frac][fAdmin],  24, "%s", player_name[playerid]);
+
+			new year, month, day;
+			getdate(year, month, day);
+			format(FI[frac][fTime],  53, "%02i/%02i/%02i", day, month, year);
+
+            PlayerInfo[ID][pLeader] = FI[frac][fID];
+            PlayerInfo[ID][pMember] = FI[frac][fID];
+            PlayerInfo[ID][pRank] 	= FI[frac][fMaxRang];
+            
+            static const f_str[] = ""W"%s"G" назначил Вас лидером организации "P"%s";
+			new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME) + (-2 + 24)];
+            
+            format(string,sizeof(string),f_str,player_name[playerid],FI[frac][fName]);
+            SendOk(ID,string);
+
+			format(string, sizeof(string), "[A] %s[%d] назначил %s[%d] на пост лидера %s",player_name[playerid],playerid,player_name[ID],ID,FI[frac][fName]);
+			AdmMSG(0xAFAFAFAA, string,1);
+			
+			PlayerInfo[ID][pFracSkin] = FI[frac][fSkin];
+			PlayerInfo[ID][pJob] 		= 0;
+			A_SetPlayerSkin(ID,PlayerInfo[ID][pFracSkin]);
+			SetPlayerColor(ID,gFractionSpawn[PlayerInfo[ID][pMember]][fracColor]);
+			start_work[ID] = 1;
+			PlayerInfo[ID][pSpawn] = 2;
+			SaveAccount(ID);
+			SaveFraction(frac);
+			add_datefrac(ID);
+	    }
+     	case D_MAKELEADER_CLEAR: {
+         	if(!response) return 1;
+	        new ID = GetCheckID(FI[GetPVarInt(playerid, "use_frac")][fLeader]);
+		    if(ID != INVALID_PLAYER_ID) {
+				if(IsAGang(ID)) EndCapt(ID);
+				add_jobinfo(ID,"Снят с поста лидера");
+	        	PlayerInfo[ID][pLeader] = 0;
+				PlayerInfo[ID][pMember] = 0;
+    			PlayerInfo[ID][pRank] = 0;
+				start_work[ID] = 0;
+    			static const f_str[] = ""W"%s "G"забрал у Вас полномочия лидера организации";
+    			new string[sizeof(f_str) +1 + (-2 + MAX_PLAYER_NAME)];
+    			
+		    	format(string,sizeof(string),f_str,player_name[playerid]);
+		    	SendOk(ID,string);
+
+				format(string, sizeof(string), "[A] %s[%d] снял %s[%d] с поста лидера %s",player_name[playerid],playerid,player_name[ID],ID,FI[GetPVarInt(playerid, "use_frac")][fName]);
+				AdmMSG(0xAFAFAFAA, string,1);
+
+				if(PlayerInfo[playerid][pHouse] > 0) PlayerInfo[ID][pSpawn] = 1;
+				else PlayerInfo[ID][pSpawn] = 0;
+				skin_player(ID);
+				SaveAccount(ID);
+		    	PlayerSpawn(ID);
+	        }
+	        else {
+				new string[128];
+				format(string, sizeof(string), "[A] %s[%d] снял %s с поста лидера %s",player_name[playerid],playerid,FI[GetPVarInt(playerid, "use_frac")][fLeader],FI[GetPVarInt(playerid, "use_frac")][fName]);
+				AdmMSG(0xAFAFAFAA, string,1);
+				off_add_jobinfo(FI[GetPVarInt(playerid, "use_frac")][fName],"Недееспособен");
+			    SendOk(playerid, "Лидер организации успешно снят в оффлайн");
+			    new query[128];
+			    mysql_format(connects,query, sizeof(query), "UPDATE `"TABLE_ACCOUNTS"` SET pLeader = '0',pMember = '0',pRank = '0',pModel = '0' WHERE Name = '%s'",FI[GetPVarInt(playerid, "use_frac")][fLeader]);
+    			mysql_tquery(connects, query, "", "");
+			}
+	        format(FI[GetPVarInt(playerid, "use_frac")][fLeader], 5, "None");
+	        SaveFraction(GetPVarInt(playerid, "use_frac"));
+	    }*/
+
 		case DIALOG_STARTBONUS: {
 			if(!response) return pc_cmd_apanel(playerid, "");
 			//new query[80];
@@ -13204,9 +13401,9 @@ The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
             }
 			new str[3][20] = {"Отключены","Только для новичков","Для всех"};
 			static const f_str[] = "\
-Бонусы\t\t\t"P"[%s]"W"\n\
-Ограничение по уровню новичков\t\t"P"[%d уровень]"W"\n\
-Управление бонусами";
+				Бонусы\t\t\t"P"[%s]"W"\n\
+				Ограничение по уровню новичков\t\t"P"[%d уровень]"W"\n\
+				Управление бонусами";
 			new string[sizeof(f_str) + 90];
 			format(string,sizeof(string),f_str,str[BonusInfo[act_select]],BonusInfo[act_level]);
 			D(playerid,D_ADMIN_OSNOVA,DST, "Бонусы", string, "Выбрать", "Отмена");
@@ -14442,7 +14639,6 @@ The Grove\t%d\nThe Aztec\t%d\nThe Rifa\t%d\nБелый дом\t%d\nНотариус\t%d";
 				TI[playerid][tJobSalary] = 0;
 				if(PlayerInfo[playerid][pSex] == 1) A_SetPlayerSkin(playerid, 73);
 				else A_SetPlayerSkin(playerid, 53);
-				
 				//bladejs (03.01.26)
 				ShowJobInfoTD ( playerid , 1 );
 			}
@@ -33129,6 +33325,7 @@ stock second_timer() {
 	foreach(new i:Player) {
 		if(!TI[i][tLogin] ||  AntiCheatIsKickedWithDesync(i)) continue;
 		ac_Timer(i);
+		UpdateJobInfoTD(i);
 		new Float:xw, Float:yw, Float:zw;
 		GetPlayerVelocity(i,xw,yw,zw);
 		if(!TI[i][tLogin] && (xw > 0 || yw > 0 || zw > 0)) {
@@ -33672,6 +33869,7 @@ public OnGameModeInit() {
 	load_vip();
 	load_trackings();
 	LoadBMapIcons();
+	load_dostup_player();
 	mysql_tquery(connects,"UPDATE `accounts` SET `online_status` = '1001'", "", "");
 	
 	//
@@ -47122,6 +47320,24 @@ stock load_fractions() {
 	printf("[Загрузка ...] Фракции успешно загружены (%i шт.)",rows);
 	return true;
 }
+
+stock load_dostup_player(){
+	new dostp_string[1024];
+	new Cache:result, rows;
+    format(dostp_string, sizeof(dostp_string), "SELECT * FROM `dostupcontrol`");
+	result = mysql_query(connects, dostp_string);
+	rows = cache_num_rows();
+	for(new i = 1; i <= rows;i ++) {
+		cache_get_value_name_int(i-1, "dostupID", DOSTP[i][dostupID]);
+
+		cache_get_value_name(i-1, "dostupName", DOSTP[i][dostupName], 64);
+	    cache_get_value_name(i-1, "dostupPanel", DOSTP[i][dostupPanel], MAX_PLAYER_NAME);
+	}
+	cache_delete(result);
+	printf("( Загрузка доступов к панелям... ) Доступы к панелям игроков успешно загружены (%i шт.)",rows);
+	return true;
+}
+
 stock load_anticheat() {
 	new Cache:result, rows;
 	result = mysql_query(connects, "SELECT * FROM `anticheats`");
@@ -52009,6 +52225,35 @@ CB: showall_callback(playerid) {
 	else D(playerid,DIALOG_NONE,DSTH,"Члены организации оффлайн",string,"Закрыть","");
 	return 1 ;
 }
+
+CB: info_dostup(playerid, ID) {
+	SendClientMessage(playerid, 0xFFFFFFFF, "info_dostup вызван!");
+	//
+	new rows ;
+	cache_get_row_count(rows);
+	if(!rows) return 1;
+	new idd = 0, ids = 0;
+	static const dostup_string[] = ""W"\nID-Доступа: "YELLOW"%d\n\
+		"W"Название доступа: {27BBF5}%s\n\
+		"W"Доступно для: "GREEN"%s";
+	new string[sizeof(dostup_string) +1 + (-2 + 25) + (-2 + 25) + (-2 + 53) + (-2 + 7)];	
+	foreach(new i:Player) {
+		if(!TI[i][tLogin] ||  AntiCheatIsKickedWithDesync(i)) continue;
+		if(DOSTP[i][dostupMember] != ID)continue;
+		if(DOSTP[i][dostupID] < 1 || DOSTP[i][dostupMember] < 1) continue;
+		ids++;
+	}
+	format(string, sizeof(string),
+		dostup_string, 
+		DOSTP[ID][dostupID], 
+		DOSTP[ID][dostupName], 
+		DOSTP[ID][dostupPanel], 
+		DOSTP[ID][dostupMember], 
+		ids, rows, idd);
+	D(playerid, DIALOG_DOSTUP_NONE, DSM, "{0096D2}Информация о доступе", string, "Закрыть","");
+	return true;
+}
+
 CB: info_fraction(playerid,ID) {
 	new rows;
 	cache_get_row_count(rows);
@@ -52020,11 +52265,11 @@ CB: info_fraction(playerid,ID) {
 		if(rang == FI[ID][fInviteRang]) idd ++;
 	}
 	static const f_str[] = ""W"\nОрганизация: "YELLOW"%s\n\
-"W"Лидер: "GREEN"%s\n\n\
-"W"Поставлен: "P"%s "W"| "P"%s\n\
-"W"Игроки во фракции онлайн: "P"%d\n\
-"W"Всего игроков во фракции: "P"%d\n\
-"W"Заместителей во фракции: "P"%d";
+		"W"Лидер: "GREEN"%s\n\n\
+		"W"Поставлен: "P"%s "W"| "P"%s\n\
+		"W"Игроки во фракции онлайн: "P"%d\n\
+		"W"Всего игроков во фракции: "P"%d\n\
+		"W"Заместителей во фракции: "P"%d";
 	new string[sizeof(f_str) +1 + (-2 + 25) + (-2 + 25) + (-2 + 53) + (-2 + 7)];
 	foreach(new i:Player) {
 		if(!TI[i][tLogin] ||  AntiCheatIsKickedWithDesync(i)) continue;
@@ -56112,7 +56357,7 @@ CMD:offunwarn(playerid, params[]) {
 	cache_delete(result);
 	return 1;
 }
-CMD:weather(playerid, params[]) {
+/*CMD:weather(playerid, params[]) {
     if(PlayerInfo[playerid][pAdmin] < 4 || dostup[playerid] == 0) return true;
 	new giveplayerid;
 	if(sscanf(params, "d",giveplayerid)) return SendEsp(playerid, "/weather [id]");
@@ -56121,7 +56366,7 @@ CMD:weather(playerid, params[]) {
 	AdmMSG(0xAFAFAFAA, string,1);
 	SetWeather(giveplayerid);
 	return true;
-}
+}*/
 CMD:uval(playerid, params[]) {
 	if(PlayerInfo[playerid][pAdmin] < 4 || dostup[playerid] == 0) return true;
 	new reason[130],giveplayerid;
@@ -57078,7 +57323,7 @@ CMD:apanel(playerid, const params[]) {
 		case 4: format(string,sizeof(string),""P"1."W" Администрация\n"P"2."W" Заспавниться\n"P"3."W" Устроиться на работу\n"P"4."W" Игроки в тюрьме\n"P"5."W" Игроки с баном чата\n"P"6."W" Админ информация %s\n"P"7."W" Kill List %s\n"P"8."W" Онлайн организаций\n"P"9."W" Починить автомобиль\n"P"10."W" Состояние складов\n"P"11."W" Узнать заморозки банд/мафий\n"P"12."W" Банлист\n"P"13."W" Возможно взломаны\n"P"14."W" Билборды\n"P"15."W" Дуэли %s",(!PlayerInfo[playerid][pAdmMSG]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!PlayerInfo[playerid][pAdmKL]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!duels) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"));
 		case 5: format(string,sizeof(string),""P"1."W" Администрация\n"P"2."W" Заспавниться\n"P"3."W" Устроиться на работу\n"P"4."W" Игроки в тюрьме\n"P"5."W" Игроки с баном чата\n"P"6."W" Админ информация %s\n"P"7."W" Kill List %s\n"P"8."W" Онлайн организаций\n"P"9."W" Починить автомобиль\n"P"10."W" Состояние складов\n"P"11."W" Узнать заморозки банд/мафий\n"P"12."W" Банлист\n"P"13."W" Возможно взломаны\n"P"14."W" Билборды\n"P"15."W" Дуэли %s\n"P"16."W" Античит\n"P"17."W" Казино %s\n"P"18."W" Репорт %s\n"P"19."W" Заполнить склады банд/мафий\n"P"20."W" Ограничение Invite",(!PlayerInfo[playerid][pAdmMSG]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!PlayerInfo[playerid][pAdmKL]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!duels) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!casino) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!rep_system) ? ("{FF182D}[OLD]") : ("{33AA33}[NEW]"));
 		case 6,7: format(string,sizeof(string),""P"1."W" Администрация\n"P"2."W" Заспавниться\n"P"3."W" Устроиться на работу\n"P"4."W" Игроки в тюрьме\n"P"5."W" Игроки с баном чата\n"P"6."W" Админ информация %s\n"P"7."W" Kill List %s\n"P"8."W" Онлайн организаций\n"P"9."W" Починить автомобиль\n"P"10."W" Состояние складов\n"P"11."W" Узнать заморозки банд/мафий\n"P"12."W" Банлист\n"P"13."W" Возможно взломаны\n"P"14."W" Билборды\n"P"15."W" Дуэли %s\n"P"16."W" Античит\n"P"17."W" Казино %s\n"P"18."W" Репорт %s\n"P"19."W" Заполнить склады банд/мафий\n"P"20."W" Ограничение Invite\n"P"21."W" Дальнобойщики\n"P"22."W" Промокоды\n"P"23."W" Бонусы\n"P"24."W" Пополнить продукты в бизнес(сколько заказал владелец)\n"P"25."W" Анти ТК %s\n"P"26. "W"Настройки VIP-уровней\n"P"27. "W"Стартовый бонус {33AA33}[NEW!]\n\
-		"P"28. "W"Диалог обновления %s",(!PlayerInfo[playerid][pAdmMSG]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!PlayerInfo[playerid][pAdmKL]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!duels) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!casino) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!rep_system) ? ("{FF182D}[OLD]") : ("{33AA33}[NEW]"),(!anti_tk) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!OthersInfo[show_update]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"));
+		"P"28. "W"Диалог обновления %s \n"P"29. "W"Предоставить {27BBF5}доступ "W"игроку",(!PlayerInfo[playerid][pAdmMSG]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!PlayerInfo[playerid][pAdmKL]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!duels) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!casino) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!rep_system) ? ("{FF182D}[OLD]") : ("{33AA33}[NEW]"),(!anti_tk) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"),(!OthersInfo[show_update]) ? ("{FF182D}[OFF]") : ("{33AA33}[ON]"));
 	}
     D(playerid,D_ADMIN_PANEL,DSL,""P"Админ панель",string,"Выбрать","Отмена");
 	return true;
@@ -66725,48 +66970,6 @@ BumboxSync(i)
 }
 /*=====================================( new code )===========================================================*/
 
-//Инфо тд для завода 
-stock WorkInfoTD(playerid)
-{
-	InformationPTD[playerid][0] = CreatePlayerTextDraw(playerid, 24.2 + 482.0/*27.122541*/, 220.333328, " ");
-	PlayerTextDrawLetterSize(playerid, InformationPTD[playerid][0], 0.230863, 1.005000);
-	PlayerTextDrawTextSize(playerid, InformationPTD[playerid][0], 151.000000 + 482.0, 0.000000);
-	PlayerTextDrawAlignment(playerid, InformationPTD[playerid][0], 1);
-	PlayerTextDrawColor(playerid, InformationPTD[playerid][0], -1);
-	PlayerTextDrawSetShadow(playerid, InformationPTD[playerid][0], 0);
-	PlayerTextDrawBackgroundColor(playerid, InformationPTD[playerid][0], 255);
-	PlayerTextDrawFont(playerid, InformationPTD[playerid][0], 1);
-	PlayerTextDrawSetProportional(playerid, InformationPTD[playerid][0], 1);
-
-	InformationPTD[playerid][1] = CreatePlayerTextDraw(playerid, 120.000000 + 482.0, 220.333328, " ");
-	PlayerTextDrawLetterSize(playerid, InformationPTD[playerid][1], 0.230863, 1.005000);
-	PlayerTextDrawTextSize(playerid, InformationPTD[playerid][1], 243.877868 + 482.0, 0.000000);
-	PlayerTextDrawAlignment(playerid, InformationPTD[playerid][1], 3);
-	PlayerTextDrawColor(playerid, InformationPTD[playerid][1], -1);
-	PlayerTextDrawSetShadow(playerid, InformationPTD[playerid][1], 0);
-	PlayerTextDrawBackgroundColor(playerid, InformationPTD[playerid][1], 255);
-	PlayerTextDrawFont(playerid, InformationPTD[playerid][1], 1);
-	PlayerTextDrawSetProportional(playerid, InformationPTD[playerid][1], 1);
-
-	InformationPTD[playerid][2] = CreatePlayerTextDraw(playerid, 24.2 + 482.0/*27.122541*/, 222.950195, " ");
-	PlayerTextDrawLetterSize(playerid, InformationPTD[playerid][2], 0.244450, 1.133333);
-	PlayerTextDrawTextSize(playerid, InformationPTD[playerid][2], 151.000000 + 482.0, 0.000000);
-	PlayerTextDrawAlignment(playerid, InformationPTD[playerid][2], 1);
-	PlayerTextDrawColor(playerid, InformationPTD[playerid][2], -1);
-	PlayerTextDrawSetShadow(playerid, InformationPTD[playerid][2], 0);
-	PlayerTextDrawBackgroundColor(playerid, InformationPTD[playerid][2], 255);
-	PlayerTextDrawFont(playerid, InformationPTD[playerid][2], 1);
-	PlayerTextDrawSetProportional(playerid, InformationPTD[playerid][2], 1);
-
-	for (new td_id1 = 0; td_id1 < sizeof(InformationTD); td_id1++)
-		TextDrawShowForPlayer(playerid, InformationTD[td_id1]);
-	for (new ptd_id0 = 0; ptd_id0 < 3; ptd_id0++)
-		PlayerTextDrawShow(playerid, InformationPTD[playerid][ptd_id0]);
-
-
-	return true;
-}
-
 #include "../gamemodes/logic/header/job_info.pwn" // 03.01.26
 
 
@@ -66787,7 +66990,6 @@ stock WorkInfoTD(playerid)
 
 cmd:testtd(playerid)
 {
-	//ShowJobInfoTD(playerid, 1);
-	WorkInfoTD(playerid);
+	//WorkInfoTD(playerid);
 	return true;
 }

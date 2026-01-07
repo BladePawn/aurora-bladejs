@@ -42,9 +42,10 @@ stock ShowJobInfoTD(playerid, type) {
 	UpdateJobInfoTD(playerid);
 
 	for (new td_id = 0; td_id < sizeof(InformationTD); td_id++)
-		TextDrawShowForPlayer(playerid, InformationTD[td_id]);
+		TextDrawShowForPlayer ( playerid , InformationTD [ td_id ] ) ;
 	for (new ptd_id = 0; ptd_id < 3; ptd_id++)
-		PlayerTextDrawShow(playerid, InformationPTD[playerid][ptd_id]);
+		PlayerTextDrawShow ( playerid , InformationPTD [ playerid ] [ ptd_id ] ) ;
+
 
 	return true;
 }
@@ -56,9 +57,8 @@ stock UpdateJobInfoTD(playerid) {
 
 	switch (type) {
         case INFOBAR_JOB_ZAVOD:{ //Оружейный завод
-        
-		format(COMMAND_GLOBAL, sizeof(COMMAND_GLOBAL), "MONEY:_~g~~h~$%d", TI[playerid][tJobSalary]);
-		PlayerTextDrawSetString ( playerid, InformationPTD [ playerid ] [ 0 ] , COMMAND_GLOBAL ) , COMMAND_GLOBAL[0] = EOS;
+			format(COMMAND_GLOBAL, sizeof(COMMAND_GLOBAL), "MONEY:_~g~~h~$%d", TI[playerid][tJobSalary]);
+			PlayerTextDrawSetString ( playerid, InformationPTD [ playerid ] [ 0 ] , COMMAND_GLOBAL ) , COMMAND_GLOBAL[0] = EOS;
         }
         case INFOBAR_WORK_OIL:{ //Нафтан
             format(COMMAND_GLOBAL, sizeof(COMMAND_GLOBAL), "MONEY:_~g~~h~$%d", TI[playerid][tJobSalary]);
@@ -139,6 +139,6 @@ stock HideWorkInfoTD( playerid )
 	for (new td_id = 0; td_id < sizeof(InformationTD); td_id++)
 		TextDrawHideForPlayer(playerid, InformationTD[td_id]);
 	for (new ptd_id = 0; ptd_id < 3; ptd_id++)
-		PlayerTextDrawDestroy(playerid, InformationPTD[playerid][ptd_id]);
+		PlayerTextDrawHide(playerid, InformationPTD[playerid][ptd_id]);
 	return true;
 }

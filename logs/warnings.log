@@ -1,1 +1,0 @@
-[01/03/26 20:23:20] [plugins/mysql] mysql_connect: no password specified (main-build.pwn:30767 -> G:\Aurora-open-source\pawno\include\weapon-config.inc:1694 -> G:\Aurora-open-source\pawno\include\nex-ac.inc:3390 -> G:\Aurora-open-source\pawno\include\Pawn.RakNet.inc:1028)
